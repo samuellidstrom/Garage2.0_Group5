@@ -1,3 +1,6 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Garage2._0_Group5.Data;
 namespace Garage2._0_Group5
 {
     public class Program
@@ -9,6 +12,9 @@ namespace Garage2._0_Group5
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+            builder.Services.AddDbContext<Garage2_0_Group5Context>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("Garage2_0_Group5Context") ?? throw new InvalidOperationException("Connection string 'Garage2_0_Group5Context' not found.")));
+            
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -28,7 +34,7 @@ namespace Garage2._0_Group5
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Vehicles}/{action=Index}/{id?}");
 
             app.Run();
         }
