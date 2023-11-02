@@ -7,4 +7,8 @@
     <RootNamespace>Garage2._0_Group5</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
 </Project>
