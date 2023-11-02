@@ -15,6 +15,21 @@
         {
             TimeOfRegistration = DateTime.Now;
         }
+
+
+
+        private DateTime timer;
+
+        //public DateTime Timer
+        //{
+        //    get { return timer; }
+        //    set {
+        //        value = DateTime.Now - TimeOfRegistration;
+        //        DateTime timer = value;                         
+        //    }
+        //}
+
+
     }
 
 }

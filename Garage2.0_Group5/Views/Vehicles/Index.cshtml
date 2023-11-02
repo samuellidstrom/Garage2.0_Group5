@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Parked Cars</h1>
 
 <p>
     <a asp-action="Create">Park New Vehicle</a>
@@ -18,19 +18,6 @@
             <th>
                @*  @Html.DisplayNameFor(model => model.LicenseNumber) *@
                License Number
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Color)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Brand)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Model)
-            </th>
-            <th>
-                @* @Html.DisplayNameFor(model => model.NoOfWheels) *@
-                Number of Wheels
             </th>
             <th>
 @*                 @Html.DisplayNameFor(model => model.TimeOfRegistration) *@
@@ -49,18 +36,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.LicenseNumber)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Color)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Brand)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Model)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NoOfWheels)
-            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.TimeOfRegistration)
             </td>
