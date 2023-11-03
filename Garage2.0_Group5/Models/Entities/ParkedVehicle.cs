@@ -4,7 +4,7 @@ namespace Garage2._0_Group5.Models.Entities
 {
     public class ParkedVehicle
 	{
-		public string Id { get; set; }
+		public int Id { get; set; }
 		[StringLength(15)]
 		public VehicleType VehicleType { get; set; }
 		[StringLength(15)]
