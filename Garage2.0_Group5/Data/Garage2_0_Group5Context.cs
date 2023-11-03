@@ -14,6 +14,6 @@ namespace Garage2._0_Group5.Data
         {
         }
 
-        public DbSet<Garage2._0_Group5.Models.Vehicle> Vehicle { get; set; } = default!;
+        public DbSet<Vehicle> Vehicle { get; set; } = default!;
     }
 }
