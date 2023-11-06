@@ -17,7 +17,7 @@ namespace Garage2._0_Group5.Models.Entities
 		public int NumberOfWheels { get; set; }
 		[DataType(DataType.Time)]
 		[Display(Name ="Check In Time")]
-		public DateTime TimeAtCheckIn { get; } // Read-only property for check-in timestamp
+		public DateTime TimeAtCheckIn { get; } // Read-only property for check-in timestamp // ändra till get; set;
 		public DateTime? TimeAtCheckOut { get; set; } // Property for check-out timestamp
 
 		public ParkedVehicle()

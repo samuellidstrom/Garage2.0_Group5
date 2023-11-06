@@ -3,18 +3,18 @@ using Microsoft.Extensions.DependencyInjection;
 using Garage2._0_Group5.Data;
 namespace Garage2._0_Group5
 {
-    public class Program
+	public class Program
     {
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
 			// Add services to the container.
-			builder.Services.AddDbContext<Garage2_0_Group5Context>(options =>
-			   options.UseSqlServer(builder.Configuration.GetConnectionString("Garage2_0_Group5Context") ?? throw new InvalidOperationException("Connection string 'Garage2_0_Group5Context' not found.")));
-
 			builder.Services.AddControllersWithViews();
 
+			builder.Services.AddDbContext<Garage2_0_Group5Context>(options =>
+				options.UseSqlServer(builder.Configuration.GetConnectionString("Garage2_0_Group5Context") ?? throw new InvalidOperationException("Connection string 'Garage2_0_Group5Context' not found.")));
+			
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
