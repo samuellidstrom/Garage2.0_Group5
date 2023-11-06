@@ -31,3 +31,36 @@ footer {
     background-color: rgb(202, 218, 232);
     color: white;
 }
+
+.btn-outline-info {
+    border-color: #236F9E;
+    color: #236F9E;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+    .btn-outline-info:hover {
+        background-color: #236F9E;
+        border-color: #236F9E;
+        color: white;
+    }
+
+    h1{
+        text-transform: uppercase;
+        text-shadow:1px 1px 4px #80808088;
+        letter-spacing:3px;
+    }
+
+    h4{
+        margin-top: -8px;
+        text-transform:uppercase;
+        color:red;
+    }
+
+.unEditable{
+    background-color:#eeeeee;
+    border:1px solid #cccccc;
+    padding:10px;
+    border-radius:5px;
+    color: #888888;    
+}

@@ -7,6 +7,8 @@ namespace Garage2._0_Group5.Models.Entities
     {
         public int Id { get; set; }
         public TypeOfVehicle Type { get; set; }
+
+        [DisplayName("License Number")]
         public string LicenseNumber { get; set; }
 
         public Color Color { get; set; }
@@ -26,6 +28,7 @@ namespace Garage2._0_Group5.Models.Entities
         [Range(0, 18)]
         public int NoOfWheels { get; set; }
 
+        [DisplayName("Time of Registration")]
         public DateTime? TimeOfRegistration { get; set; }
 
         public Vehicle()
