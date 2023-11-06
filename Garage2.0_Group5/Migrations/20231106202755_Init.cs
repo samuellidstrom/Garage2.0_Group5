@@ -17,11 +17,11 @@ namespace Garage2._0_Group5.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Type = table.Column<int>(type: "int", nullable: false),
                     LicenseNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Color = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
-                    Brand = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Model = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Color = table.Column<int>(type: "int", nullable: false),
+                    Brand = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    Model = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
                     NoOfWheels = table.Column<int>(type: "int", nullable: false),
                     TimeOfRegistration = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },

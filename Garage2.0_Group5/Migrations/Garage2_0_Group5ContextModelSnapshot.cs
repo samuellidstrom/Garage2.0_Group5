@@ -32,12 +32,11 @@ namespace Garage2._0_Group5.Migrations
 
                     b.Property<string>("Brand")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
-                    b.Property<string>("Color")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                    b.Property<int>("Color")
+                        .HasColumnType("int");
 
                     b.Property<string>("LicenseNumber")
                         .IsRequired()
@@ -45,7 +44,8 @@ namespace Garage2._0_Group5.Migrations
 
                     b.Property<string>("Model")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.Property<int>("NoOfWheels")
                         .HasColumnType("int");
@@ -53,9 +53,8 @@ namespace Garage2._0_Group5.Migrations
                     b.Property<DateTime?>("TimeOfRegistration")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
