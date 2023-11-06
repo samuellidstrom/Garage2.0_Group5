@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<Garage2._0_Group5.Models.Entities.ParkedVehicle>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Garage 2.0";
 }
 
-<h1>Index</h1>
+<h1>Garage 2.0</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Check In Vehicle</a>
 </p>
 <table class="table">
     <thead>
@@ -18,7 +18,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.RegistrationNumber)
             </th>
-            <th>
+@*             <th>
                 @Html.DisplayNameFor(model => model.Color)
             </th>
             <th>
@@ -29,7 +29,7 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.NumberOfWheels)
-            </th>
+            </th> *@
             <th>
                 @Html.DisplayNameFor(model => model.TimeAtCheckOut)
             </th>
@@ -39,9 +39,9 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
+@*             <td>
                 @Html.DisplayFor(modelItem => item.VehicleType)
-            </td>
+            </td> *@
             <td>
                 @Html.DisplayFor(modelItem => item.RegistrationNumber)
             </td>

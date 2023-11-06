@@ -1,14 +1,14 @@
 ﻿@model Garage2._0_Group5.Models.Entities.ParkedVehicle
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Check Out Vehicle";
 }
 
-<h1>Delete</h1>
+<h1>Check Out Vehicle</h1>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Are you sure you want to check out?</h3>
 <div>
-    <h4>ParkedVehicle</h4>
+    <h4>Parked Vehicles</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -55,9 +55,9 @@
         </dd>
     </dl>
     
-    <form asp-action="Delete"> <!--Change namne to "check out"-->
+    <form asp-action="Check Out">
         <input type="hidden" asp-for="Id" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <a asp-action="Index">Back to Parked Vehicles</a>
     </form>
 </div>

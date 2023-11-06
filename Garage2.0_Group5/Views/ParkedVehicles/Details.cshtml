@@ -1,13 +1,13 @@
 ﻿@model Garage2._0_Group5.Models.Entities.ParkedVehicle
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Vehicle Details";
 }
 
-<h1>Details</h1>
+<h1>Vehicle Details</h1>
 
 <div>
-    <h4>ParkedVehicle</h4>
+    <h4>Parked Vehicles</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -56,5 +56,5 @@
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Back to Parked Vehicles</a>
 </div>
