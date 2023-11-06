@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Garage2._0_Group5.Models;
+using Garage2._0_Group5.Models.Entities;
 
 namespace Garage2._0_Group5.Data
 {

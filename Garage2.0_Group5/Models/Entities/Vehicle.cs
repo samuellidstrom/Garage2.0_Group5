@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Garage2._0_Group5.Models
+namespace Garage2._0_Group5.Models.Entities
 {
     public class Vehicle
     {
@@ -25,6 +25,7 @@ namespace Garage2._0_Group5.Models
         [DisplayName("Number of Wheels")]
         [Range(0, 18)]
         public int NoOfWheels { get; set; }
+
         public DateTime? TimeOfRegistration { get; set; }
 
         public Vehicle()

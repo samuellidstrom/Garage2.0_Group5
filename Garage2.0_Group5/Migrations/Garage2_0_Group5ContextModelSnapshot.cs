@@ -22,7 +22,7 @@ namespace Garage2._0_Group5.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Garage2._0_Group5.Models.Vehicle", b =>
+            modelBuilder.Entity("Garage2._0_Group5.Models.Entities.Vehicle", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
