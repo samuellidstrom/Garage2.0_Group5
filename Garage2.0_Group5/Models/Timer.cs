@@ -15,11 +15,7 @@
 
                 //DateTime timer 
 
-
-
                 //DateTime.("yyyy-MM-dd HH:mm:ss");
-
-
 
             }
         }
