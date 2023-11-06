@@ -61,7 +61,7 @@ namespace Garage2._0_Group5.Controllers
         {
             if (ModelState.IsValid)
             {
-                parkedVehicle.TimeAtCheckOut = DateTime.Now;
+                parkedVehicle.TimeAtCheckIn = DateTime.Now;
 
                 _context.Add(parkedVehicle);
                 await _context.SaveChangesAsync();

@@ -15,5 +15,18 @@ namespace Garage2._0_Group5.Data
         }
 
         public DbSet<ParkedVehicle> ParkedVehicle => Set<ParkedVehicle>();
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            //modelBuilder.Entity<ParkedVehicle>().HasData(
+            //    new ParkedVehicle { Id = 1, VehicleType = "Car", VehicleBrand = "Toyota" },
+            //    new ParkedVehicle { Id = 2, VehicleType = "Airplane", VehicleBrand = "SAS" },
+            //    new ParkedVehicle { Id = 3, VehicleType = "Bike", VehicleBrand = "Shimano" },
+            //    new ParkedVehicle { Id = 4, VehicleType = "Motorcycle", VehicleBrand = "Harley Davidson" },
+            //    new ParkedVehicle { Id = 5, VehicleType = "Boat", VehicleBrand = "Boston whaler" }
+            //    );
+        }
     }
 }
