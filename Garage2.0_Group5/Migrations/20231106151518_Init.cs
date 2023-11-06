@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Garage2._0_Group5.Migrations
 {
     /// <inheritdoc />
-    public partial class NewDatabase : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,10 +19,10 @@ namespace Garage2._0_Group5.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LicenseNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Color = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Color = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     Brand = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Model = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NoOfWheels = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NoOfWheels = table.Column<int>(type: "int", nullable: false),
                     TimeOfRegistration = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>

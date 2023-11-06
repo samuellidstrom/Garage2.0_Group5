@@ -47,9 +47,8 @@ namespace Garage2._0_Group5.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("NoOfWheels")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("NoOfWheels")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("TimeOfRegistration")
                         .HasColumnType("datetime2");
