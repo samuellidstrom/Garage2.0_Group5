@@ -2,9 +2,10 @@
 {
 	public enum VehicleBrand
 	{
-		Saab,
 		Volvo,
-		Porche,
-		Mercedez
+		SAS,
+		Shimano,
+		Harley,
+		Boston,
 	}
 }

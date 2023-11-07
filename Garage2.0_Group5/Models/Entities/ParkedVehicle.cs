@@ -13,7 +13,7 @@ namespace Garage2._0_Group5.Models.Entities
         [DisplayName("Registration Number")]
         [RegularExpression(@"^[a-zA-Z]{3}\d{3}$", ErrorMessage = "Registration format must be ABC123")]
         [StringLength(6, MinimumLength = 6)]
-        public string RegistrationNumber { get; set; } = string.Empty;
+        public string RegistrationNumber { get; set; }
 
         [DisplayName("Color")]
         [StringLength(15, MinimumLength = 3)]

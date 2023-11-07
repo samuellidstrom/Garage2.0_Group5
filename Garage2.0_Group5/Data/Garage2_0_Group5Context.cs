@@ -9,7 +9,7 @@ namespace Garage2._0_Group5.Data
 {
     public class Garage2_0_Group5Context : DbContext
     {
-        public Garage2_0_Group5Context (DbContextOptions<Garage2_0_Group5Context> options)
+        public Garage2_0_Group5Context(DbContextOptions<Garage2_0_Group5Context> options)
             : base(options)
         {
         }
@@ -20,13 +20,72 @@ namespace Garage2._0_Group5.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            //modelBuilder.Entity<ParkedVehicle>().HasData(
-            //    new ParkedVehicle { Id = 1, VehicleType = "Car", VehicleBrand = "Toyota" },
-            //    new ParkedVehicle { Id = 2, VehicleType = "Airplane", VehicleBrand = "SAS" },
-            //    new ParkedVehicle { Id = 3, VehicleType = "Bike", VehicleBrand = "Shimano" },
-            //    new ParkedVehicle { Id = 4, VehicleType = "Motorcycle", VehicleBrand = "Harley Davidson" },
-            //    new ParkedVehicle { Id = 5, VehicleType = "Boat", VehicleBrand = "Boston whaler" }
-            //    );
+            modelBuilder.Entity<ParkedVehicle>().HasData(
+                new ParkedVehicle
+                {
+                    Id = 1,
+                    VehicleType = VehicleType.Car,
+                    RegistrationNumber = string.Empty,
+                    Color = string.Empty,
+                    VehicleBrand = VehicleBrand.Volvo,
+                    VehicleModel = string.Empty,
+                    NumberOfWheels = 4,
+                    TimeAtCheckIn = DateTime.UtcNow,
+                    TimeAtCheckOut = DateTime.UtcNow
+                },
+
+                new ParkedVehicle
+                {
+                    Id = 2,
+                    VehicleType = VehicleType.Airplane,
+                    RegistrationNumber = string.Empty,
+                    Color = string.Empty,
+                    VehicleBrand = VehicleBrand.SAS,
+                    VehicleModel = string.Empty,
+                    NumberOfWheels = 3,
+                    TimeAtCheckIn = DateTime.UtcNow,
+                    TimeAtCheckOut = DateTime.UtcNow
+                },
+
+                new ParkedVehicle
+                {
+                    Id = 3,
+                    VehicleType = VehicleType.Bicycle,
+                    RegistrationNumber = string.Empty,
+                    Color = string.Empty,
+                    VehicleBrand = VehicleBrand.Shimano,
+                    VehicleModel = string.Empty,
+                    NumberOfWheels = 2,
+                    TimeAtCheckIn = DateTime.UtcNow,
+                    TimeAtCheckOut = DateTime.UtcNow
+                },
+
+                new ParkedVehicle
+                {
+                    Id = 4,
+                    VehicleType = VehicleType.Motorcycle,
+                    RegistrationNumber = string.Empty,
+                    Color = string.Empty,
+                    VehicleBrand = VehicleBrand.Harley,
+                    VehicleModel = string.Empty,
+                    NumberOfWheels = 2,
+                    TimeAtCheckIn = DateTime.UtcNow,
+                    TimeAtCheckOut = DateTime.UtcNow
+                },
+
+                new ParkedVehicle
+                {
+                    Id = 5,
+                    VehicleType = VehicleType.Boat,
+                    RegistrationNumber = string.Empty,
+                    Color = string.Empty,
+                    VehicleBrand = VehicleBrand.Boston,
+                    VehicleModel = string.Empty,
+                    NumberOfWheels = 1,
+                    TimeAtCheckIn = DateTime.UtcNow,
+                    TimeAtCheckOut = DateTime.UtcNow
+                }
+                );
         }
     }
 }

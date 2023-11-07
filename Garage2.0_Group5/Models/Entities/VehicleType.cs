@@ -4,7 +4,8 @@
     {
         Car,
         Airplane,
-        Motorcycle,
         Bicycle,
+        Motorcycle,
+        Boat,
     }
 }
