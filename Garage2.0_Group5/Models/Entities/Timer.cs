@@ -6,19 +6,19 @@
 
         private DateTime timer;
 
-        public DateTime ShowTimer
-        {
-            get { return timer; }
-            set
-            {
-                //int timer = DateTime.Now.CompareTo(TimeOnly);
+        //public DateTime ShowTimer
+        //{
+        //    get { return timer; }
+        //    set
+        //    {
+        //        int timer = DateTime.Now.CompareTo();
 
-                //DateTime timer 
+        //        DateTime timer 
 
-                //DateTime.("yyyy-MM-dd HH:mm:ss");
+        //        DateTime.("yyyy-MM-dd HH:mm:ss");
 
-            }
-        }
+        //    }
+        //}
 
     }
 }
