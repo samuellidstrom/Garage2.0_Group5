@@ -1,24 +1,28 @@
-﻿namespace Garage2._0_Group5.Models.Entities
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+
+namespace Garage2._0_Group5.Models.Entities
 
 {
+    
     public class Timer
     {
+        private DateTime checkTime = DateTime.Now;
 
-        private DateTime timer;
+        
+       private DateTime timer;
 
-        //public DateTime ShowTimer
-        //{
-        //    get { return timer; }
-        //    set
-        //    {
-        //        int timer = DateTime.Now.CompareTo();
+        public DateTime CheckTime
+        {
+            get
+            {
+                
 
-        //        DateTime timer 
-
-        //        DateTime.("yyyy-MM-dd HH:mm:ss");
-
-        //    }
-        //}
+                return timer;
+            }
+            //set { myVar = value; }
+        }
 
     }
-}
+
+    }
+
