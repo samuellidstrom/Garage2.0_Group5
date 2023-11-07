@@ -47,8 +47,9 @@ footer {
 
     h1{
         text-transform: uppercase;
-        text-shadow:1px 1px 4px #80808088;
+        text-shadow:1px 1px 3px #80808077;
         letter-spacing:3px;
+        font-weight:lighter;
     }
 
     h4{
