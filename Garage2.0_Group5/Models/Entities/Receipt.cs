@@ -1,4 +1,4 @@
-﻿namespace Garage2._0_Group5.Models.ViewModels
+﻿namespace Garage2._0_Group5.Models.Entities
 {
     public class Receipt
     {
