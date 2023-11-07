@@ -23,9 +23,8 @@ namespace Garage2._0_Group5.Controllers
         // GET: ParkedVehicles
         public async Task<IActionResult> Index()
         {
-              return _context.ParkedVehicle != null ? 
-                          View(await _context.ParkedVehicle.ToListAsync()) :
-                          Problem("Entity set 'Garage2_0_Group5Context.ParkedVehicle'  is null.");
+            return View(await _context.ParkedVehicle.ToListAsync());
+                       
         }
 
         // GET: ParkedVehicles/Details/5

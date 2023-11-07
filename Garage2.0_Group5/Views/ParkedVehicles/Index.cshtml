@@ -18,7 +18,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.RegistrationNumber)
             </th>
-@*             <th>
+            <th>
                 @Html.DisplayNameFor(model => model.Color)
             </th>
             <th>
@@ -29,7 +29,7 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.NumberOfWheels)
-            </th> *@
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.TimeAtCheckOut)
             </th>
@@ -39,9 +39,9 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-@*             <td>
+            <td>
                 @Html.DisplayFor(modelItem => item.VehicleType)
-            </td> *@
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.RegistrationNumber)
             </td>
@@ -62,8 +62,8 @@
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Detaild View" asp-route-id="@item.Id">Detail View</a> |
+                <a asp-action="Check Out" asp-route-id="@item.Id">Check Out</a>
             </td>
         </tr>
 }
