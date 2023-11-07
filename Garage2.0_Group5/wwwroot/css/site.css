@@ -45,6 +45,22 @@ footer {
         color: white;
     }
 
+
+
+
+.btn-light {
+    background-color: white;
+    color: #236F9E;
+    border-color:white;
+}
+
+    .btn-light:hover {
+        border-color: #a2b6c3;
+        background-color: white;
+        color: #236F9E;
+        box-shadow: 1px 1px 3px #80808077;
+    }
+
     h1{
         text-transform: uppercase;
         text-shadow:1px 1px 3px #80808077;
