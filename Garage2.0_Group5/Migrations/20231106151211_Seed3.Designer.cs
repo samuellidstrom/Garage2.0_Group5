@@ -4,6 +4,7 @@ using Garage2._0_Group5.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Garage2._0_Group5.Migrations
 {
     [DbContext(typeof(Garage2_0_Group5Context))]
-    partial class Garage2_0_Group5ContextModelSnapshot : ModelSnapshot
+    [Migration("20231106151211_Seed3")]
+    partial class Seed3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,7 +37,7 @@ namespace Garage2._0_Group5.Migrations
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
 
-                    b.Property<int>("NumberOfWheels")
+                    b.Property<int?>("NumberOfWheels")
                         .HasColumnType("int");
 
                     b.Property<string>("RegistrationNumber")
@@ -68,10 +71,9 @@ namespace Garage2._0_Group5.Migrations
                         {
                             Id = 1,
                             Color = "",
-                            NumberOfWheels = 4,
                             RegistrationNumber = "",
-                            TimeAtCheckIn = new DateTime(2023, 11, 6, 15, 38, 20, 531, DateTimeKind.Utc).AddTicks(62),
-                            TimeAtCheckOut = new DateTime(2023, 11, 6, 15, 38, 20, 531, DateTimeKind.Utc).AddTicks(62),
+                            TimeAtCheckIn = new DateTime(2023, 11, 6, 15, 12, 11, 227, DateTimeKind.Utc).AddTicks(9863),
+                            TimeAtCheckOut = new DateTime(2023, 11, 6, 15, 12, 11, 227, DateTimeKind.Utc).AddTicks(9863),
                             VehicleBrand = 0,
                             VehicleModel = "",
                             VehicleType = 0
@@ -80,10 +82,9 @@ namespace Garage2._0_Group5.Migrations
                         {
                             Id = 2,
                             Color = "",
-                            NumberOfWheels = 3,
                             RegistrationNumber = "",
-                            TimeAtCheckIn = new DateTime(2023, 11, 6, 15, 38, 20, 531, DateTimeKind.Utc).AddTicks(67),
-                            TimeAtCheckOut = new DateTime(2023, 11, 6, 15, 38, 20, 531, DateTimeKind.Utc).AddTicks(67),
+                            TimeAtCheckIn = new DateTime(2023, 11, 6, 15, 12, 11, 227, DateTimeKind.Utc).AddTicks(9867),
+                            TimeAtCheckOut = new DateTime(2023, 11, 6, 15, 12, 11, 227, DateTimeKind.Utc).AddTicks(9867),
                             VehicleBrand = 1,
                             VehicleModel = "",
                             VehicleType = 1
@@ -92,34 +93,31 @@ namespace Garage2._0_Group5.Migrations
                         {
                             Id = 3,
                             Color = "",
-                            NumberOfWheels = 2,
                             RegistrationNumber = "",
-                            TimeAtCheckIn = new DateTime(2023, 11, 6, 15, 38, 20, 531, DateTimeKind.Utc).AddTicks(69),
-                            TimeAtCheckOut = new DateTime(2023, 11, 6, 15, 38, 20, 531, DateTimeKind.Utc).AddTicks(70),
+                            TimeAtCheckIn = new DateTime(2023, 11, 6, 15, 12, 11, 227, DateTimeKind.Utc).AddTicks(9869),
+                            TimeAtCheckOut = new DateTime(2023, 11, 6, 15, 12, 11, 227, DateTimeKind.Utc).AddTicks(9870),
                             VehicleBrand = 2,
-                            VehicleModel = "",
-                            VehicleType = 2
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Color = "",
-                            NumberOfWheels = 2,
-                            RegistrationNumber = "",
-                            TimeAtCheckIn = new DateTime(2023, 11, 6, 15, 38, 20, 531, DateTimeKind.Utc).AddTicks(72),
-                            TimeAtCheckOut = new DateTime(2023, 11, 6, 15, 38, 20, 531, DateTimeKind.Utc).AddTicks(72),
-                            VehicleBrand = 3,
                             VehicleModel = "",
                             VehicleType = 3
                         },
                         new
                         {
+                            Id = 4,
+                            Color = "",
+                            RegistrationNumber = "",
+                            TimeAtCheckIn = new DateTime(2023, 11, 6, 15, 12, 11, 227, DateTimeKind.Utc).AddTicks(9871),
+                            TimeAtCheckOut = new DateTime(2023, 11, 6, 15, 12, 11, 227, DateTimeKind.Utc).AddTicks(9872),
+                            VehicleBrand = 3,
+                            VehicleModel = "",
+                            VehicleType = 2
+                        },
+                        new
+                        {
                             Id = 5,
                             Color = "",
-                            NumberOfWheels = 1,
                             RegistrationNumber = "",
-                            TimeAtCheckIn = new DateTime(2023, 11, 6, 15, 38, 20, 531, DateTimeKind.Utc).AddTicks(74),
-                            TimeAtCheckOut = new DateTime(2023, 11, 6, 15, 38, 20, 531, DateTimeKind.Utc).AddTicks(74),
+                            TimeAtCheckIn = new DateTime(2023, 11, 6, 15, 12, 11, 227, DateTimeKind.Utc).AddTicks(9873),
+                            TimeAtCheckOut = new DateTime(2023, 11, 6, 15, 12, 11, 227, DateTimeKind.Utc).AddTicks(9874),
                             VehicleBrand = 4,
                             VehicleModel = "",
                             VehicleType = 4
