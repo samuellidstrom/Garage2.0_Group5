@@ -117,6 +117,32 @@ namespace Garage2._0_Group5.Controllers
             }
             return View(vehicle);
         }
+        
+
+
+
+
+
+        public ActionResult CheckExistingLicenseNumber(string LicenseNumber)
+        {
+            bool ifLicenseNumberExist = false;
+            try
+            {
+                ifLicenseNumberExist = LicenseNumber.Equals(vehicle.LicenseNumber) ? true : false;
+                return Json(!ifLicenseNumberExist, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+
+
+
+
+
 
         // GET: Vehicles/Delete/5
         public async Task<IActionResult> Delete(string? licenseNumber)
