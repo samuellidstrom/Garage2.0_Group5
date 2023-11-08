@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.RegularExpressions;
 
 namespace Garage2._0_Group5.Models.Entities
@@ -16,6 +17,7 @@ namespace Garage2._0_Group5.Models.Entities
         [DisplayName("License Number")]
         [RegularExpression(@"^[a-zA-Z]{3}\d{3}$", ErrorMessage = "Registration format must be ABC123")]
         [StringLength(6, MinimumLength = 6)]
+        [Key]
         public string LicenseNumber { get 
             {
                 return licenseNumber;
