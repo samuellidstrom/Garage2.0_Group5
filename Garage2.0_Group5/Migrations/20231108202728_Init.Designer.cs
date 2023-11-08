@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Garage2._0_Group5.Migrations
 {
     [DbContext(typeof(Garage2_0_Group5Context))]
-    [Migration("20231106212416_Init")]
+    [Migration("20231108202728_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -27,11 +27,9 @@ namespace Garage2._0_Group5.Migrations
 
             modelBuilder.Entity("Garage2._0_Group5.Models.Entities.Vehicle", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("LicenseNumber")
+                        .HasMaxLength(6)
+                        .HasColumnType("nvarchar(6)");
 
                     b.Property<string>("Brand")
                         .IsRequired()
@@ -41,9 +39,8 @@ namespace Garage2._0_Group5.Migrations
                     b.Property<int>("Color")
                         .HasColumnType("int");
 
-                    b.Property<string>("LicenseNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
 
                     b.Property<string>("Model")
                         .IsRequired()
@@ -59,7 +56,7 @@ namespace Garage2._0_Group5.Migrations
                     b.Property<int>("Type")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("LicenseNumber");
 
                     b.ToTable("Vehicle");
                 });
