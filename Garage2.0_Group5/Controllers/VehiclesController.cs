@@ -58,13 +58,13 @@ namespace Garage2._0_Group5.Controllers
 		// GET: Vehicles/Details/5
 		public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Vehicle == null)
+            if (licenseNumber == null || _context.Vehicle == null)
             {
                 return NotFound();
             }
 
             var vehicle = await _context.Vehicle
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.LicenseNumber == licenseNumber);
             if (vehicle == null)
             {
                 return NotFound();
@@ -84,7 +84,7 @@ namespace Garage2._0_Group5.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Type,LicenseNumber,Color,Brand,Model,NoOfWheels,TimeOfRegistration")] Vehicle vehicle)
+        public async Task<IActionResult> Create([Bind("Type,LicenseNumber,Color,Brand,Model,NoOfWheels,TimeOfRegistration")] Vehicle vehicle)
         {
             if (ModelState.IsValid)
             {
@@ -96,14 +96,14 @@ namespace Garage2._0_Group5.Controllers
         }
 
         // GET: Vehicles/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(string? licenseNumber)
         {
-            if (id == null || _context.Vehicle == null)
+            if (licenseNumber == null || _context.Vehicle == null)
             {
                 return NotFound();
             }
 
-            var vehicle = await _context.Vehicle.FindAsync(id);
+            var vehicle = await _context.Vehicle.FindAsync(licenseNumber);
             if (vehicle == null)
             {
                 return NotFound();
@@ -116,9 +116,9 @@ namespace Garage2._0_Group5.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Type,LicenseNumber,Color,Brand,Model,NoOfWheels,TimeOfRegistration")] Vehicle vehicle)
+        public async Task<IActionResult> Edit(string licenseNumber, [Bind("Type,LicenseNumber,Color,Brand,Model,NoOfWheels,TimeOfRegistration")] Vehicle vehicle)
         {
-            if (id != vehicle.Id)
+            if (licenseNumber != vehicle.LicenseNumber)
             {
                 return NotFound();
             }
@@ -132,7 +132,7 @@ namespace Garage2._0_Group5.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!VehicleExists(vehicle.Id))
+                    if (!VehicleExists(vehicle.LicenseNumber))
                     {
                         return NotFound();
                     }
@@ -145,17 +145,43 @@ namespace Garage2._0_Group5.Controllers
             }
             return View(vehicle);
         }
+        
+
+
+
+
+
+        public ActionResult CheckExistingLicenseNumber(string LicenseNumber)
+        {
+            bool ifLicenseNumberExist = false;
+            try
+            {
+                ifLicenseNumberExist = LicenseNumber.Equals(vehicle.LicenseNumber) ? true : false;
+                return Json(!ifLicenseNumberExist, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(false, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+
+
+
+
+
 
         // GET: Vehicles/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(string? licenseNumber)
         {
-            if (id == null || _context.Vehicle == null)
+            if (licenseNumber == null || _context.Vehicle == null)
             {
                 return NotFound();
             }
 
             var vehicle = await _context.Vehicle
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.LicenseNumber == licenseNumber);
             if (vehicle == null)
             {
                 return NotFound();
@@ -167,13 +193,13 @@ namespace Garage2._0_Group5.Controllers
         // POST: Vehicles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(string LicenseNumber)
         {
             if (_context.Vehicle == null)
             {
                 return Problem("Entity set 'Garage2_0_Group5Context.Vehicle'  is null.");
             }
-            var vehicle = await _context.Vehicle.FindAsync(id);
+            var vehicle = await _context.Vehicle.FindAsync(LicenseNumber);
             if (vehicle != null)
             {
                 _context.Vehicle.Remove(vehicle);
@@ -183,9 +209,9 @@ namespace Garage2._0_Group5.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool VehicleExists(int id)
+        private bool VehicleExists(string licenseNumber)
         {
-            return (_context.Vehicle?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.Vehicle?.Any(e => e.LicenseNumber == licenseNumber)).GetValueOrDefault();
         }
 
         public async Task<IActionResult> Receipt(int? id)

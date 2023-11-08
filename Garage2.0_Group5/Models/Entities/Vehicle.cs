@@ -1,20 +1,24 @@
-﻿using System.ComponentModel;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.RegularExpressions;
 
 namespace Garage2._0_Group5.Models.Entities
 {
     public class Vehicle
     {
-        public int Id { get; set; }
         public TypeOfVehicle Type { get; set; }
 
 
         private string licenseNumber;
 
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [DisplayName("License Number")]
         [RegularExpression(@"^[a-zA-Z]{3}\d{3}$", ErrorMessage = "Registration format must be ABC123")]
         [StringLength(6, MinimumLength = 6)]
+        [Key]
+        [Remote("CheckExistingLicenseNumber", "Vehicles", ErrorMessage = "License Number already exists!")]
         public string LicenseNumber { get 
             {
                 return licenseNumber;
