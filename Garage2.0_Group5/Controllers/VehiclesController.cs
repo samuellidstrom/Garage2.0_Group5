@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Garage2._0_Group5.Data;
 using Garage2._0_Group5.Models.Entities;
+using jsreport.AspNetCore;
+using jsreport.Types;
 
 namespace Garage2._0_Group5.Controllers
 {
@@ -193,6 +195,22 @@ namespace Garage2._0_Group5.Controllers
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Receipt));
+        }
+
+        [MiddlewareFilter(typeof(JsReportPipeline))]
+        public async Task<IActionResult> Print(int id)
+        {
+            var vehicle = await _context.Vehicle
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+
+            HttpContext.JsReportFeature().Recipe(Recipe.ChromePdf);
+            return View(vehicle);
+        }
+
+        private bool VehicleModelExists(int id)
+        {
+            return _context.Vehicle.Any(e => e.Id == id);
         }
     }
 }
