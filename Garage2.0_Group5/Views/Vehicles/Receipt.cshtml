@@ -6,6 +6,7 @@
 
 <div>
     <dl class="row">
+        <hr class="col-sm-6" />
         <dl class="row">
         <dt class="col-sm-3">
             @Html.DisplayNameFor(model => model.Type)
@@ -56,6 +57,6 @@
 
 <form asp-action="Index">
     <input type="hidden" asp-for="Id"/>
-    <button type="submit" class="btn btn-info mt-3">Go Back</button>
+    <button type="submit" class="btn btn-info mt-3">Previous Page</button>
     <input type="submit" asp-action="Print" formtarget="_blank" class="btn btn-primary mt-3" value="Receipt"/>
 </form>

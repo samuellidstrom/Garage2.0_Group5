@@ -14,7 +14,8 @@ namespace Garage2._0_Group5
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-            builder.Services.AddMvc();
+
+            // Add service for the print function
             builder.Services.AddJsReport(new LocalReporting()
             .UseBinary(JsReportBinary.GetBinary())
             .AsUtility()
