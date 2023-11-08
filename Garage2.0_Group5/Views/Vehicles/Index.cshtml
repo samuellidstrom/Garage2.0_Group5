@@ -7,57 +7,28 @@
 <h1>Parked Cars</h1>
 
 <p>
-	<a asp-action="Create" class="btn btn-outline-info">Park New Vehicle</a>
+	<a asp-action="Create" class="btn btn-outline-info mx-3">Park New Vehicle</a> 
 </p>
-<table class="table">
-	<thead>
-		<tr>
-			<th>
-				@Html.DisplayNameFor(model => model.Type)
-			</th>
-			<th>
-				@*  @Html.DisplayNameFor(model => model.LicenseNumber) *@
-				License Number
-			</th>
-			<th>
-				@*                 @Html.DisplayNameFor(model => model.TimeOfRegistration) *@
-				Check-in Time
 
-			</th>
-			<th></th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (var item in Model)
-		{
-			<tr>
-				<td>
-					@Html.DisplayFor(modelItem => item.Type)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.LicenseNumber)
-				</td>
+<form asp-action="Filter" asp-controller="Vehicles" method="get">
+	<div class="input-group mb-3">
+		<input type="text" class="form-control" name="licenseNumber" placeholder="Search on License Number..." />
+		<input type="text" class="form-control" name="noOfWheels" placeholder="Search on Number of Wheels..." />
+		
 
-				<td>
-					@Html.DisplayFor(modelItem => item.TimeOfRegistration)
-				</td>
-				@*              <td>
-			@Html.DisplayFor(Timer.)
-			</td> *@
+		<div class="input-group-append">
+			<select class="form-control" name="type" asp-items="@Html.GetEnumSelectList<TypeOfVehicle>()">
+				<option selected="selected" value="">Vehicle Type...</option>
+			</select>
+		</div>
 
-				<td>
-					@* @Html.DisplayFor(DateTime.Now.CompareTo, modelItem => item.TimeOfRegistration); *@
-					@* @Html.DisplayFor(DateTime.Now.CompareTo, item.TimeOfRegistration); *@
-					@* @DateTime.Now.CompareTo(item.TimeOfRegistration) *@
 
-				
-				</td>
-				<td>
-					<a asp-action="Edit" asp-route-id="@item.Id" class="btn px-2 py-0 my-0 btn-light">Edit</a> |
-					<a asp-action="Details" asp-route-id="@item.Id" class="btn px-2 py-0 my-0 btn-light">Details</a> |
-					<a asp-action="Delete" asp-route-id="@item.Id" class="btn px-2 py-0 my-0 btn-light">Check Out</a>
-				</td>
-			</tr>
-		}
-	</tbody>
-</table>
+		<div class="input-group-append">
+			<button type="submit" class="btn btn-primary"><i class="fa fa-search">Search</i></button>
+		</div>
+	</div>
+</form>
+
+
+<partial name="_VehicleList" />
+

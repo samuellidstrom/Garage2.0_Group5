@@ -1,0 +1,62 @@
+﻿@model Vehicle
+
+@{ 
+    ViewData["Title"] = "Receipt";
+}
+
+<div>
+    <dl class="row">
+        <hr class="col-sm-6" />
+        <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.Type)
+        </dd>    
+        </dl>
+        <hr class="col-sm-6" />
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.LicenseNumber)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.LicenseNumber)
+            </dd>
+        </dl>
+        <hr class="col-sm-6" />
+        <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Brand)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.Brand)
+        </dd>
+        </dl>
+        <hr class="col-sm-6" />
+            <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Model)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.Model)
+        </dd>
+        </dl>
+        <hr class="col-sm-6" />
+                <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.TimeOfRegistration)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.TimeOfRegistration)
+        </dd>
+        </dl>
+        <hr class="col-sm-6" />
+    </dl>
+</div>
+
+<form asp-action="Index">
+    <input type="hidden" asp-for="Id"/>
+    <button type="submit" class="btn btn-info mt-3">Previous Page</button>
+    <input type="submit" asp-action="Print" formtarget="_blank" class="btn btn-primary mt-3" value="Receipt"/>
+</form>
