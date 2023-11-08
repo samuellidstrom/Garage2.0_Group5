@@ -1,0 +1,59 @@
+﻿@model Vehicle
+
+@{
+    ViewData["Title"] = "Vehicle Receipt";
+}
+
+<h1>Vehicle Receipt</h1>
+
+<div>
+    <dl class="row">
+        <hr class="col-sm-6" />
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Type)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.Type)
+            </dd>
+        </dl>
+        <hr class="col-sm-6" />
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.LicenseNumber)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.LicenseNumber)
+            </dd>
+        </dl>
+        <hr class="col-sm-6" />
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Brand)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.Brand)
+            </dd>
+        </dl>
+        <hr class="col-sm-6" />
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.Model)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.Model)
+            </dd>
+        </dl>
+        <hr class="col-sm-6" />
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.TimeOfRegistration)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.TimeOfRegistration)
+            </dd>
+        </dl>
+        <hr class="col-sm-6" />
+        <vc:receipt vehicle-id="@Model.Id" />
+    </dl>
+</div>
