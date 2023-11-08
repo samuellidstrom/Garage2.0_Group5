@@ -8,9 +8,13 @@ namespace Garage2._0_Group5.Models.Entities
         public int Id { get; set; }
         public TypeOfVehicle Type { get; set; }
 
+        [Required]
+        [RegularExpression(@"^[a-zA-Z]{3}\d{3}$", ErrorMessage = "Registration number format must be ABC123")]
+        [StringLength(6, MinimumLength = 6)]
         [DisplayName("License Number")]
         public string LicenseNumber { get; set; }
 
+        [DisplayName("Color")]
         public Color Color { get; set; }
 
         [Required]
