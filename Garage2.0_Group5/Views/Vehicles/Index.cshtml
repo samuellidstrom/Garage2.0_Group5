@@ -14,10 +14,10 @@
 <form asp-action="Filter" asp-controller="Vehicles" method="get">
 	<div class="input-group mb-3">
 		<input type="text" class="form-control" name="licenseNumber" placeholder="Search on License Number..." />
-		<input type="text" class="form-control" name="noOfWheels" placeholder="Number of Wheels..." />
+		<input type="text" class="form-control" name="noOfWheels" placeholder="Search on Number of Wheels..." />
 		<div class="input-group-append">
 			<select class="form-control" name="type" asp-items="@Html.GetEnumSelectList<TypeOfVehicle>()">
-				<option selected="selected" value="">Vehicle Type</option>
+				<option selected="selected" value="">Vehicle Type...</option>
 			</select>
 		</div>
 		<div class="input-group-append">
