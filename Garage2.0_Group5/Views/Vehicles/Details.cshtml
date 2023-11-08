@@ -61,30 +61,19 @@
         </dd>
 
         <dt class="col-sm-2">
+            Current Date and Time
+        </dt>
+        <dd class="col-sm-10">
+            @DateTime.Now
+        </dd>
+
+        <dt class="col-sm-2">
             Time spent in garage 
         </dt>
 
-        <dd class="col-sm-10">   
-@*             Funkar----
-            Difference @(DateTime.Now - Model.TimeOfRegistration)<br />
-            Now @DateTime.Now<br />
-            ---- *@
-            Difference
-            @{
+        <dd class="col-sm-10">         
+            @* @(DateTime.Now - Model.TimeOfRegistration) *@
 
-                // // TimeSpan timeDifference = DateTime.Now.Subtract(Model.TimeOfRegistration);
-                // DateTime.Now - Model.TimeOfRegistration
-
-                
-             
-
-
-             }
-             
-             <br />
-
-            
-            hej
         </dd>
 
     </dl>

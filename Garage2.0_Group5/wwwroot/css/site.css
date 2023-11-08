@@ -76,10 +76,12 @@ footer {
         font-size: 1.1em;
     }
 
-.unEditable{
-    background-color:#eeeeee;
-    border:1px solid #cccccc;
-    padding:10px;
-    border-radius:5px;
-    color: #888888;    
+.unEditable {
+    background-color: #eeeeee;
+    border: 1px solid #cccccc;
+    padding-bottom: 6px;
+    padding-top: 6px;
+    padding-left:11px;
+    border-radius: 4px;
+    color: #888888;
 }

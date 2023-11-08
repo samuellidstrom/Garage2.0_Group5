@@ -6,21 +6,34 @@ namespace Garage2._0_Group5.Models.Entities
     
     public class Timer
     {
-        private DateTime checkTime = DateTime.Now;
 
-        
-       private DateTime timer;
+        DateTime timeOfNow = DateTime.Now;
 
-        public DateTime CheckTime
+        public CalculateTime()
         {
-            get
-            {
-                
 
-                return timer;
-            }
-            //set { myVar = value; }
+            timeOfNow - Model.
+
+            return timeAmount;
         }
+
+
+
+        // private DateTime checkTime = DateTime.Now;
+
+
+        //private DateTime timer;
+
+        // public DateTime CheckTime
+        // {
+        //     get
+        //     {
+
+
+        //         return timer;
+        //     }
+        //     //set { myVar = value; }
+        // }
 
     }
 
