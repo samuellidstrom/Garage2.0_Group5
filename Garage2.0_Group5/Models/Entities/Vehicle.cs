@@ -7,7 +7,6 @@ namespace Garage2._0_Group5.Models.Entities
 {
     public class Vehicle
     {
-        public int Id { get; set; }
         public TypeOfVehicle Type { get; set; }
 
 

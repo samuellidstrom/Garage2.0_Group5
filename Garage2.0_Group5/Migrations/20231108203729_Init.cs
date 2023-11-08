@@ -16,7 +16,6 @@ namespace Garage2._0_Group5.Migrations
                 columns: table => new
                 {
                     LicenseNumber = table.Column<string>(type: "nvarchar(6)", maxLength: 6, nullable: false),
-                    Id = table.Column<int>(type: "int", nullable: false),
                     Type = table.Column<int>(type: "int", nullable: false),
                     Color = table.Column<int>(type: "int", nullable: false),
                     Brand = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),

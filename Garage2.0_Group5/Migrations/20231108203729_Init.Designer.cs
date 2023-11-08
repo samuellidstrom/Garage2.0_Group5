@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Garage2._0_Group5.Migrations
 {
     [DbContext(typeof(Garage2_0_Group5Context))]
-    [Migration("20231108202728_Init")]
+    [Migration("20231108203729_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -37,9 +37,6 @@ namespace Garage2._0_Group5.Migrations
                         .HasColumnType("nvarchar(15)");
 
                     b.Property<int>("Color")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Id")
                         .HasColumnType("int");
 
                     b.Property<string>("Model")

@@ -36,9 +36,6 @@ namespace Garage2._0_Group5.Migrations
                     b.Property<int>("Color")
                         .HasColumnType("int");
 
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
                     b.Property<string>("Model")
                         .IsRequired()
                         .HasMaxLength(15)
