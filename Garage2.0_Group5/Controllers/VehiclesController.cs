@@ -179,7 +179,7 @@ namespace Garage2._0_Group5.Controllers
 
         [HttpPost, ActionName("Receipt")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> PrintConfirmed(int id)
+        public async Task<IActionResult> ReceiptConfirmed(int id)
         {
             if (_context.Vehicle == null)
             {
