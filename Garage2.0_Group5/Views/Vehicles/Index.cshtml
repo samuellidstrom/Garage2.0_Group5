@@ -10,5 +10,21 @@
 	<a asp-action="Create" class="btn btn-outline-info">Park New Vehicle</a>
 </p>
 
+<form asp-action="Filter" asp-controller="Vehicles" method="get">
+	<div class="input-group mb-3">
+		<input type="text" class="form-control" name="licenseNumber" placeholder="Search on License Number..." />
+		<div class="input-group-append">
+			<select class="form-control" name="type" asp-items="@Html.GetEnumSelectList<TypeOfVehicle>()">
+				<option selected="selected" value="">Vehicle Type</option>
+
+			</select>
+		</div>
+		<div class="input-group-append">
+			<button type="submit" class="btn btn-primary"><i class="fa fa-search">Search</i></button>
+		</div>
+	</div>
+</form>
+
+
 <partial name="_VehicleList" />
 

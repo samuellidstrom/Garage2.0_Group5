@@ -27,8 +27,13 @@ namespace Garage2._0_Group5.Controllers
                           Problem("Entity set 'Garage2_0_Group5Context.Vehicle'  is null.");
         }
 
-        // GET: Vehicles/Details/5
-        public async Task<IActionResult> Details(int? id)
+		public async Task<IActionResult> Filter(string licenseNumber, int? type)
+		{
+            return View();
+		}
+
+		// GET: Vehicles/Details/5
+		public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Vehicle == null)
             {
