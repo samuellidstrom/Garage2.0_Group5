@@ -28,7 +28,7 @@ namespace Garage2._0_Group5.Models.Entities
         [Range(0, 18)]
         public int NoOfWheels { get; set; }
 
-        [DisplayName("Time of Registration")]
+        [DisplayName("Check-in Time")]
         public DateTime? TimeOfRegistration { get; set; }
 
         public Vehicle()
