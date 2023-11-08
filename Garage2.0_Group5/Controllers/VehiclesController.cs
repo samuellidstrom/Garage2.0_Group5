@@ -29,15 +29,24 @@ namespace Garage2._0_Group5.Controllers
 
 		public async Task<IActionResult> Filter(string licenseNumber, int? type, int? noOfWheels)
 		{
+
+
             var model = string.IsNullOrWhiteSpace(licenseNumber) ?
                     _context.Vehicle :
                     _context.Vehicle.Where(m => m.LicenseNumber.StartsWith(licenseNumber));
 
-			model = noOfWheels == null ?
-		_context.Vehicle :
-		_context.Vehicle.Where(m => m.NoOfWheels.Equals(noOfWheels));
+            //var model = licenseNumber == null ?
+            //       _context.Vehicle :
+            //       _context.Vehicle.Where(m => m.LicenseNumber.StartsWith(licenseNumber));
 
-			model = type is null ?
+
+
+            model = noOfWheels == null ?
+		            _context.Vehicle :
+		            _context.Vehicle.Where(m => m.NoOfWheels.Equals(noOfWheels));
+
+			
+            model = type is null ?
                     model :
                     model.Where(m => (int)m.Type == type);
 
