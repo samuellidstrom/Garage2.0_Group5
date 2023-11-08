@@ -1,0 +1,41 @@
+﻿@model Vehicle
+
+@{ 
+    ViewData["Title"] = "Receipt";
+}
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LicenseNumber)
+        </dt>
+        <dt class="col-sm-10">
+            @Html.DisplayNameFor(model => model.LicenseNumber)
+        </dt>
+        <dd class="col-sm-2">
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TimeOfRegistration)
+        </dt>
+        <dt class="col-sm-10">
+            @Html.DisplayNameFor(model => model.TimeOfRegistration)
+        </dt>
+        <dd class="col-sm-2">
+            @Html.DisplayFor(model => model.Brand)
+        </dd>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Brand)
+        </dd>
+        <vc:receipt vehicle-id="@Model.Id" />
+    </dl>
+</div>
+
+<form asp-action="Edit">
+    <input type="hidden" asp-for="Id"/>
+    <button type="submit" class="btn btn-danger mt-3">Go Back</button>
+    <input type="submit" asp-action="Print" formtarget="_blank" class="btn btn-primary mt-3" value="Receipt"/>
+</form>
