@@ -6,36 +6,56 @@
 
 <div>
     <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.LicenseNumber)
+        <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Type)
         </dt>
-        <dt class="col-sm-10">
-            @Html.DisplayNameFor(model => model.LicenseNumber)
-        </dt>
-        <dd class="col-sm-2">
+        <dd class="col-sm-6">
             @Html.DisplayFor(model => model.Type)
-        </dd>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Type)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.TimeOfRegistration)
+        </dd>    
+        </dl>
+        <hr class="col-sm-6" />
+        <dl class="row">
+            <dt class="col-sm-3">
+                @Html.DisplayNameFor(model => model.LicenseNumber)
+            </dt>
+            <dd class="col-sm-6">
+                @Html.DisplayFor(model => model.LicenseNumber)
+            </dd>
+        </dl>
+        <hr class="col-sm-6" />
+        <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Brand)
         </dt>
-        <dt class="col-sm-10">
-            @Html.DisplayNameFor(model => model.TimeOfRegistration)
-        </dt>
-        <dd class="col-sm-2">
+        <dd class="col-sm-6">
             @Html.DisplayFor(model => model.Brand)
         </dd>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Brand)
+        </dl>
+        <hr class="col-sm-6" />
+            <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Model)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.Model)
         </dd>
-        <vc:receipt vehicle-id="@Model.Id" />
+        </dl>
+        <hr class="col-sm-6" />
+                <dl class="row">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.TimeOfRegistration)
+        </dt>
+        <dd class="col-sm-6">
+            @Html.DisplayFor(model => model.TimeOfRegistration)
+        </dd>
+        </dl>
+        <hr class="col-sm-6" />
     </dl>
 </div>
 
-<form asp-action="Edit">
+<form asp-action="Index">
     <input type="hidden" asp-for="Id"/>
-    <button type="submit" class="btn btn-danger mt-3">Go Back</button>
+    <button type="submit" class="btn btn-info mt-3">Go Back</button>
     <input type="submit" asp-action="Print" formtarget="_blank" class="btn btn-primary mt-3" value="Receipt"/>
 </form>
