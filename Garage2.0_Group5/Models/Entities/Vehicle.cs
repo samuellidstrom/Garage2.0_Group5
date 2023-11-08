@@ -16,7 +16,6 @@ namespace Garage2._0_Group5.Models.Entities
 
         [Required]
         [DisplayName("Color")]
-        [StringLength(15, MinimumLength = 3)]
         public Color Color { get; set; }
 
         [Required]
