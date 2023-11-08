@@ -7,16 +7,17 @@
 <h1>Parked Cars</h1>
 
 <p>
-	<a asp-action="Create" class="btn btn-outline-info">Park New Vehicle</a>
+	<a asp-action="Create" class="btn btn-outline-info mx-3">Park New Vehicle</a> | 
+	<a asp-action="Index" class="btn btn-outline-info mx-3">View All Vehicles</a>
 </p>
 
 <form asp-action="Filter" asp-controller="Vehicles" method="get">
 	<div class="input-group mb-3">
 		<input type="text" class="form-control" name="licenseNumber" placeholder="Search on License Number..." />
+		<input type="text" class="form-control" name="noOfWheels" placeholder="Number of Wheels..." />
 		<div class="input-group-append">
 			<select class="form-control" name="type" asp-items="@Html.GetEnumSelectList<TypeOfVehicle>()">
 				<option selected="selected" value="">Vehicle Type</option>
-
 			</select>
 		</div>
 		<div class="input-group-append">
