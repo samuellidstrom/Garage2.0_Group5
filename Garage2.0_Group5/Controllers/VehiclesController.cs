@@ -224,9 +224,9 @@ namespace Garage2._0_Group5.Controllers
             var vehicle = await _context.Vehicle
                 .FirstOrDefaultAsync(m => m.ID == id);
 
-
             HttpContext.JsReportFeature().Recipe(Recipe.ChromePdf);
             return View(vehicle);
+            
         }
 
         private bool VehicleModelExists(string id)
