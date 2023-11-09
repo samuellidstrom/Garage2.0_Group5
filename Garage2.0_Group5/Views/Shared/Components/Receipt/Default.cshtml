@@ -1,0 +1,29 @@
+﻿@using Garage2._0_Group5.Models.ViewModels;
+@model ReceiptViewModel
+
+<dl class="row">
+    <dt class="col-sm-3">
+        @Html.DisplayNameFor(model => model.DepartureTime)
+    </dt>
+    <dd class="col-sm-6">
+        @Html.DisplayFor(model => model.DepartureTime)
+    </dd>
+</dl>
+<hr class="col-sm-6" />
+<dl class="row">
+    <dt class="col-sm-3">
+        @Html.DisplayNameFor(model => model.TotalTime)
+    </dt>
+    <dd class="col-sm-6">
+        @Html.DisplayFor(model => model.TotalTime)
+    </dd>
+</dl>
+<dl class="row">
+    <dt class="col-sm-3">
+        @Html.DisplayNameFor(model => model.Price)
+    </dt>
+    <dd class="col-sm-6">
+        @Html.DisplayFor(model => model.Price)
+    </dd>
+</dl>
+<hr class="col-sm-6" />
