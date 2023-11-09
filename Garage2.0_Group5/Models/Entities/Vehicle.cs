@@ -10,57 +10,27 @@ namespace Garage2._0_Group5.Models.Entities
     {
         //public int Id { get; set; }
 
+        private string id;
 
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DisplayName("License Number")]
+        [RegularExpression(@"^[a-zA-Z]{3}\d{3}$", ErrorMessage = "Registration format must be ABC123")]
+        [StringLength(6, MinimumLength = 6)]
+        [Key]
+        //[Remote("CheckExistingLicenseNumber", "Vehicles", ErrorMessage = "License Number already exists!")]
+        public string ID
+        {
+            get
+            {
+                return id;
+            }
+            set
+            {
+                id = Regex.Replace(value, @"\s", "").ToUpper();
+            }
+        }
 
-		private string id;
-
-		[DatabaseGenerated(DatabaseGeneratedOption.None)]
-		[DisplayName("License Number")]
-		[RegularExpression(@"^[a-zA-Z]{3}\d{3}$", ErrorMessage = "Registration format must be ABC123")]
-		[StringLength(6, MinimumLength = 6)]
-		[Key]
-		//[Remote("CheckExistingLicenseNumber", "Vehicles", ErrorMessage = "License Number already exists!")]
-		public string ID
-		{
-			get
-			{
-				return id;
-			}
-			set
-			{
-				id = Regex.Replace(value, @"\s", "").ToUpper();
-			}
-		}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		public TypeOfVehicle Type { get; set; }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        public TypeOfVehicle Type { get; set; }
 
         //[Required]
         //[RegularExpression(@"^[a-zA-Z]{3}\d{3}$", ErrorMessage = "Registration number format must be ABC123")]

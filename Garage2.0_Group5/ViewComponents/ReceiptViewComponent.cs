@@ -19,9 +19,9 @@ namespace Garage2._0_Group5.ViewComponents
             this.db = db;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(int vehicleId)
+        public async Task<IViewComponentResult> InvokeAsync(string vehicleId)
         {
-            var vehicle = await db.Vehicle.Where(v => v.Id == vehicleId).FirstOrDefaultAsync();
+            var vehicle = await db.Vehicle.Where(v => v.ID == vehicleId).FirstOrDefaultAsync();
 
             var departure = DateTime.Now;
             var total = departure - vehicle.TimeOfRegistration;
