@@ -18,7 +18,7 @@ namespace Garage2._0_Group5.Models.Entities
         [RegularExpression(@"^[a-zA-Z]{3}\d{3}$", ErrorMessage = "Registration format must be ABC123")]
         [StringLength(6, MinimumLength = 6)]
         [Key]
-        [Remote("CheckExistingLicenseNumber", "Vehicles", ErrorMessage = "License Number already exists!")]
+        //[Remote("CheckExistingLicenseNumber", "Vehicles", ErrorMessage = "License Number already exists!")]
         public string LicenseNumber { get 
             {
                 return licenseNumber;

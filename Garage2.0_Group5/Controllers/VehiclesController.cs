@@ -56,7 +56,7 @@ namespace Garage2._0_Group5.Controllers
 		}
 
 		// GET: Vehicles/Details/5
-		public async Task<IActionResult> Details(int? id)
+		public async Task<IActionResult> Details(string licenseNumber)
         {
             if (licenseNumber == null || _context.Vehicle == null)
             {
@@ -151,19 +151,20 @@ namespace Garage2._0_Group5.Controllers
 
 
 
-        public ActionResult CheckExistingLicenseNumber(string LicenseNumber)
-        {
-            bool ifLicenseNumberExist = false;
-            try
-            {
-                ifLicenseNumberExist = LicenseNumber.Equals(vehicle.LicenseNumber) ? true : false;
-                return Json(!ifLicenseNumberExist, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
-                return Json(false, JsonRequestBehavior.AllowGet);
-            }
-        }
+        //public ActionResult CheckExistingLicenseNumber(string LicenseNumber
+
+        //{
+        //    bool ifLicenseNumberExist = false;
+        //    try
+        //    {
+        //        ifLicenseNumberExist = LicenseNumber.Equals(vehicle.LicenseNumber) ? true : false;
+        //        return Json(!ifLicenseNumberExist, JsonRequestBehavior.AllowGet);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Json(false, JsonRequestBehavior.AllowGet);
+        //    }
+        //}
 
 
 
@@ -214,14 +215,14 @@ namespace Garage2._0_Group5.Controllers
           return (_context.Vehicle?.Any(e => e.LicenseNumber == licenseNumber)).GetValueOrDefault();
         }
 
-        public async Task<IActionResult> Receipt(int? id)
+        public async Task<IActionResult> Receipt(string? licenseNumber) 
         {
-            if (id == null)
+            if (licenseNumber == null)
             {
                 return NotFound();
             }
             var vehicle = await _context.Vehicle
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.LicenseNumber == licenseNumber);
 
             if (vehicle == null)
             {
@@ -233,13 +234,13 @@ namespace Garage2._0_Group5.Controllers
 
         [HttpPost, ActionName("Receipt")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ReceiptConfirmed(int id)
+        public async Task<IActionResult> ReceiptConfirmed(string licenseNumber)
         {
             if (_context.Vehicle == null)
             {
                 return Problem("Entity set 'Garage2_0_Group5Context.Vehicle'  is null.");
             }
-            var vehicle = await _context.Vehicle.FindAsync(id);
+            var vehicle = await _context.Vehicle.FindAsync(licenseNumber);
             if (vehicle != null)
             {
                 _context.Vehicle.Remove(vehicle);
@@ -250,19 +251,19 @@ namespace Garage2._0_Group5.Controllers
         }
 
         [MiddlewareFilter(typeof(JsReportPipeline))]
-        public async Task<IActionResult> Print(int id)
+        public async Task<IActionResult> Print(string licenseNumber)
         {
             var vehicle = await _context.Vehicle
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.LicenseNumber == licenseNumber);
 
 
             HttpContext.JsReportFeature().Recipe(Recipe.ChromePdf);
             return View(vehicle);
         }
 
-        private bool VehicleModelExists(int id)
+        private bool VehicleModelExists(string licenseNumber)
         {
-            return _context.Vehicle.Any(e => e.Id == id);
+            return _context.Vehicle.Any(e => e.LicenseNumber == licenseNumber);
         }
     }
 }

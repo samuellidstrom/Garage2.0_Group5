@@ -8,6 +8,17 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Views\Customer\**" />
+	  <Compile Remove="Views\Vehicle\**" />
+	  <Content Remove="Views\Customer\**" />
+	  <Content Remove="Views\Vehicle\**" />
+	  <EmbeddedResource Remove="Views\Customer\**" />
+	  <EmbeddedResource Remove="Views\Vehicle\**" />
+	  <None Remove="Views\Customer\**" />
+	  <None Remove="Views\Vehicle\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.13" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.13">
 			<PrivateAssets>all</PrivateAssets>
@@ -17,8 +28,6 @@
 
 	<ItemGroup>
 	  <Folder Include="Controllers\" />
-	  <Folder Include="Views\Customer\" />
-	  <Folder Include="Views\Vehicle\" />
 	</ItemGroup>
 
   <ItemGroup>

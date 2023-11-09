@@ -57,10 +57,10 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="LicenseNumber" />
-        <input type="submit" value="Check out Vehicle" class="btn btn-danger" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
     </form>
 
     <div>
-        <a asp-action="Receipt" asp-route-id="@Model.Id" class="btn btn-primary mt-3">Receipt </a> 
+        <a asp-action="Receipt" asp-route-id="@Model.LicenseNumber" class="btn btn-primary mt-3">Receipt </a> 
     </div>
 </div>
