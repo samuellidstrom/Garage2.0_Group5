@@ -29,13 +29,13 @@ namespace Garage2._0_Group5.Controllers
                         Problem("Entity set 'Garage2_0_Group5Context.Vehicle'  is null.");
         }
 
-		public async Task<IActionResult> Filter(string licenseNumber, int? type, int? noOfWheels)
+		public async Task<IActionResult> Filter(string id, int? type, int? noOfWheels)
 		{
 
 
-            var model = string.IsNullOrWhiteSpace(licenseNumber) ?
+            var model = string.IsNullOrWhiteSpace(id) ?
                     _context.Vehicle :
-                    _context.Vehicle.Where(m => m.LicenseNumber.StartsWith(licenseNumber));
+                    _context.Vehicle.Where(m => m.ID.StartsWith(id));
 
             //var model = licenseNumber == null ?
             //       _context.Vehicle :
@@ -56,7 +56,7 @@ namespace Garage2._0_Group5.Controllers
 		}
 
 		// GET: Vehicles/Details/5
-		public async Task<IActionResult> Details(int? id)
+		public async Task<IActionResult> Details(string? id)
         {
             if (id == null || _context.Vehicle == null)
             {
@@ -64,7 +64,7 @@ namespace Garage2._0_Group5.Controllers
             }
 
             var vehicle = await _context.Vehicle
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.ID == id);
             if (vehicle == null)
             {
                 return NotFound();
@@ -84,7 +84,7 @@ namespace Garage2._0_Group5.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Type,LicenseNumber,Color,Brand,Model,NoOfWheels,TimeOfRegistration")] Vehicle vehicle)
+        public async Task<IActionResult> Create([Bind("ID,Type,Color,Brand,Model,NoOfWheels,TimeOfRegistration")] Vehicle vehicle)
         {
             if (ModelState.IsValid)
             {
@@ -96,7 +96,7 @@ namespace Garage2._0_Group5.Controllers
         }
 
         // GET: Vehicles/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(string? id)
         {
             if (id == null || _context.Vehicle == null)
             {
@@ -116,9 +116,9 @@ namespace Garage2._0_Group5.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Type,LicenseNumber,Color,Brand,Model,NoOfWheels,TimeOfRegistration")] Vehicle vehicle)
+        public async Task<IActionResult> Edit(string id, [Bind("ID,Type,Color,Brand,Model,NoOfWheels,TimeOfRegistration")] Vehicle vehicle)
         {
-            if (id != vehicle.Id)
+            if (id != vehicle.ID)
             {
                 return NotFound();
             }
@@ -132,7 +132,7 @@ namespace Garage2._0_Group5.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!VehicleExists(vehicle.Id))
+                    if (!VehicleExists(vehicle.ID))
                     {
                         return NotFound();
                     }
@@ -147,7 +147,7 @@ namespace Garage2._0_Group5.Controllers
         }
 
         // GET: Vehicles/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(string? id)
         {
             if (id == null || _context.Vehicle == null)
             {
@@ -155,7 +155,7 @@ namespace Garage2._0_Group5.Controllers
             }
 
             var vehicle = await _context.Vehicle
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.ID == id);
             if (vehicle == null)
             {
                 return NotFound();
@@ -167,7 +167,7 @@ namespace Garage2._0_Group5.Controllers
         // POST: Vehicles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(string id)
         {
             if (_context.Vehicle == null)
             {
@@ -183,19 +183,19 @@ namespace Garage2._0_Group5.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool VehicleExists(int id)
+        private bool VehicleExists(string id)
         {
-            return (_context.Vehicle?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Vehicle?.Any(e => e.ID == id)).GetValueOrDefault();
         }
 
-        public async Task<IActionResult> Receipt(int? id)
+        public async Task<IActionResult> Receipt(string? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
             var vehicle = await _context.Vehicle
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.ID == id);
 
             if (vehicle == null)
             {
@@ -207,7 +207,7 @@ namespace Garage2._0_Group5.Controllers
 
         [HttpPost, ActionName("Receipt")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ReceiptConfirmed(int id)
+        public async Task<IActionResult> ReceiptConfirmed(string id)
         {
             if (_context.Vehicle == null)
             {
@@ -224,19 +224,19 @@ namespace Garage2._0_Group5.Controllers
         }
 
         [MiddlewareFilter(typeof(JsReportPipeline))]
-        public async Task<IActionResult> Print(int id)
+        public async Task<IActionResult> Print(string id)
         {
             var vehicle = await _context.Vehicle
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.ID == id);
 
 
             HttpContext.JsReportFeature().Recipe(Recipe.ChromePdf);
             return View(vehicle);
         }
 
-        private bool VehicleModelExists(int id)
+        private bool VehicleModelExists(string id)
         {
-            return _context.Vehicle.Any(e => e.Id == id);
+            return _context.Vehicle.Any(e => e.ID == id);
         }
     }
 }

@@ -9,17 +9,10 @@ namespace Garage2._0_Group5.Models.Entities
         private DateTime checkTime = DateTime.Now;
 
         
-       private DateTime timer;
-
-        public DateTime CheckTime
+        public Timer(DateTime timeOfRegistration) 
         {
-            get
-            {
-                
-
-                return timer;
-            }
-            //set { myVar = value; }
+            
+        
         }
 
     }

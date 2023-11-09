@@ -15,10 +15,8 @@ namespace Garage2._0_Group5.Migrations
                 name: "Vehicle",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ID = table.Column<string>(type: "nvarchar(6)", maxLength: 6, nullable: false),
                     Type = table.Column<int>(type: "int", nullable: false),
-                    LicenseNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Color = table.Column<int>(type: "int", nullable: false),
                     Brand = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
                     Model = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
@@ -27,7 +25,7 @@ namespace Garage2._0_Group5.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Vehicle", x => x.Id);
+                    table.PrimaryKey("PK_Vehicle", x => x.ID);
                 });
         }
 

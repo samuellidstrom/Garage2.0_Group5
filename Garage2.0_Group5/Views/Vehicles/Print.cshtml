@@ -14,7 +14,7 @@
                 @Html.DisplayNameFor(model => model.LicenseNumber)
             </dt>
             <dd class="col-sm-6">
-                @Html.DisplayFor(model => model.LicenseNumber)
+                @Html.DisplayFor(model => model.ID)
             </dd>
         </dl>
         <hr class="col-sm-6" />
@@ -27,6 +27,6 @@
             </dd>
         </dl>
         <hr class="col-sm-6" />
-        <vc:receipt vehicle-id="@Model.Id" />
+        <vc:receipt vehicle-id="@Model.ID" />
     </dl>
 </div>
