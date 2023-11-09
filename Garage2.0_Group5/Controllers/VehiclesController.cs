@@ -35,14 +35,14 @@ namespace Garage2._0_Group5.Controllers
                     _context.Vehicle :
                     _context.Vehicle.Where(m => m.ID.StartsWith(id));
 
-        //    var model = string.IsNullOrWhiteSpace(id) ?
-        //_context.Vehicle :
-        //_context.Vehicle.Where(m => m.ID.StartsWith(id));
+            //    var model = string.IsNullOrWhiteSpace(id) ?
+            //_context.Vehicle :
+            //_context.Vehicle.Where(m => m.ID.StartsWith(id));
 
-            model = noOfWheels == null ?
-		            _context.Vehicle :
-		            _context.Vehicle.Where(m => m.NoOfWheels.Equals(noOfWheels));
-			
+            //model = noOfWheels is null ?
+            //  _context.Vehicle :
+            //  _context.Vehicle.Where(m => m.NoOfWheels.Equals(noOfWheels));
+
             model = type is null ?
                     model :
                     model.Where(m => (int)m.Type == type);
