@@ -34,8 +34,7 @@ namespace Garage2._0_Group5.Models.Entities
         public int NoOfWheels { get; set; }
 
         [DisplayName("Check-in Time")]
-        public DateTime? TimeOfRegistration { get; set; }
-
+        public DateTime TimeOfRegistration { get; set; }
         public Vehicle()
         {
             TimeOfRegistration = DateTime.Now;
