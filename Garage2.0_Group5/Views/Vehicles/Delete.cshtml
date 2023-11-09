@@ -67,7 +67,7 @@
                             <h4 class="modal-title">Would you like a Receipt?</h4>
                         </div>
                         <div class="modal-body">
-                            <input type="submit" class="btn btn-primary" asp-action="Print" asp-route-id="@Model.ID" value="Yes" />
+                            <input type="submit" class="btn btn-primary" asp-action="Print" asp-route-id="@Model.ID" formtarget="_blank" value="Yes" />
                             <input type="submit" class="btn btn-danger" asp-action="Delete" value="No" />
                         </div>
                         <div class="modal-footer">
