@@ -23,13 +23,13 @@ namespace Garage2._0_Group5.ViewComponents
         {
             var vehicle = await db.Vehicle.Where(v => v.ID == vehicleId).FirstOrDefaultAsync();
 
-            var departure = DateTime.Now;
-            var total = departure - vehicle.TimeOfRegistration;
+            var departureTime = DateTime.Now;
+            var total = departureTime - vehicle.TimeOfRegistration;
             var price = Math.Round(total.TotalMinutes * 2);
 
             var model = new ReceiptViewModel
             {
-                DepartureTime = departure,
+                DepartureTime = departureTime,
                 TotalTime = total,
                 Price = price
             };
