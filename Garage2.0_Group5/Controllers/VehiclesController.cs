@@ -234,16 +234,16 @@ namespace Garage2._0_Group5.Controllers
             return _context.Vehicle.Any(e => e.ID == id);
         }
 
-        // Action method that returns a custom error message about Uniqueness of Licence Number
-        //[AcceptVerbs("GET", "POST")]
-        //public IActionResult UniqueLicenceNumber(string Id)
-        //{
-        //    if (_context.Vehicle.Any(v => v.ID == Id))
-        //    {
-        //        return Json($"This registration number {Id} is already in use.");
-        //    }
+        //Action method that returns a custom error message about Uniqueness of Licence Number
+        [AcceptVerbs("GET", "POST")]
+        public IActionResult UniqueLicenceNumber(string Id)
+        {
+            if (_context.Vehicle.Any(v => v.ID == Id))
+            {
+                return Json($"This registration number {Id} is already in use.");
+            }
 
-        //    return Json(true);
-        //}
+            return Json(true);
+        }
     }
 }

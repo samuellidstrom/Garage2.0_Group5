@@ -62,7 +62,27 @@
 
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary my-3" />
+                @* <input type="submit" value="Save" class="btn btn-primary my-3" /> *@
+                <input type="hidden" asp-for="ID" />
+                <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#delete">Save</button>
+
+                <div class="container">
+                    <div class="modal fade" id="delete" role="dialog">
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Vehicle Updated!</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="submit" class="btn btn-primary" asp-action="Index" asp-route-id="@Model.ID" value="Ok" />                                 
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-bs-dismiss="modal">Go Back</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </form>
     </div>
