@@ -183,39 +183,56 @@ namespace Garage2._0_Group5.Controllers
             return (_context.Vehicle?.Any(e => e.ID == id)).GetValueOrDefault();
         }
 
-        public async Task<IActionResult> Receipt(string? id)
+        //public async Task<IActionResult> Receipt(string? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    var vehicle = await _context.Vehicle
+        //        .FirstOrDefaultAsync(m => m.ID == id);
+
+        //    if (vehicle == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return View(vehicle);
+        //}
+
+        //[HttpPost, ActionName("Receipt")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> ReceiptConfirmed(string id)
+        //{
+        //    if (_context.Vehicle == null)
+        //    {
+        //        return Problem("Entity set 'Garage2_0_Group5Context.Vehicle'  is null.");
+        //    }
+        //    var vehicle = await _context.Vehicle.FindAsync(id);
+        //    if (vehicle != null)
+        //    {
+        //        _context.Vehicle.Remove(vehicle);
+        //    }
+
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Receipt));
+        //}
+
+        public async Task<IActionResult> Receipt(string id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            var vehicle = await _context.Vehicle
+            var vehicleModel = await _context.Vehicle
                 .FirstOrDefaultAsync(m => m.ID == id);
 
-            if (vehicle == null)
+            if (vehicleModel == null)
             {
                 return NotFound();
             }
 
-            return View(vehicle);
-        }
-
-        [HttpPost, ActionName("Receipt")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ReceiptConfirmed(string id)
-        {
-            if (_context.Vehicle == null)
-            {
-                return Problem("Entity set 'Garage2_0_Group5Context.Vehicle'  is null.");
-            }
-            var vehicle = await _context.Vehicle.FindAsync(id);
-            if (vehicle != null)
-            {
-                _context.Vehicle.Remove(vehicle);
-            }
-
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Receipt));
+            return View(vehicleModel);
         }
 
         [MiddlewareFilter(typeof(JsReportPipeline))]

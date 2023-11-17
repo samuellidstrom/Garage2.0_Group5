@@ -18,7 +18,7 @@ namespace Garage2._0_Group5.Models.ViewModels
         [DisplayFormat(DataFormatString = "{0:hh\\:mm\\:ss}", ApplyFormatInEditMode = true)]
         public TimeSpan TotalTime { get; set; }
 
-        [DisplayName("Price (2:- / min)")]
+        [DisplayName("Price (2 kr / min)")]
         public double Price { get; set; }
 
     }

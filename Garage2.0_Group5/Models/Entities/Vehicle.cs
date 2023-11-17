@@ -10,7 +10,7 @@ namespace Garage2._0_Group5.Models.Entities
     {
         //public int Id { get; set; }
 
-        private string id;
+        private string Id;
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [DisplayName("License Number")]
@@ -23,11 +23,11 @@ namespace Garage2._0_Group5.Models.Entities
         {
             get
             {
-                return id;
+                return Id;
             }
             set
             {
-                id = Regex.Replace(value, @"\s", "").ToUpper();
+                Id = Regex.Replace(value, @"\s", "").ToUpper();
             }
         }
 
