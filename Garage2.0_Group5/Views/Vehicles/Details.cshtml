@@ -52,34 +52,12 @@
         </dd>
             }
             
-
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.TimeOfRegistration)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.TimeOfRegistration)
         </dd>
-
-
-
-
-
-        <dt class="col-sm-2">
-            Current Date and Time
-        </dt>
-        <dd class="col-sm-10">
-            @DateTime.Now
-        </dd>
-
-        <dt class="col-sm-2">
-            Time spent in garage
-        </dt>
-
-        <dd class="col-sm-10">
-            @(DateTime.Now - Model.TimeOfRegistration)
-
-        </dd>
-
 
 
     </dl>

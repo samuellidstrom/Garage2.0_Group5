@@ -39,9 +39,9 @@ namespace Garage2._0_Group5.Controllers
             //_context.Vehicle :
             //_context.Vehicle.Where(m => m.ID.StartsWith(id));
 
-            model = noOfWheels == null ?
-                    _context.Vehicle :
-                    _context.Vehicle.Where(m => m.NoOfWheels.Equals(noOfWheels));
+            //model = noOfWheels is null ?
+            //  _context.Vehicle :
+            //  _context.Vehicle.Where(m => m.NoOfWheels.Equals(noOfWheels));
 
             model = type is null ?
                     model :
@@ -241,9 +241,9 @@ namespace Garage2._0_Group5.Controllers
             var vehicle = await _context.Vehicle
                 .FirstOrDefaultAsync(m => m.ID == id);
 
-
             HttpContext.JsReportFeature().Recipe(Recipe.ChromePdf);
             return View(vehicle);
+            
         }
 
         private bool VehicleModelExists(string id)
