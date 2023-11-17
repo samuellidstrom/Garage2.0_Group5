@@ -29,8 +29,8 @@ namespace Garage2._0_Group5.Controllers
                         Problem("Entity set 'Garage2_0_Group5Context.Vehicle'  is null.");
         }
 
-		public async Task<IActionResult> Filter(string id, int? type, int? noOfWheels)
-		{
+        public async Task<IActionResult> Filter(string id, int? type, int? noOfWheels)
+        {
             var model = string.IsNullOrWhiteSpace(id) ?
                     _context.Vehicle :
                     _context.Vehicle.Where(m => m.ID.StartsWith(id));
@@ -47,11 +47,11 @@ namespace Garage2._0_Group5.Controllers
                     model :
                     model.Where(m => (int)m.Type == type);
 
-            return View(nameof(Index),await model.ToListAsync());
-		}
+            return View(nameof(Index), await model.ToListAsync());
+        }
 
-		// GET: Vehicles/Details/5
-		public async Task<IActionResult> Details(string? id)
+        // GET: Vehicles/Details/5
+        public async Task<IActionResult> Details(string? id)
         {
             if (id == null || _context.Vehicle == null)
             {
@@ -232,6 +232,18 @@ namespace Garage2._0_Group5.Controllers
         private bool VehicleModelExists(string id)
         {
             return _context.Vehicle.Any(e => e.ID == id);
+        }
+
+        //Action method that returns a custom error message about Uniqueness of Licence Number
+        [AcceptVerbs("GET", "POST")]
+        public IActionResult UniqueLicenceNumber(string Id)
+        {
+            if (_context.Vehicle.Any(v => v.ID == Id))
+            {
+                return Json($"This registration number {Id} is already in use.");
+            }
+
+            return Json(true);
         }
     }
 }

@@ -14,6 +14,7 @@ namespace Garage2._0_Group5.Models.Entities
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [DisplayName("License Number")]
+        [Remote(action: "UniqueLicenceNumber", controller: "Vehicles")]
         [RegularExpression(@"^[a-zA-Z]{3}\d{3}$", ErrorMessage = "Registration format must be ABC123")]
         [StringLength(6, MinimumLength = 6)]
         [Key]
