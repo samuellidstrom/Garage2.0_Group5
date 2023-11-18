@@ -189,15 +189,15 @@ namespace Garage2._0_Group5.Controllers
             {
                 return NotFound();
             }
-            var vehicleModel = await _context.Vehicle
+            var vehicle = await _context.Vehicle
                 .FirstOrDefaultAsync(m => m.ID == id);
 
-            if (vehicleModel == null)
+            if (vehicle == null)
             {
                 return NotFound();
             }
 
-            return View(vehicleModel);
+            return View(vehicle);
         }
 
         [MiddlewareFilter(typeof(JsReportPipeline))]
