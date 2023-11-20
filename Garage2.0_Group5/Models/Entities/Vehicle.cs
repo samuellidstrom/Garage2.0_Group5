@@ -63,5 +63,44 @@ namespace Garage2._0_Group5.Models.Entities
         {
             TimeOfRegistration = DateTime.Now;
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // Added by Samuel - Relationship with Type-class
+        //Nav prop
+        public Type VehicleType { get; set; }
+
+
     }
 }
