@@ -22,9 +22,9 @@ namespace Garage2._0_Group5.Controllers
         // GET: Members
         public async Task<IActionResult> Index()
         {
-              return _context.Member != null ? 
-                          View(await _context.Member.ToListAsync()) :
-                          Problem("Entity set 'Garage2_0_Group5Context.Member'  is null.");
+            return _context.Member != null ?
+                        View(await _context.Member.ToListAsync()) :
+                        Problem("Entity set 'Garage2_0_Group5Context.Member'  is null.");
         }
 
         // GET: Members/Details/5
@@ -150,14 +150,26 @@ namespace Garage2._0_Group5.Controllers
             {
                 _context.Member.Remove(member);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool MemberExists(int id)
         {
-          return (_context.Member?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Member?.Any(e => e.Id == id)).GetValueOrDefault();
+        }
+
+        //Action method that returns a custom error message about Uniqueness of Person Number
+        [AcceptVerbs("GET", "POST")]
+        public IActionResult UniquePersonNumber(string personNumber)
+        {
+            if (_context.Member.Any(p => p.PersonNumber == personNumber))
+            {
+                return Json($"This person number {personNumber} is already in use.");
+            }
+
+            return Json(true);
         }
     }
 }

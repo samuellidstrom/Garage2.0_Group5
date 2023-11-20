@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Garage2._0_Group5.Models.Entities
@@ -26,9 +27,13 @@ namespace Garage2._0_Group5.Models.Entities
         public string Email { get; set; }
 
         [Required]
-        [StringLength(12, ErrorMessage = "Person number must be 12 characters long!", MinimumLength = 12)]
+        [RegularExpression(@"^(?<date>\d{6}|\d{8})[-\s]?\d{4}$", ErrorMessage = "Person Number format must be YYYYMMDDNNNN")]
+        [Remote(action: "UniquePersonNumber", controller: "Members")]
+        [DisplayName("Person Number")]
+        [StringLength(12, MinimumLength = 12)]
         public string PersonNumber { get; set; }
 
+        //Navigation Property
         public ICollection<Vehicle> Vehicles { get; set; } = new List<Vehicle>();
 
     }
