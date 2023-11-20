@@ -27,7 +27,7 @@ namespace Garage2._0_Group5.Models.Entities
 
         [Required]
         [StringLength(12, ErrorMessage = "Person number must be 12 characters long!", MinimumLength = 12)]
-        public int PersonNumber { get; set; }
+        public string PersonNumber { get; set; }
 
         public ICollection<Vehicle> Vehicles { get; set; } = new List<Vehicle>();
 

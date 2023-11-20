@@ -9,11 +9,13 @@ namespace Garage2._0_Group5.Data
 {
     public class Garage2_0_Group5Context : DbContext
     {
-        public Garage2_0_Group5Context (DbContextOptions<Garage2_0_Group5Context> options)
+        public Garage2_0_Group5Context(DbContextOptions<Garage2_0_Group5Context> options)
             : base(options)
         {
         }
 
         public DbSet<Vehicle> Vehicle { get; set; } = default!;
+
+        public DbSet<Garage2._0_Group5.Models.Entities.Member> Member { get; set; } = default!;
     }
 }
