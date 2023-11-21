@@ -12,20 +12,29 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Type" class="control-label"></label>             
+             <div class="form-group">
+                <label asp-for="VehicleType.VehicleType" class="control-label"></label>             
                 <select class="form-control" name="type" asp-items="@Html.GetEnumSelectList<TypeOfVehicle>()">
                     <option selected="selected" value=""> - Please Select Type - </option>
                 </select>
-                <span asp-validation-for="Type" class="text-danger"></span>
-            </div>
+            <span asp-validation-for="VehicleType" class="text-danger"></span>
+            </div> 
             <div class="form-group">
                 <label asp-for="LicenseNumber" class="control-label"></label>
                 <input asp-for="LicenseNumber" class="form-control" />
                 <span asp-validation-for="LicenseNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
+<<<<<<< HEAD
+                <label asp-for="LicenseNumber" class="control-label"></label>
+                <input asp-for="LicenseNumber" class="form-control" />
+                <span asp-validation-for="LicenseNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Color" class="control-label"></label>               
+=======
+               <label asp-for="Color" class="control-label"></label>               
+>>>>>>> Samuel_Garage3.0
                 <select class="form-control" name="color" asp-items="@Html.GetEnumSelectList<Color>()">
                     <option selected="selected" value=""> - Please Select Color - </option>
 
@@ -43,9 +52,9 @@
                 <span asp-validation-for="Model" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NoOfWheels" class="control-label"></label>
-                <input asp-for="NoOfWheels" class="form-control" />
-                <span asp-validation-for="NoOfWheels" class="text-danger"></span>
+                <label asp-for="VehicleType.Wheels" class="control-label"></label>
+                <input asp-for="VehicleType.Wheels" class="form-control" />
+                <span asp-validation-for="VehicleType.Wheels" class="text-danger"></span>
             </div>
             <div class="form-group mt-3">
                 <input type="submit" value="Park Vehicle" class="btn btn-primary" />              

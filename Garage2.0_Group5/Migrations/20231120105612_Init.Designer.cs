@@ -4,6 +4,7 @@ using Garage2._0_Group5.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Garage2._0_Group5.Migrations
 {
     [DbContext(typeof(Garage2_0_Group5Context))]
-    partial class Garage2_0_Group5ContextModelSnapshot : ModelSnapshot
+    [Migration("20231120105612_Init")]
+    partial class Init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,11 +25,7 @@ namespace Garage2._0_Group5.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-<<<<<<< HEAD
-            modelBuilder.Entity("Garage2._0_Group5.Models.Entities.Member", b =>
-=======
             modelBuilder.Entity("Garage2._0_Group5.Models.Entities.Type", b =>
->>>>>>> Samuel_Garage3.0
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -34,31 +33,6 @@ namespace Garage2._0_Group5.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-<<<<<<< HEAD
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("PersonNumber")
-                        .IsRequired()
-                        .HasMaxLength(12)
-                        .HasColumnType("nvarchar(12)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Member");
-=======
                     b.Property<int>("VehicleId")
                         .HasColumnType("int");
 
@@ -74,7 +48,6 @@ namespace Garage2._0_Group5.Migrations
                         .IsUnique();
 
                     b.ToTable("Type");
->>>>>>> Samuel_Garage3.0
                 });
 
             modelBuilder.Entity("Garage2._0_Group5.Models.Entities.Vehicle", b =>
@@ -98,12 +71,6 @@ namespace Garage2._0_Group5.Migrations
                         .HasMaxLength(6)
                         .HasColumnType("nvarchar(6)");
 
-<<<<<<< HEAD
-                    b.Property<int?>("MemberId")
-                        .HasColumnType("int");
-
-=======
->>>>>>> Samuel_Garage3.0
                     b.Property<string>("Model")
                         .IsRequired()
                         .HasMaxLength(15)
@@ -112,32 +79,11 @@ namespace Garage2._0_Group5.Migrations
                     b.Property<DateTime>("TimeOfRegistration")
                         .HasColumnType("datetime2");
 
-<<<<<<< HEAD
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("MemberId");
-=======
-                    b.HasKey("Id");
->>>>>>> Samuel_Garage3.0
 
                     b.ToTable("Vehicle");
                 });
 
-<<<<<<< HEAD
-            modelBuilder.Entity("Garage2._0_Group5.Models.Entities.Vehicle", b =>
-                {
-                    b.HasOne("Garage2._0_Group5.Models.Entities.Member", null)
-                        .WithMany("Vehicles")
-                        .HasForeignKey("MemberId");
-                });
-
-            modelBuilder.Entity("Garage2._0_Group5.Models.Entities.Member", b =>
-                {
-                    b.Navigation("Vehicles");
-=======
             modelBuilder.Entity("Garage2._0_Group5.Models.Entities.Type", b =>
                 {
                     b.HasOne("Garage2._0_Group5.Models.Entities.Vehicle", "Vehicle")
@@ -153,7 +99,6 @@ namespace Garage2._0_Group5.Migrations
                 {
                     b.Navigation("VehicleType")
                         .IsRequired();
->>>>>>> Samuel_Garage3.0
                 });
 #pragma warning restore 612, 618
         }

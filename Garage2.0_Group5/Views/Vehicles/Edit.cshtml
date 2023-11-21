@@ -14,21 +14,29 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="Type" class="control-label"></label>
-                @* <input asp-for="Type" class="form-control" /> *@
-                <select class="form-control" name="type" asp-items="@Html.GetEnumSelectList<TypeOfVehicle>()">
+                @* <label asp-for="Type" class="control-label"></label> *@
+              
+@*                 <select class="form-control" name="type" asp-items="@Html.GetEnumSelectList<TypeOfVehicle>()">
                     <option selected="selected">@Model.Type</option>
-                </select>
-                <span asp-validation-for="Type" class="text-danger"></span>
+                </select> *@
+                @* <span asp-validation-for="Type" class="text-danger"></span> *@
             </div>
+<<<<<<< HEAD
      @*        <div class="form-group">
                 <label asp-for="ID" class="control-label"></label>
                 <input asp-for="ID" class="form-control" />
                 <span asp-validation-for="ID" class="text-danger"></span>
             </div> *@
+=======
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+>>>>>>> Samuel_Garage3.0
             <div class="form-group">
                 <label asp-for="Color" class="control-label"></label>
-                @* <input asp-for="Color" class="form-control" /> *@
+               
                 <select class="form-control" name="color" asp-items="@Html.GetEnumSelectList<Color>()">
                     <option selected="selected">@Model.Color</option>
                 </select>
@@ -45,14 +53,18 @@
                 <span asp-validation-for="Model" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NoOfWheels" class="control-label"></label>
-                <input asp-for="NoOfWheels" class="form-control" />
-                <span asp-validation-for="NoOfWheels" class="text-danger"></span>
+                <label asp-for="VehicleType.Wheels" class="control-label"></label>
+                <input asp-for="VehicleType.Wheels" class="form-control" />
+                <span asp-validation-for="VehicleType.Wheels" class="text-danger"></span>
             </div>
             <div class="form-group">
+<<<<<<< HEAD
                 <label asp-for="TimeOfRegistration" class="control-label"></label>
                 <input asp-for="TimeOfRegistration" class="form-control" />
                 <span asp-validation-for="TimeOfRegistration" class="text-danger"></span>
+=======
+
+>>>>>>> Samuel_Garage3.0
                 @Html.DisplayNameFor(model => model.TimeOfRegistration)
                 <div row class="unEditable">
 
@@ -60,7 +72,31 @@
                 </div>
             </div>
             <div class="form-group">
+<<<<<<< HEAD
                 <input type="submit" value="Save" class="btn btn-primary my-3" />           
+=======
+                
+                <input type="hidden" asp-for="Id" />
+                <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#delete">Save</button>
+
+                <div class="container">
+                    <div class="modal fade" id="delete" role="dialog">
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Vehicle Updated!</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="submit" class="btn btn-primary" asp-action="Index" asp-route-id="@Model.Id" value="Ok" />                                 
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-bs-dismiss="modal">Go Back</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+>>>>>>> Samuel_Garage3.0
             </div>
         </form>
     </div>
