@@ -8,36 +8,28 @@ namespace Garage2._0_Group5.Models.Entities
 {
     public class Vehicle
     {
-        //public int Id { get; set; }
+        //[Key]
+        public int Id { get; set; }
 
-        private string id;
+        private string regNo;
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
         [DisplayName("License Number")]
         [Remote(action: "UniqueLicenceNumber", controller: "Vehicles")]
         [RegularExpression(@"^[a-zA-Z]{3}\d{3}$", ErrorMessage = "Registration format must be ABC123")]
         [StringLength(6, MinimumLength = 6)]
-        [Key]
         //[Remote("CheckExistingLicenseNumber", "Vehicles", ErrorMessage = "License Number already exists!")]
-        public string ID
+        public string LicenseNumber
         {
             get
             {
-                return id;
+                return regNo;
             }
             set
             {
-                id = Regex.Replace(value, @"\s", "").ToUpper();
+                regNo = Regex.Replace(value, @"\s", "").ToUpper();
             }
         }
-
-        public TypeOfVehicle Type { get; set; }
-
-        //[Required]
-        //[RegularExpression(@"^[a-zA-Z]{3}\d{3}$", ErrorMessage = "Registration number format must be ABC123")]
-        //[StringLength(6, MinimumLength = 6)]
-        //[DisplayName("License Number")]
-        //public string LicenseNumber { get; set; }
 
         [DisplayName("Color")]
         public Color Color { get; set; }
@@ -52,13 +44,10 @@ namespace Garage2._0_Group5.Models.Entities
         [StringLength(15, MinimumLength = 3)]
         public string Model { get; set; }
 
-        [Required]
-        [DisplayName("Number of Wheels")]
-        [Range(0, 18)]
-        public int NoOfWheels { get; set; }
-
         [DisplayName("Check-in Time")]
         public DateTime TimeOfRegistration { get; set; }
+
+        //ToDo: Fix so this doesn't change when vechiel is edited
         public Vehicle()
         {
             TimeOfRegistration = DateTime.Now;
@@ -67,6 +56,10 @@ namespace Garage2._0_Group5.Models.Entities
 
 
 
+        //[Required]
+        //[DisplayName("Number of Wheels")]
+        //[Range(0, 18)]
+        //public int NoOfWheels { get; set; }
 
 
 

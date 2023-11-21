@@ -29,29 +29,29 @@ namespace Garage2._0_Group5.Controllers
                         Problem("Entity set 'Garage2_0_Group5Context.Vehicle'  is null.");
         }
 
-        public async Task<IActionResult> Filter(string id, int? type, int? noOfWheels)
-        {
-            var model = string.IsNullOrWhiteSpace(id) ?
-                    _context.Vehicle :
-                    _context.Vehicle.Where(m => m.ID.StartsWith(id));
+        //public async Task<IActionResult> Filter(int id, int? type, int? noOfWheels)
+        //{
+        //    var model = int.IsNullOrWhiteSpace(id) ?
+        //            _context.Vehicle :
+        //            _context.Vehicle.Where(m => m.Id.StartsWith(id));
 
-            //    var model = string.IsNullOrWhiteSpace(id) ?
-            //_context.Vehicle :
-            //_context.Vehicle.Where(m => m.ID.StartsWith(id));
+        //    //    var model = string.IsNullOrWhiteSpace(id) ?
+        //    //_context.Vehicle :
+        //    //_context.Vehicle.Where(m => m.ID.StartsWith(id));
 
-            //model = noOfWheels is null ?
-            //  _context.Vehicle :
-            //  _context.Vehicle.Where(m => m.NoOfWheels.Equals(noOfWheels));
+        //    //model = noOfWheels is null ?
+        //    //  _context.Vehicle :
+        //    //  _context.Vehicle.Where(m => m.NoOfWheels.Equals(noOfWheels));
 
-            model = type is null ?
-                    model :
-                    model.Where(m => (int)m.Type == type);
+        //    model = type is null ?
+        //            model :
+        //            model.Where(m => (int)m.Type == type);
 
-            return View(nameof(Index), await model.ToListAsync());
-        }
+        //    return View(nameof(Index), await model.ToListAsync());
+        //}
 
         // GET: Vehicles/Details/5
-        public async Task<IActionResult> Details(string? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Vehicle == null)
             {
@@ -59,7 +59,7 @@ namespace Garage2._0_Group5.Controllers
             }
 
             var vehicle = await _context.Vehicle
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (vehicle == null)
             {
                 return NotFound();
@@ -79,7 +79,7 @@ namespace Garage2._0_Group5.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Type,Color,Brand,Model,NoOfWheels,TimeOfRegistration")] Vehicle vehicle)
+        public async Task<IActionResult> Create([Bind("Id,Type,Color,Brand,Model,NoOfWheels,TimeOfRegistration")] Vehicle vehicle)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace Garage2._0_Group5.Controllers
         }
 
         // GET: Vehicles/Edit/5
-        public async Task<IActionResult> Edit(string? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Vehicle == null)
             {
@@ -111,9 +111,9 @@ namespace Garage2._0_Group5.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("ID,Type,Color,Brand,Model,NoOfWheels,TimeOfRegistration")] Vehicle vehicle)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Type,Color,Brand,Model,NoOfWheels,TimeOfRegistration")] Vehicle vehicle)
         {
-            if (id != vehicle.ID)
+            if (id != vehicle.Id)
             {
                 return NotFound();
             }
@@ -127,7 +127,7 @@ namespace Garage2._0_Group5.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!VehicleExists(vehicle.ID))
+                    if (!VehicleExists(vehicle.Id))
                     {
                         return NotFound();
                     }
@@ -142,7 +142,7 @@ namespace Garage2._0_Group5.Controllers
         }
 
         // GET: Vehicles/Delete/5
-        public async Task<IActionResult> Delete(string? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Vehicle == null)
             {
@@ -150,7 +150,7 @@ namespace Garage2._0_Group5.Controllers
             }
 
             var vehicle = await _context.Vehicle
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (vehicle == null)
             {
                 return NotFound();
@@ -162,7 +162,7 @@ namespace Garage2._0_Group5.Controllers
         // POST: Vehicles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Vehicle == null)
             {
@@ -178,19 +178,19 @@ namespace Garage2._0_Group5.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool VehicleExists(string id)
+        private bool VehicleExists(int id)
         {
-            return (_context.Vehicle?.Any(e => e.ID == id)).GetValueOrDefault();
+            return (_context.Vehicle?.Any(e => e.Id == id)).GetValueOrDefault();
         }
 
-        public async Task<IActionResult> Receipt(string? id)
+        public async Task<IActionResult> Receipt(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
             var vehicle = await _context.Vehicle
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
 
             if (vehicle == null)
             {
@@ -219,26 +219,26 @@ namespace Garage2._0_Group5.Controllers
         }
 
         [MiddlewareFilter(typeof(JsReportPipeline))]
-        public async Task<IActionResult> Print(string id)
+        public async Task<IActionResult> Print(int id)
         {
             var vehicle = await _context.Vehicle
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
 
             HttpContext.JsReportFeature().Recipe(Recipe.ChromePdf);
             return View(vehicle);
             
         }
 
-        private bool VehicleModelExists(string id)
+        private bool VehicleModelExists(int id)
         {
-            return _context.Vehicle.Any(e => e.ID == id);
+            return _context.Vehicle.Any(e => e.Id == id);
         }
 
         //Action method that returns a custom error message about Uniqueness of Licence Number
         [AcceptVerbs("GET", "POST")]
-        public IActionResult UniqueLicenceNumber(string Id)
+        public IActionResult UniqueLicenceNumber(int Id)
         {
-            if (_context.Vehicle.Any(v => v.ID == Id))
+            if (_context.Vehicle.Any(v => v.Id == Id))
             {
                 return Json($"This registration number {Id} is already in use.");
             }
