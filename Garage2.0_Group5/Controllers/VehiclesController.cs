@@ -29,19 +29,18 @@ namespace Garage2._0_Group5.Controllers
                         Problem("Entity set 'Garage2_0_Group5Context.Vehicle'  is null.");
         }
 
-<<<<<<< HEAD
-        public async Task<IActionResult> Filter(string id, int? type, int? noOfWheels)
-        {
-            var model = string.IsNullOrWhiteSpace(id) ?
-                    _context.Vehicle :
-                    _context.Vehicle.Where(m => m.LicenseNumber.StartsWith(id));
-=======
+
+        //public async Task<IActionResult> Filter(string id, int? type, int? noOfWheels)
+        //{
+        //    var model = string.IsNullOrWhiteSpace(id) ?
+        //            _context.Vehicle :
+        //            _context.Vehicle.Where(m => m.LicenseNumber.StartsWith(id));
+
         //public async Task<IActionResult> Filter(int id, int? type, int? noOfWheels)
         //{
         //    var model = int.IsNullOrWhiteSpace(id) ?
         //            _context.Vehicle :
         //            _context.Vehicle.Where(m => m.Id.StartsWith(id));
->>>>>>> Samuel_Garage3.0
 
         //    //    var model = string.IsNullOrWhiteSpace(id) ?
         //    //_context.Vehicle :
@@ -87,11 +86,8 @@ namespace Garage2._0_Group5.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-<<<<<<< HEAD
         public async Task<IActionResult> Create([Bind("LicenseNumber,Type,Color,Brand,Model,NoOfWheels,TimeOfRegistration")] Vehicle vehicle)
-=======
-        public async Task<IActionResult> Create([Bind("Id,Type,Color,Brand,Model,NoOfWheels,TimeOfRegistration")] Vehicle vehicle)
->>>>>>> Samuel_Garage3.0
+
         {
             if (ModelState.IsValid)
             {
@@ -195,11 +191,7 @@ namespace Garage2._0_Group5.Controllers
             return (_context.Vehicle?.Any(e => e.Id == id)).GetValueOrDefault();
         }
 
-<<<<<<< HEAD
-        public async Task<IActionResult> Receipt(int id)
-=======
         public async Task<IActionResult> Receipt(int? id)
->>>>>>> Samuel_Garage3.0
         {
             if (id == null)
             {
@@ -234,19 +226,15 @@ namespace Garage2._0_Group5.Controllers
 
         //Action method that returns a custom error message about Uniqueness of Licence Number
         [AcceptVerbs("GET", "POST")]
-<<<<<<< HEAD
+
         public IActionResult UniqueLicenseNumber(string registrationNum)
         {
             if (_context.Vehicle.Any(v => v.LicenseNumber == registrationNum))
-=======
-        public IActionResult UniqueLicenceNumber(int Id)
-        {
-            if (_context.Vehicle.Any(v => v.Id == Id))
->>>>>>> Samuel_Garage3.0
+
             {
                 return Json($"This registration number {registrationNum} is already in use.");
-            }
 
+            }
             return Json(true);
         }
     }

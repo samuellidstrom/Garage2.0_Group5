@@ -8,24 +8,14 @@ namespace Garage2._0_Group5.Models.Entities
 {
     public class Vehicle
     {
-<<<<<<< HEAD
         public int Id { get; set; }
 
         //private string licenseNumber;
 
         [Required]
-=======
-        //[Key]
-        public int Id { get; set; }
-
-        private string regNo;
-
-        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
->>>>>>> Samuel_Garage3.0
         [DisplayName("License Number")]
         [RegularExpression(@"^[a-zA-Z]{3}\d{3}$", ErrorMessage = "Registration format must be ABC123")]
         [StringLength(6, MinimumLength = 6)]
-<<<<<<< HEAD
         [Remote(action: "UniqueLicenseNumber", controller: "Vehicles")]
         public string LicenseNumber { get; set; }
         //{
@@ -41,21 +31,6 @@ namespace Garage2._0_Group5.Models.Entities
 
         public TypeOfVehicle Type { get; set; }
 
-=======
-        //[Remote("CheckExistingLicenseNumber", "Vehicles", ErrorMessage = "License Number already exists!")]
-        public string LicenseNumber
-        {
-            get
-            {
-                return regNo;
-            }
-            set
-            {
-                regNo = Regex.Replace(value, @"\s", "").ToUpper();
-            }
-        }
-
->>>>>>> Samuel_Garage3.0
         [DisplayName("Color")]
         public Color Color { get; set; }
 
