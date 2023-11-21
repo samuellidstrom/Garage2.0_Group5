@@ -9,10 +9,10 @@
         <hr class="col-sm-6" />
         <dl class="row">
             <dt class="col-sm-3">
-                @Html.DisplayNameFor(model => model.ID)
+                @Html.DisplayNameFor(model => model.LicenseNumber)
             </dt>
             <dd class="col-sm-6">
-                @Html.DisplayFor(model => model.ID)
+                @Html.DisplayFor(model => model.LicenseNumber)
             </dd>
         </dl>
         <hr class="col-sm-6" />
@@ -26,12 +26,12 @@
         </dl>
         <hr class="col-sm-6" />
         <vc
-        <vc:receipt vehicle-id="@Model.ID" />
+        <vc:receipt vehicle-id="@Model.Id" />
     </dl>
 </div>
 
 <form asp-action="Delete">
-    <input type="hidden" asp-for="ID" />
+    <input type="hidden" asp-for="Id" />
     <button type="submit" class="btn btn-info mt-3">Previous Page</button>
     <input type="submit" asp-action="Print" formtarget="_blank" class="btn btn-primary mt-3" value="Print"/>
 </form>

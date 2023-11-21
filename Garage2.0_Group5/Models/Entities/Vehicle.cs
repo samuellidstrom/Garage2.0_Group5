@@ -8,27 +8,26 @@ namespace Garage2._0_Group5.Models.Entities
 {
     public class Vehicle
     {
-        //public int Id { get; set; }
+        public int Id { get; set; }
 
-        private string id;
+        //private string licenseNumber;
 
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Required]
         [DisplayName("License Number")]
-        [Remote(action: "UniqueLicenceNumber", controller: "Vehicles")]
         [RegularExpression(@"^[a-zA-Z]{3}\d{3}$", ErrorMessage = "Registration format must be ABC123")]
         [StringLength(6, MinimumLength = 6)]
-        [Key]
-        public string ID
-        {
-            get
-            {
-                return id;
-            }
-            set
-            {
-                id = Regex.Replace(value, @"\s", "").ToUpper();
-            }
-        }
+        [Remote(action: "UniqueLicenseNumber", controller: "Vehicles")]
+        public string LicenseNumber { get; set; }
+        //{
+        //    get
+        //    {
+        //        return licenseNumber;
+        //    }
+        //    set
+        //    {
+        //        licenseNumber = Regex.Replace(value, @"\s", "").ToUpper();
+        //    }
+        //}
 
         public TypeOfVehicle Type { get; set; }
 
