@@ -1,10 +1,10 @@
 ﻿namespace Garage2._0_Group5.Models.Entities
 {
     #nullable disable
-    public class Type
+    public class VehicleType
     {
         public int Id { get; set; }
-        public string VehicleType { get; set; }
+        public string TypeOfVehicle { get; set; }
         public int Wheels { get; set; }
 
 

@@ -29,7 +29,7 @@ namespace Garage2._0_Group5.Models.Entities
         //    }
         //}
 
-        public TypeOfVehicle Type { get; set; }
+        //public TypeOfVehicle TypeOfVehicle { get; set; }
 
         [DisplayName("Color")]
         public Color Color { get; set; }
@@ -92,7 +92,7 @@ namespace Garage2._0_Group5.Models.Entities
 
         // Added by Samuel - Relationship with Type-class
         //Nav prop
-        public Type VehicleType { get; set; }
+        public VehicleType VehicleType { get; set; } = new VehicleType();
 
 
     }

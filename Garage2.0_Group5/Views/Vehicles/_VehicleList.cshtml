@@ -2,9 +2,9 @@
 
 <table class="table">
 	<thead>
-@* 		<tr>
+ 		<tr>
 			<th>
-				@Html.DisplayNameFor(model => model.Type)
+				@Html.DisplayNameFor(model => model.VehicleType)
 			</th>
 			<th>				
 				License Number
@@ -13,14 +13,14 @@
 				Check-in Time
 			</th>
 			<th>Options</th>
-		</tr> *@
+		</tr>
 	</thead>
 	<tbody>
-		@* @foreach (var item in Model)
+		@foreach (var item in Model)
 		{
 			<tr>
 				<td>
-					@Html.DisplayFor(modelItem => item.Type)
+					@Html.DisplayFor(modelItem => item.VehicleType.TypeOfVehicle)
 				</td>
 				<td>
 					@Html.DisplayFor(modelItem => item.LicenseNumber)
@@ -36,6 +36,6 @@
 					<a asp-action="Delete" asp-route-id="@item.Id" class="btn px-2 py-0 my-0 btn-light">Check Out</a>
 				</td>
 			</tr>
-		} *@
+		}
 	</tbody>
 </table>

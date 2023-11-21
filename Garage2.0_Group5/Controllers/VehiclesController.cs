@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Garage2._0_Group5.Data;
 using Garage2._0_Group5.Models.Entities;
+using Garage2._0_Group5.Models.ViewModels;
 using jsreport.AspNetCore;
 using jsreport.Types;
 
@@ -86,16 +87,30 @@ namespace Garage2._0_Group5.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("LicenseNumber,Type,Color,Brand,Model,NoOfWheels,TimeOfRegistration")] Vehicle vehicle)
+        public async Task<IActionResult> Create(VehicleCreateViewModel viewModel)
 
         {
+
             if (ModelState.IsValid)
             {
+
+                var vehicle = new Vehicle
+                {
+                    LicenseNumber = viewModel.LicenseNumber,
+                    VehicleType = new VehicleType
+                    {
+                        TypeOfVehicle = viewModel.TypeOfVehicle,
+                        Wheels = viewModel.Wheels
+                    },
+                    Color = viewModel.Color,
+                    Brand = viewModel.Brand,
+                    Model = viewModel.Model,
+                };
                 _context.Add(vehicle);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(vehicle);
+            return View(viewModel);
         }
 
         // GET: Vehicles/Edit/5
