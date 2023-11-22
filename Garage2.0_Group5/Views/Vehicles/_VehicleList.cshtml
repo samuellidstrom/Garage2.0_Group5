@@ -1,10 +1,10 @@
-﻿@model IEnumerable<Vehicle>
+﻿@model IEnumerable<VehicleIndexViewModel>
 
 <table class="table">
 	<thead>
  		<tr>
 			<th>
-				@Html.DisplayNameFor(model => model.VehicleType)
+				@Html.DisplayNameFor(model => model.TypeOfVehicle)
 			</th>
 			<th>				
 				License Number
@@ -20,7 +20,7 @@
 		{
 			<tr>
 				<td>
-					@Html.DisplayFor(modelItem => item.VehicleType.TypeOfVehicle)
+					@Html.DisplayFor(modelItem => item.TypeOfVehicle)
 				</td>
 				<td>
 					@Html.DisplayFor(modelItem => item.LicenseNumber)
