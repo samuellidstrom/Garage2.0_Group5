@@ -29,8 +29,6 @@ namespace Garage2._0_Group5.Models.Entities
         //    }
         //}
 
-        public TypeOfVehicle Type { get; set; }
-
         [DisplayName("Color")]
         public Color Color { get; set; }
 
@@ -53,8 +51,9 @@ namespace Garage2._0_Group5.Models.Entities
             TimeOfRegistration = DateTime.Now;
         }
 
+        public Member Member { get; set; }
 
-
+        //public TypeOfVehicle Type { get; set; }
 
         //[Required]
         //[DisplayName("Number of Wheels")]
@@ -92,7 +91,7 @@ namespace Garage2._0_Group5.Models.Entities
 
         // Added by Samuel - Relationship with Type-class
         //Nav prop
-        public Type VehicleType { get; set; }
+        //public VehicleType VehicleType { get; set; }
 
 
     }

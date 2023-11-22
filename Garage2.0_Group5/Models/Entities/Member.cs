@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Garage2._0_Group5.Validations;
+using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -14,6 +15,7 @@ namespace Garage2._0_Group5.Models.Entities
         public string FirstName { get; set; }
 
         [Required]
+        [CheckNameAttribute]
         [DisplayName("Last Name")]
         [StringLength(20, MinimumLength = 2)]
         public string LastName { get; set; }
@@ -27,8 +29,9 @@ namespace Garage2._0_Group5.Models.Entities
         public string Email { get; set; }
 
         [Required]
-        [RegularExpression(@"^(?<date>\d{6}|\d{8})[-\s]?\d{4}$", ErrorMessage = "Person Number format must be YYYYMMDDNNNN")]
+        //[RegularExpression(@"^(?<date>\d{8})[-\s]?\d{4}$", ErrorMessage = "Person Number format must be YYYYMMDDNNNN")]
         [Remote(action: "UniquePersonNumber", controller: "Members")]
+        [CheckAge]
         [DisplayName("Person Number")]
         [StringLength(12, MinimumLength = 12)]
         public string PersonNumber { get; set; }

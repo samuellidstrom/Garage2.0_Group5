@@ -1,9 +1,10 @@
 ﻿using Garage2._0_Group5.Models.Entities;
+using Garage2._0_Group5.Models.ViewModels;
 using System.ComponentModel.DataAnnotations;
 
 namespace Garage2._0_Group5.Validations
 {
-    public class CheckName : ValidationAttribute
+    public class CheckNameAttribute : ValidationAttribute
     {
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {

@@ -9,16 +9,21 @@ using Garage2._0_Group5.Data;
 using Garage2._0_Group5.Models.Entities;
 using jsreport.AspNetCore;
 using jsreport.Types;
+using Garage2._0_Group5.Models.ViewModels;
+using AutoMapper;
 
 namespace Garage2._0_Group5.Controllers
 {
     public class VehiclesController : Controller
     {
         private readonly Garage2_0_Group5Context _context;
+        //private readonly IMapper _mapper;
 
+        //public VehiclesController(Garage2_0_Group5Context context, IMapper mapper)
         public VehiclesController(Garage2_0_Group5Context context)
         {
             _context = context;
+            //_mapper = mapper;
         }
 
         // GET: Vehicles
@@ -86,16 +91,16 @@ namespace Garage2._0_Group5.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("LicenseNumber,Type,Color,Brand,Model,NoOfWheels,TimeOfRegistration")] Vehicle vehicle)
+        public async Task<IActionResult> Create([Bind("LicenseNumber,Type,Color,Brand,Model,NoOfWheels,TimeOfRegistration")] VehicleCreateViewModel viewModel)
 
         {
             if (ModelState.IsValid)
             {
-                _context.Add(vehicle);
+                _context.Add(viewModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(vehicle);
+            return View(viewModel);
         }
 
         // GET: Vehicles/Edit/5

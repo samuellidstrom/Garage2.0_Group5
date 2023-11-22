@@ -11,14 +11,14 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @* <div asp-validation-summary="ModelOnly" class="text-danger"></div>
              <div class="form-group">
                 <label asp-for="VehicleType.VehicleType" class="control-label"></label>             
                 <select class="form-control" name="type" asp-items="@Html.GetEnumSelectList<TypeOfVehicle>()">
                     <option selected="selected" value=""> - Please Select Type - </option>
                 </select>
             <span asp-validation-for="VehicleType" class="text-danger"></span>
-            </div> 
+            </div>  *@
             <div class="form-group">
                 <label asp-for="LicenseNumber" class="control-label"></label>
                 <input asp-for="LicenseNumber" class="form-control" />
@@ -41,11 +41,11 @@
                 <input asp-for="Model" class="form-control" />
                 <span asp-validation-for="Model" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            @* <div class="form-group">
                 <label asp-for="VehicleType.Wheels" class="control-label"></label>
                 <input asp-for="VehicleType.Wheels" class="form-control" />
                 <span asp-validation-for="VehicleType.Wheels" class="text-danger"></span>
-            </div>
+            </div> *@
             <div class="form-group mt-3">
                 <input type="submit" value="Park Vehicle" class="btn btn-primary" />              
             </div>
