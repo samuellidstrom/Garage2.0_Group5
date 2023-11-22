@@ -1,10 +1,15 @@
 ﻿using Garage2._0_Group5.Models.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace Garage2._0_Group5.Models.ViewModels
 {
 #nullable disable
     public class VehicleEditViewModel
     {
+        [Required]
+        [Display(Name = "Member")]
+        public MemberViewModel Member { get; set; }
+
         public int Id { get; }
         public string LicenseNumber { get; set; }
         public Color Color { get; set; }

@@ -5,14 +5,17 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Garage2._0_Group5.Models.Entities
 {
+#nullable disable
     public class Member
     {
         public int Id { get; set; }
+
 
         [Required]
         [DisplayName("First Name")]
         [StringLength(20, MinimumLength = 2)]
         public string FirstName { get; set; }
+
 
         [Required]
         [CheckNameAttribute]
@@ -20,13 +23,16 @@ namespace Garage2._0_Group5.Models.Entities
         [StringLength(20, MinimumLength = 2)]
         public string LastName { get; set; }
 
+
         [DisplayName("Owner")]
         public string FullName => $"{FirstName} {LastName}";
+
 
         [Required]
         [DisplayName("Email Address")]
         [StringLength(50, MinimumLength = 7)]
         public string Email { get; set; }
+
 
         [Required]
         //[RegularExpression(@"^(?<date>\d{8})[-\s]?\d{4}$", ErrorMessage = "Person Number format must be YYYYMMDDNNNN")]
@@ -35,6 +41,7 @@ namespace Garage2._0_Group5.Models.Entities
         [DisplayName("Person Number")]
         [StringLength(12, MinimumLength = 12)]
         public string PersonNumber { get; set; }
+
 
         //Navigation Property
         public ICollection<Vehicle> Vehicles { get; set; } = new List<Vehicle>();

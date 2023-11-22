@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Garage2._0_Group5.Migrations
 {
     [DbContext(typeof(Garage2_0_Group5Context))]
-    [Migration("20231122101714_Init")]
+    [Migration("20231122124536_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace Garage2._0_Group5.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.13")
+                .HasAnnotation("ProductVersion", "7.0.14")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -55,7 +55,7 @@ namespace Garage2._0_Group5.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Member");
+                    b.ToTable("Members");
                 });
 
             modelBuilder.Entity("Garage2._0_Group5.Models.Entities.Vehicle", b =>
@@ -79,7 +79,7 @@ namespace Garage2._0_Group5.Migrations
                         .HasMaxLength(6)
                         .HasColumnType("nvarchar(6)");
 
-                    b.Property<int?>("MemberId")
+                    b.Property<int>("MemberId")
                         .HasColumnType("int");
 
                     b.Property<string>("Model")
@@ -126,9 +126,13 @@ namespace Garage2._0_Group5.Migrations
 
             modelBuilder.Entity("Garage2._0_Group5.Models.Entities.Vehicle", b =>
                 {
-                    b.HasOne("Garage2._0_Group5.Models.Entities.Member", null)
+                    b.HasOne("Garage2._0_Group5.Models.Entities.Member", "Member")
                         .WithMany("Vehicles")
-                        .HasForeignKey("MemberId");
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Member");
                 });
 
             modelBuilder.Entity("Garage2._0_Group5.Models.Entities.VehicleType", b =>

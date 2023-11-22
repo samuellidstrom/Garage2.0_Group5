@@ -63,34 +63,6 @@ namespace Garage2._0_Group5.Models.Entities
         //public int NoOfWheels { get; set; }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         // Added by Samuel - Relationship with Type-class
         //Nav prop
         public VehicleType VehicleType { get; set; } = new VehicleType();

@@ -12,7 +12,7 @@ namespace Garage2._0_Group5.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Member",
+                name: "Members",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -24,7 +24,7 @@ namespace Garage2._0_Group5.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Member", x => x.Id);
+                    table.PrimaryKey("PK_Members", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -38,16 +38,17 @@ namespace Garage2._0_Group5.Migrations
                     Brand = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
                     Model = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
                     TimeOfRegistration = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    MemberId = table.Column<int>(type: "int", nullable: true)
+                    MemberId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Vehicle", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Vehicle_Member_MemberId",
+                        name: "FK_Vehicle_Members_MemberId",
                         column: x => x.MemberId,
-                        principalTable: "Member",
-                        principalColumn: "Id");
+                        principalTable: "Members",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -93,7 +94,7 @@ namespace Garage2._0_Group5.Migrations
                 name: "Vehicle");
 
             migrationBuilder.DropTable(
-                name: "Member");
+                name: "Members");
         }
     }
 }
