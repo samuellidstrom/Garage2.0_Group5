@@ -6,7 +6,7 @@ namespace Garage2._0_Group5.Models.ViewModels
     public class VehicleCreateViewModel
     {
         public string LicenseNumber { get; set; }
-        public Color Color { get; set; }
+        public VehicleColor VehicleColor { get; set; }
         public string Brand { get; set; }
         public string Model { get; set; }
         public string TypeOfVehicle { get; set; }

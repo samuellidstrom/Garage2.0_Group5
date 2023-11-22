@@ -27,32 +27,16 @@ namespace Garage2._0_Group5.Controllers
         {
 
             var model = _context.Vehicle.AsNoTracking()
-                .Select(v => new VehicleIndexViewModel
+                .Select(v => new VehicleCreateViewModel
                 {
-                    TypeOfVehicle = v.VehicleType.TypeOfVehicle,
                     LicenseNumber = v.LicenseNumber,
-                    TimeOfRegistration = v.TimeOfRegistration,                                    
+                    VehicleColor = v.VehicleColor,
+                    TypeOfVehicle = v.VehicleType.TypeOfVehicle,
+
+                    TimeOfRegistration = v.TimeOfRegistration,
                 });
 
             return View(await model.ToListAsync());
-
-
-            //var entities = _context.Vehicle.ToList(); // Replace YourEntities with your actual entity DbSet
-
-            //// Map entities to view models
-            //var viewModels = entities.Select(e => new VehicleIndexViewModel
-            //{
-            //    Id = e.Id,
-            //    TypeOfVehicle = e.VehicleType.TypeOfVehicle,
-            //    LicenseNumber = e.LicenseNumber,
-            //    TimeOfRegistration = e.TimeOfRegistration
-            //    // Map other properties as needed
-            //}).ToList();
-
-            //return _context.Vehicle != null ?
-            //            View(viewModels) :
-            //            Problem("Entity set 'Garage2_0_Group5Context.Vehicle'  is null.");
-
         }
 
 
@@ -84,22 +68,38 @@ namespace Garage2._0_Group5.Controllers
         //}
 
         // GET: Vehicles/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Vehicle == null)
-            {
-                return NotFound();
-            }
+        //public async Task<IActionResult> Details()
+        //{
 
-            var vehicle = await _context.Vehicle
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (vehicle == null)
-            {
-                return NotFound();
-            }
+        //    //var model = _context.Vehicle.AsNoTracking()
+        //    //    .Select(v => new VehicleDetailsViewModel
+        //    //        {
+        //    //            LicenseNumber = v.LicenseNumber,
+        //    //            VehicleColor = v.VehicleColor,
+        //    //            Brand = v.Brand,
+        //    //            Model = v.Model,
+        //    //            TypeOfVehicle = v.VehicleType.TypeOfVehicle,
+        //    //            Wheels = v.VehicleType.Wheels,
+        //    //            TimeOfRegistration = v.TimeOfRegistration,
+        //    //    });
 
-            return View(vehicle);
-        }
+        //    //return View(await model.ToListAsync());
+
+
+        //    if (id == null || _context.Vehicle == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var vehicle = await _context.Vehicle
+        //        .FirstOrDefaultAsync(m => m.Id == id);
+        //    if (vehicle == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return View(vehicle);
+        //}
 
         //public async Task<IActionResult> Details(int? id)
         //{
@@ -138,7 +138,7 @@ namespace Garage2._0_Group5.Controllers
                 var vehicle = new Vehicle
                 {
                     LicenseNumber = viewModel.LicenseNumber,
-                    Color = viewModel.Color,
+                    VehicleColor = viewModel.VehicleColor,
                     Brand = viewModel.Brand,
                     Model = viewModel.Model,
                     TimeOfRegistration = viewModel.TimeOfRegistration,

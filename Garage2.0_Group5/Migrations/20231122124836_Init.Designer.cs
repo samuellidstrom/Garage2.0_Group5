@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Garage2._0_Group5.Migrations
 {
     [DbContext(typeof(Garage2_0_Group5Context))]
-    [Migration("20231122101714_Init")]
+    [Migration("20231122124836_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -71,9 +71,6 @@ namespace Garage2._0_Group5.Migrations
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
 
-                    b.Property<int>("Color")
-                        .HasColumnType("int");
-
                     b.Property<string>("LicenseNumber")
                         .IsRequired()
                         .HasMaxLength(6)
@@ -89,6 +86,9 @@ namespace Garage2._0_Group5.Migrations
 
                     b.Property<DateTime>("TimeOfRegistration")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("VehicleColor")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

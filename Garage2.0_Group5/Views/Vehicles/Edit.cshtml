@@ -1,4 +1,4 @@
-﻿@model Vehicle
+﻿@model VehicleEditViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -35,12 +35,12 @@
             </div>
 >>>>>>> Samuel_Garage3.0
             <div class="form-group">
-                <label asp-for="Color" class="control-label"></label>
+                <label asp-for="VehicleColor" class="control-label"></label>
                
-                <select class="form-control" name="color" asp-items="@Html.GetEnumSelectList<Color>()">
-                    <option selected="selected">@Model.Color</option>
+                <select class="form-control" name="color" asp-items="@Html.GetEnumSelectList<VehicleColor>()">
+                    <option selected="selected">@Model.VehicleColor</option>
                 </select>
-                <span asp-validation-for="Color" class="text-danger"></span>
+                <span asp-validation-for="VehicleColor" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Brand" class="control-label"></label>
@@ -52,11 +52,11 @@
                 <input asp-for="Model" class="form-control" />
                 <span asp-validation-for="Model" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="VehicleType.Wheels" class="control-label"></label>
+@*             <div class="form-group">
+                <label asp-for="TypeOfVehicle.Wheels" class="control-label"></label>
                 <input asp-for="VehicleType.Wheels" class="form-control" />
                 <span asp-validation-for="VehicleType.Wheels" class="text-danger"></span>
-            </div>
+            </div> *@
             <div class="form-group">
 <<<<<<< HEAD
                 <label asp-for="TimeOfRegistration" class="control-label"></label>
