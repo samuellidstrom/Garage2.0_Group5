@@ -29,6 +29,8 @@ namespace Garage2._0_Group5.Models.Entities
         //    }
         //}
 
+        //public TypeOfVehicle Type { get; set; }
+
         [DisplayName("Color")]
         public Color Color { get; set; }
 
@@ -46,10 +48,10 @@ namespace Garage2._0_Group5.Models.Entities
         public DateTime TimeOfRegistration { get; set; }
 
         //ToDo: Fix so this doesn't change when vechiel is edited
-        public Vehicle()
-        {
-            TimeOfRegistration = DateTime.Now;
-        }
+        //public Vehicle()
+        //{
+        //    TimeOfRegistration = DateTime.Now;
+        //}
 
         public Member Member { get; set; }
 
@@ -91,7 +93,7 @@ namespace Garage2._0_Group5.Models.Entities
 
         // Added by Samuel - Relationship with Type-class
         //Nav prop
-        //public VehicleType VehicleType { get; set; }
+        public VehicleType VehicleType { get; set; } = new VehicleType();
 
 
     }
