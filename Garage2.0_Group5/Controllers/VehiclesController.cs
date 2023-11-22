@@ -142,7 +142,7 @@ namespace Garage2._0_Group5.Controllers
                 var vehicle = new Vehicle
                 {
                     LicenseNumber = viewModel.LicenseNumber,
-                    Color = viewModel.Color,
+                    VehicleColor = viewModel.VehicleColor,
                     Brand = viewModel.Brand,
                     Model = viewModel.Model,
                     TimeOfRegistration = viewModel.TimeOfRegistration,

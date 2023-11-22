@@ -32,7 +32,7 @@ namespace Garage2._0_Group5.Models.Entities
         //public TypeOfVehicle Type { get; set; }
 
         [DisplayName("Color")]
-        public Color Color { get; set; }
+        public VehicleColor VehicleColor { get; set; }
 
         [Required]
         [DisplayName("Brand")]
