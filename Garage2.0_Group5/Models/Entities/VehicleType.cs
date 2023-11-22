@@ -4,7 +4,7 @@ using System.ComponentModel;
 namespace Garage2._0_Group5.Models.Entities
 {
     #nullable disable
-    public class Type
+    public class VehicleType
     {
         public int Id { get; set; }
 

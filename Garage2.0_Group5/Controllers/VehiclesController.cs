@@ -9,6 +9,7 @@ using Garage2._0_Group5.Data;
 using Garage2._0_Group5.Models.Entities;
 using jsreport.AspNetCore;
 using jsreport.Types;
+using Garage2._0_Group5.Models.ViewModels;
 
 namespace Garage2._0_Group5.Controllers
 {
@@ -24,9 +25,34 @@ namespace Garage2._0_Group5.Controllers
         // GET: Vehicles
         public async Task<IActionResult> Index()
         {
-            return _context.Vehicle != null ?
-                        View(await _context.Vehicle.ToListAsync()) :
-                        Problem("Entity set 'Garage2_0_Group5Context.Vehicle'  is null.");
+
+            var model = _context.Vehicle.AsNoTracking()
+                .Select(v => new VehicleIndexViewModel
+                {
+                    TypeOfVehicle = v.VehicleType.TypeOfVehicle,
+                    LicenseNumber = v.LicenseNumber,
+                    TimeOfRegistration = v.TimeOfRegistration,                                    
+                });
+
+            return View(await model.ToListAsync());
+
+
+            //var entities = _context.Vehicle.ToList(); // Replace YourEntities with your actual entity DbSet
+
+            //// Map entities to view models
+            //var viewModels = entities.Select(e => new VehicleIndexViewModel
+            //{
+            //    Id = e.Id,
+            //    TypeOfVehicle = e.VehicleType.TypeOfVehicle,
+            //    LicenseNumber = e.LicenseNumber,
+            //    TimeOfRegistration = e.TimeOfRegistration
+            //    // Map other properties as needed
+            //}).ToList();
+
+            //return _context.Vehicle != null ?
+            //            View(viewModels) :
+            //            Problem("Entity set 'Garage2_0_Group5Context.Vehicle'  is null.");
+
         }
 
 
@@ -75,6 +101,23 @@ namespace Garage2._0_Group5.Controllers
             return View(vehicle);
         }
 
+        //public async Task<IActionResult> Details(int? id)
+        //{
+        //    if (id == null || _context.Vehicle == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var vehicle = await _context.Vehicle
+        //        .FirstOrDefaultAsync(m => m.Id == id);
+        //    if (vehicle == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return View(vehicle);
+        //}
+
         // GET: Vehicles/Create
         public IActionResult Create()
         {
@@ -86,16 +129,33 @@ namespace Garage2._0_Group5.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("LicenseNumber,Type,Color,Brand,Model,NoOfWheels,TimeOfRegistration")] Vehicle vehicle)
-
+        public async Task<IActionResult> Create(VehicleCreateViewModel viewModel)
         {
+
+
             if (ModelState.IsValid)
             {
+                var vehicle = new Vehicle
+                {
+                    LicenseNumber = viewModel.LicenseNumber,
+                    Color = viewModel.Color,
+                    Brand = viewModel.Brand,
+                    Model = viewModel.Model,
+                    TimeOfRegistration = viewModel.TimeOfRegistration,
+                    VehicleType = new VehicleType
+                    {
+                        TypeOfVehicle = viewModel.TypeOfVehicle,
+                        Wheels = viewModel.Wheels,
+                    }
+
+                };
+
+
                 _context.Add(vehicle);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(vehicle);
+            return View(viewModel);
         }
 
         // GET: Vehicles/Edit/5
