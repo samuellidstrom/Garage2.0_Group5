@@ -36,69 +36,25 @@ namespace Garage2._0_Group5.Controllers
 
             return View(await model.ToListAsync());
 
-
-            //var entities = _context.Vehicle.ToList(); // Replace YourEntities with your actual entity DbSet
-
-            //// Map entities to view models
-            //var viewModels = entities.Select(e => new VehicleIndexViewModel
-            //{
-            //    Id = e.Id,
-            //    TypeOfVehicle = e.VehicleType.TypeOfVehicle,
-            //    LicenseNumber = e.LicenseNumber,
-            //    TimeOfRegistration = e.TimeOfRegistration
-            //    // Map other properties as needed
-            //}).ToList();
-
-            //return _context.Vehicle != null ?
-            //            View(viewModels) :
-            //            Problem("Entity set 'Garage2_0_Group5Context.Vehicle'  is null.");
-
         }
 
-
-        //public async Task<IActionResult> Filter(string id, int? type, int? noOfWheels)
-        //{
-        //    var model = string.IsNullOrWhiteSpace(id) ?
-        //            _context.Vehicle :
-        //            _context.Vehicle.Where(m => m.LicenseNumber.StartsWith(id));
-
-        //public async Task<IActionResult> Filter(int id, int? type, int? noOfWheels)
-        //{
-        //    var model = int.IsNullOrWhiteSpace(id) ?
-        //            _context.Vehicle :
-        //            _context.Vehicle.Where(m => m.Id.StartsWith(id));
-
-        //    //    var model = string.IsNullOrWhiteSpace(id) ?
-        //    //_context.Vehicle :
-        //    //_context.Vehicle.Where(m => m.ID.StartsWith(id));
-
-        //    //model = noOfWheels is null ?
-        //    //  _context.Vehicle :
-        //    //  _context.Vehicle.Where(m => m.NoOfWheels.Equals(noOfWheels));
-
-        //    model = type is null ?
-        //            model :
-        //            model.Where(m => (int)m.Type == type);
-
-        //    return View(nameof(Index), await model.ToListAsync());
-        //}
-
         // GET: Vehicles/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details()
         {
-            if (id == null || _context.Vehicle == null)
-            {
-                return NotFound();
-            }
 
-            var vehicle = await _context.Vehicle
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (vehicle == null)
-            {
-                return NotFound();
-            }
+            var model = _context.Vehicle.AsNoTracking()
+                .Select(v => new VehicleDetailsViewModel
+                {
+                    LicenseNumber = v.LicenseNumber,
+                    VehicleColor = v.VehicleColor,
+                    Brand = v.Brand,
+                    Model = v.Model,
+                    TypeOfVehicle = v.VehicleType.TypeOfVehicle,
+                    Wheels = v.VehicleType.Wheels,                  
+                    TimeOfRegistration = v.TimeOfRegistration,
+                });
 
-            return View(vehicle);
+            return View(await model.ToListAsync());
         }
 
         //public async Task<IActionResult> Details(int? id)
@@ -297,5 +253,32 @@ namespace Garage2._0_Group5.Controllers
             }
             return Json(true);
         }
+
+        //public async Task<IActionResult> Filter(string id, int? type, int? noOfWheels)
+        //{
+        //    var model = string.IsNullOrWhiteSpace(id) ?
+        //            _context.Vehicle :
+        //            _context.Vehicle.Where(m => m.LicenseNumber.StartsWith(id));
+
+        //public async Task<IActionResult> Filter(int id, int? type, int? noOfWheels)
+        //{
+        //    var model = int.IsNullOrWhiteSpace(id) ?
+        //            _context.Vehicle :
+        //            _context.Vehicle.Where(m => m.Id.StartsWith(id));
+
+        //    //    var model = string.IsNullOrWhiteSpace(id) ?
+        //    //_context.Vehicle :
+        //    //_context.Vehicle.Where(m => m.ID.StartsWith(id));
+
+        //    //model = noOfWheels is null ?
+        //    //  _context.Vehicle :
+        //    //  _context.Vehicle.Where(m => m.NoOfWheels.Equals(noOfWheels));
+
+        //    model = type is null ?
+        //            model :
+        //            model.Where(m => (int)m.Type == type);
+
+        //    return View(nameof(Index), await model.ToListAsync());
+        //}
     }
 }
