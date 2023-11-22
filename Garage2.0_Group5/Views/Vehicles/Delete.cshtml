@@ -18,17 +18,10 @@
             @Html.DisplayFor(model => model.Type)
         </dd>
         <dt class = "col-sm-2">
-<<<<<<< HEAD
             @Html.DisplayNameFor(model => model.LicenseNumber)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.LicenseNumber)
-=======
-            @Html.DisplayNameFor(model => model.Id)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Id)
->>>>>>> Samuel_Garage3.0
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Color)
@@ -60,10 +53,10 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.TimeOfRegistration)
         </dd>
-    </dl> *@
+    </dl>
     
     <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="ID" />
         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete">Check out Vehicle</button>
 
         <div class="container">
@@ -74,11 +67,7 @@
                             <h4 class="modal-title">Would you like a Receipt?</h4>
                         </div>
                         <div class="modal-body">
-<<<<<<< HEAD
                             <input type="submit" class="btn btn-primary" asp-action="Receipt" asp-route-id="Id" value="Yes" />
-=======
-                            <input type="submit" class="btn btn-primary" asp-action="Print" asp-route-id="@Model.Id" formtarget="_blank" value="Yes" />
->>>>>>> Samuel_Garage3.0
                             <input type="submit" class="btn btn-danger" asp-action="Delete" value="No" />
                         </div>
                         <div class="modal-footer">
