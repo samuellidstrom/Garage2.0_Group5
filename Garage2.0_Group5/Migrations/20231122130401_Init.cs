@@ -34,7 +34,7 @@ namespace Garage2._0_Group5.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     LicenseNumber = table.Column<string>(type: "nvarchar(6)", maxLength: 6, nullable: false),
-                    Color = table.Column<int>(type: "int", nullable: false),
+                    VehicleColor = table.Column<int>(type: "int", nullable: false),
                     Brand = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
                     Model = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
                     TimeOfRegistration = table.Column<DateTime>(type: "datetime2", nullable: false),

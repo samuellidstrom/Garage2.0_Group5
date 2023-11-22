@@ -35,12 +35,12 @@
             </div>
 >>>>>>> Samuel_Garage3.0
             <div class="form-group">
-                <label asp-for="Color" class="control-label"></label>
+                <label asp-for="VehicleColor" class="control-label"></label>
                
-                <select class="form-control" name="color" asp-items="@Html.GetEnumSelectList<Color>()">
-                    <option selected="selected">@Model.Color</option>
+                <select class="form-control" name="color" asp-items="@Html.GetEnumSelectList<VehicleColor>()">
+                    <option selected="selected">@Model.VehicleColor</option>
                 </select>
-                <span asp-validation-for="Color" class="text-danger"></span>
+                <span asp-validation-for="VehicleColor" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Brand" class="control-label"></label>
