@@ -1,4 +1,4 @@
-﻿@model Vehicle
+﻿@model Garage2._0_Group5.Models.Entities.Vehicle
 
 @{
     ViewData["Title"] = "Delete";
@@ -10,12 +10,12 @@
 <a asp-action="Index" class="btn btn-outline-info mx-3">No! - Back to List</a>
 <div>
     <hr />
-    @* <dl class="row">
+    <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Type)
+            @Html.DisplayNameFor(model => model.VehicleType)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Type)
+            @Html.DisplayFor(model => model.VehicleType.TypeOfVehicle)
         </dd>
         <dt class = "col-sm-2">
 <<<<<<< HEAD
@@ -31,10 +31,10 @@
 >>>>>>> Samuel_Garage3.0
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Color)
+            @Html.DisplayNameFor(model => model.VehicleColor)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Color)
+            @Html.DisplayFor(model => model.VehicleColor)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Brand)
@@ -49,10 +49,10 @@
             @Html.DisplayFor(model => model.Model)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NoOfWheels)
+            @Html.DisplayNameFor(model => model.VehicleType.Wheels)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NoOfWheels)
+            @Html.DisplayFor(model => model.VehicleType.Wheels)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.TimeOfRegistration)
@@ -60,7 +60,7 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.TimeOfRegistration)
         </dd>
-    </dl> *@
+    </dl>
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />

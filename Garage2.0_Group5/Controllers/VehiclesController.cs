@@ -39,71 +39,39 @@ namespace Garage2._0_Group5.Controllers
                 });
 
             return View(await model.ToListAsync());
-
-
-            //var entities = _context.Vehicle.ToList(); // Replace YourEntities with your actual entity DbSet
-
-            //// Map entities to view models
-            //var viewModels = entities.Select(e => new VehicleIndexViewModel
-            //{
-            //    Id = e.Id,
-            //    TypeOfVehicle = e.VehicleType.TypeOfVehicle,
-            //    LicenseNumber = e.LicenseNumber,
-            //    TimeOfRegistration = e.TimeOfRegistration
-            //    // Map other properties as needed
-            //}).ToList();
-
-            //return _context.Vehicle != null ?
-            //            View(viewModels) :
-            //            Problem("Entity set 'Garage2_0_Group5Context.Vehicle'  is null.");
-
         }
-
-
-        //public async Task<IActionResult> Filter(string id, int? type, int? noOfWheels)
-        //{
-        //    var model = string.IsNullOrWhiteSpace(id) ?
-        //            _context.Vehicle :
-        //            _context.Vehicle.Where(m => m.LicenseNumber.StartsWith(id));
-
-        //public async Task<IActionResult> Filter(int id, int? type, int? noOfWheels)
-        //{
-        //    var model = int.IsNullOrWhiteSpace(id) ?
-        //            _context.Vehicle :
-        //            _context.Vehicle.Where(m => m.Id.StartsWith(id));
-
-        //    //    var model = string.IsNullOrWhiteSpace(id) ?
-        //    //_context.Vehicle :
-        //    //_context.Vehicle.Where(m => m.ID.StartsWith(id));
-
-        //    //model = noOfWheels is null ?
-        //    //  _context.Vehicle :
-        //    //  _context.Vehicle.Where(m => m.NoOfWheels.Equals(noOfWheels));
-
-        //    model = type is null ?
-        //            model :
-        //            model.Where(m => (int)m.Type == type);
-
-        //    return View(nameof(Index), await model.ToListAsync());
-        //}
-
+      
         // GET: Vehicles/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details()
         {
-            if (id == null || _context.Vehicle == null)
-            {
-                return NotFound();
-            }
 
-            var vehicle = await _context.Vehicle
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (vehicle == null)
+            var model = _context.Vehicle.AsNoTracking()
+            .Select(v => new VehicleDetailsViewModel
             {
-                return NotFound();
-            }
+             TypeOfVehicle = v.VehicleType.TypeOfVehicle,
+                LicenseNumber = v.LicenseNumber,
+                TimeOfRegistration = v.TimeOfRegistration,
+            });
 
-            return View(vehicle);
+            return View(await model.ToListAsync());
+
+
+
+            //if (id == null || _context.Vehicle == null)
+            //{
+            //    return NotFound();
+            //}
+
+            //var vehicle = await _context.Vehicle
+            //    .FirstOrDefaultAsync(m => m.Id == id);
+            //if (vehicle == null)
+            //{
+            //    return NotFound();
+            //}
+
+            //            return View(vehicle);
         }
+        //SL
 
         //public async Task<IActionResult> Details(int? id)
         //{
@@ -122,6 +90,13 @@ namespace Garage2._0_Group5.Controllers
         //    return View(vehicle);
         //}
 
+
+
+
+
+
+
+
         // GET: Vehicles/Create
         public IActionResult Create()
         {
@@ -135,8 +110,6 @@ namespace Garage2._0_Group5.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(VehicleCreateViewModel viewModel)
         {
-
-
             if (ModelState.IsValid)
             {
                 var vehicle = new Vehicle
@@ -151,7 +124,6 @@ namespace Garage2._0_Group5.Controllers
                         TypeOfVehicle = viewModel.TypeOfVehicle,
                         Wheels = viewModel.Wheels,
                     }
-
                 };
 
 
@@ -301,5 +273,39 @@ namespace Garage2._0_Group5.Controllers
             }
             return Json(true);
         }
+
+
+
+
+
+
+        //public async Task<IActionResult> Filter(string id, int? type, int? noOfWheels)
+        //{
+        //    var model = string.IsNullOrWhiteSpace(id) ?
+        //            _context.Vehicle :
+        //            _context.Vehicle.Where(m => m.LicenseNumber.StartsWith(id));
+
+        //public async Task<IActionResult> Filter(int id, int? type, int? noOfWheels)
+        //{
+        //    var model = int.IsNullOrWhiteSpace(id) ?
+        //            _context.Vehicle :
+        //            _context.Vehicle.Where(m => m.Id.StartsWith(id));
+
+        //    //    var model = string.IsNullOrWhiteSpace(id) ?
+        //    //_context.Vehicle :
+        //    //_context.Vehicle.Where(m => m.ID.StartsWith(id));
+
+        //    //model = noOfWheels is null ?
+        //    //  _context.Vehicle :
+        //    //  _context.Vehicle.Where(m => m.NoOfWheels.Equals(noOfWheels));
+
+        //    model = type is null ?
+        //            model :
+        //            model.Where(m => (int)m.Type == type);
+
+        //    return View(nameof(Index), await model.ToListAsync());
+        //}
+
+
     }
 }
