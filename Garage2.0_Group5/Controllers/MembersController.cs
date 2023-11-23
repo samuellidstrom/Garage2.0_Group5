@@ -9,16 +9,21 @@ using Garage2._0_Group5.Data;
 using Garage2._0_Group5.Models.Entities;
 using Garage2._0_Group5.Models.ViewModels;
 using System.ComponentModel;
+using Bogus;
+using Garage3._0.Web.Models.ViewModels;
+using Bogus.Extensions.Sweden;
 
 namespace Garage2._0_Group5.Controllers
 {
     public class MembersController : Controller
     {
         private readonly Garage2_0_Group5Context _context;
+        private readonly Faker faker;
 
         public MembersController(Garage2_0_Group5Context context)
         {
             _context = context;
+            faker = new Faker();
         }
 
         // GET: Members
@@ -29,7 +34,7 @@ namespace Garage2._0_Group5.Controllers
             //var t3 = _context.Member.Include(m=>m.Vehicles).ThenInclude(v=>v.VehicleType).ToList();
             //var c = _context.Member.Include(m => m.VehicleTypes);
 
-            var model = _context.Member.AsNoTracking()
+            var model = _context.Member.OrderByDescending(m => m.Id)
                 .Select(m => new MemberIndexViewModel
                 {
                     Id = m.Id,
@@ -41,7 +46,7 @@ namespace Garage2._0_Group5.Controllers
                     //    LicenseNumber = v.LicenseNumber,
                     //    TimeOfRegistration = v.TimeOfRegistration
                     //})
-                });
+                }).Take(5);
 
             return View(await model.ToListAsync());
         }
@@ -75,15 +80,17 @@ namespace Garage2._0_Group5.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName,Email,PersonNumber")] Member member)
+        public async Task<IActionResult> Create(MemberCreateViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
+                var member = new Member(new Name(viewModel.FirstName, viewModel.LastName), viewModel.Email, faker.Person.Personnummer()) { };
+
                 _context.Add(member);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(member);
+            return View(viewModel);
         }
 
         // GET: Members/Edit/5
