@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Garage2._0_Group5.Data;
 using Garage2._0_Group5.Models.Entities;
 using Garage2._0_Group5.Models.ViewModels;
-using System.ComponentModel;
 using Bogus;
-using Garage3._0.Web.Models.ViewModels;
 using Bogus.Extensions.Sweden;
 using AutoMapper;
 
@@ -37,19 +30,23 @@ namespace Garage2._0_Group5.Controllers
             //var t3 = _context.Member.Include(m=>m.Vehicles).ThenInclude(v=>v.VehicleType).ToList();
             //var c = _context.Member.Include(m => m.VehicleTypes);
 
-            var model = _context.Member.OrderByDescending(m => m.Id)
-                .Select(m => new MemberIndexViewModel
-                {
-                    Id = m.Id,
-                    NameFullName = m.Name.FullName,
-                    Email = m.Email,
-                    PersonNumber = m.PersonNumber,
-                    //VehicleInfos = m.Vehicles.Select(v => new VehicleInfo
-                    //{
-                    //    LicenseNumber = v.LicenseNumber,
-                    //    TimeOfRegistration = v.TimeOfRegistration
-                    //})
-                }).Take(5);
+            //var model = _context.Member.OrderByDescending(m => m.Id)
+            //    .Select(m => new MemberIndexViewModel
+            //    {
+            //        Id = m.Id,
+            //        NameFullName = m.Name.FullName,
+            //        Email = m.Email,
+            //        PersonNumber = m.PersonNumber,
+            //        //VehicleInfos = m.Vehicles.Select(v => new VehicleInfo
+            //        //{
+            //        //    LicenseNumber = v.LicenseNumber,
+            //        //    TimeOfRegistration = v.TimeOfRegistration
+            //        //})
+            //    }).Take(5);
+
+            var model = mapper.ProjectTo<MemberIndexViewModel>(_context.Member)
+                .OrderByDescending(x => x.Id)
+                .Take(5);
 
             return View(await model.ToListAsync());
         }

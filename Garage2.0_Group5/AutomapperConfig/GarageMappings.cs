@@ -9,6 +9,8 @@ namespace Garage2._0_Group5.AutomapperConfig
         public GarageMappings()
         {
             CreateMap<Member, MemberCreateViewModel>().ReverseMap();
+
+            CreateMap<Member, MemberIndexViewModel>();
         }
     }
 }
