@@ -61,6 +61,8 @@ namespace Garage2._0_Group5.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,LicenseNumber,Color,Brand,Model,TimeOfRegistration,MemberId,VehicleTypeId")] Vehicle vehicle)
         {
+            ViewData["TypeOfVehicle"] = new SelectList(_context.VehicleType, "Id", "Name");
+
             if (ModelState.IsValid)
             {
                 _context.Add(vehicle);
