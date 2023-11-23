@@ -10,6 +10,7 @@ namespace Garage2._0_Group5.Models.Entities
     {
         public int Id { get; set; }
 
+
         public Name Name { get; set; }
 
         [Required]

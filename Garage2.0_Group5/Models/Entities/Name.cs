@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Garage2._0_Group5.Validations;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Garage2._0_Group5.Models.Entities
@@ -12,7 +13,7 @@ namespace Garage2._0_Group5.Models.Entities
 
 
         [Required]
-        //[CheckNameAttribute]
+        [CheckName]
         [DisplayName("Last Name")]
         [StringLength(20, MinimumLength = 2)]
         public string LastName { get; set; }

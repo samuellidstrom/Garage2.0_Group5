@@ -1,13 +1,16 @@
-﻿namespace Garage2._0_Group5.Models.ViewModels
+﻿using Garage2._0_Group5.Validations;
+using System.ComponentModel.DataAnnotations;
+
+namespace Garage2._0_Group5.Models.ViewModels
 {
 #nullable disable
     public class MemberCreateViewModel
     {
-        //[Required]
+        [Required]
         public string NameFirstName { get; set; }
 
 
-        //[Required]
+        [Required]
         //[CheckName]
         public string NameLastName { get; set; }
 
@@ -17,9 +20,9 @@
         public string Email { get; set; }
 
 
-        //[Required]
-        //[RegularExpression(@"^(?<date>\d{8})[-\s]?\d{4}$", ErrorMessage = "Person Number format must be YYYYMMDDNNNN")]
-        //[CheckAge]
+        [Required]
+        [RegularExpression(@"^(?<date>\d{8})[-\s]?\d{4}$", ErrorMessage = "Person Number format must be YYYYMMDDNNNN")]
+        [CheckAge]
         public string PersonNumber { get; set; }
     }
 }

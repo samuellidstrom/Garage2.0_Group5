@@ -12,7 +12,7 @@ namespace Garage2._0_Group5.Validations
 
             if (value is string input)
             {
-                var model = validationContext.ObjectInstance as Member;
+                var model = validationContext.ObjectInstance as Name;
 
                 if (model != null)
                 {
