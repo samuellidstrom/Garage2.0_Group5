@@ -21,6 +21,7 @@
 
 	<ItemGroup>
 		<Compile Remove="Controllers\VehiclesController.cs" />
+		<Compile Remove="Models\ViewModels\IMemberViewModel.cs" />
 		<Compile Remove="Validations\CheckNameAttribute.cs" />
 		<Compile Remove="ViewComponents\ReceiptViewComponent.cs" />
 	</ItemGroup>

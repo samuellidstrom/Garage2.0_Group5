@@ -21,6 +21,12 @@ namespace Garage2._0_Group5.Models.Entities
         [DisplayName("Owner")]
         public string FullName => $"{FirstName} {LastName}";
 
+        private Name()
+        {
+            FirstName = null!;
+            LastName = null!;
+        }
+
         public Name(string firstName, string lastName)
         {
             FirstName = firstName;

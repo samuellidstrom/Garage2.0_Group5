@@ -1,20 +1,15 @@
-﻿
-using Garage2._0_Group5.Models.ViewModels;
-using Garage2._0_Group5.Validations;
-using System.ComponentModel.DataAnnotations;
-
-namespace Garage3._0.Web.Models.ViewModels
+﻿namespace Garage2._0_Group5.Models.ViewModels
 {
 #nullable disable
-    public class MemberCreateViewModel : IMemberViewModel
+    public class MemberCreateViewModel
     {
         //[Required]
-        public string FirstName { get; set; }
+        public string NameFirstName { get; set; }
 
 
         //[Required]
         //[CheckName]
-        public string LastName { get; set; }
+        public string NameLastName { get; set; }
 
 
         //[Required(ErrorMessage = "Email is required")]

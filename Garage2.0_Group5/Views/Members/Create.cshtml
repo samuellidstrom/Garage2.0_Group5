@@ -1,4 +1,4 @@
-﻿@model Garage2._0_Group5.Models.Entities.Member
+﻿@model MemberCreateViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -13,14 +13,14 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="FirstName" class="control-label"></label>
-                <input asp-for="FirstName" class="form-control" />
-                <span asp-validation-for="FirstName" class="text-danger"></span>
+                <label asp-for="NameFirstName" class="control-label"></label>
+                <input asp-for="NameFirstName" class="form-control" />
+                <span asp-validation-for="NameFirstName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LastName" class="control-label"></label>
-                <input asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-danger"></span>
+                <label asp-for="NameLastName" class="control-label"></label>
+                <input asp-for="NameLastName" class="form-control" />
+                <span asp-validation-for="NameLastName" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>

@@ -12,17 +12,20 @@ using System.ComponentModel;
 using Bogus;
 using Garage3._0.Web.Models.ViewModels;
 using Bogus.Extensions.Sweden;
+using AutoMapper;
 
 namespace Garage2._0_Group5.Controllers
 {
     public class MembersController : Controller
     {
         private readonly Garage2_0_Group5Context _context;
+        private readonly IMapper mapper;
         private readonly Faker faker;
 
-        public MembersController(Garage2_0_Group5Context context)
+        public MembersController(Garage2_0_Group5Context context, IMapper mapper)
         {
             _context = context;
+            this.mapper = mapper;
             faker = new Faker();
         }
 
@@ -38,7 +41,7 @@ namespace Garage2._0_Group5.Controllers
                 .Select(m => new MemberIndexViewModel
                 {
                     Id = m.Id,
-                    FullName = m.Name.FullName,
+                    NameFullName = m.Name.FullName,
                     Email = m.Email,
                     PersonNumber = m.PersonNumber,
                     //VehicleInfos = m.Vehicles.Select(v => new VehicleInfo
@@ -84,7 +87,10 @@ namespace Garage2._0_Group5.Controllers
         {
             if (ModelState.IsValid)
             {
-                var member = new Member(new Name(viewModel.FirstName, viewModel.LastName), viewModel.Email, faker.Person.Personnummer()) { };
+                //var member = new Member(new Name(viewModel.NameFirstName, viewModel.NameLastName), viewModel.Email, faker.Person.Personnummer()) { };
+
+                var member = mapper.Map<Member>(viewModel);
+                member.PersonNumber = faker.Person.Personnummer();
 
                 _context.Add(member);
                 await _context.SaveChangesAsync();

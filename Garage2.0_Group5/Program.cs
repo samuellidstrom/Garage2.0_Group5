@@ -4,6 +4,7 @@ using jsreport.AspNetCore;
 using jsreport.Local;
 using jsreport.Binary;
 using Garage2._0_Group5.Extensions;
+using Garage2._0_Group5.AutomapperConfig;
 
 namespace Garage2._0_Group5
 {
@@ -15,6 +16,7 @@ namespace Garage2._0_Group5
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddAutoMapper(typeof(GarageMappings));
 
             // Add service for the print function
             builder.Services.AddJsReport(new LocalReporting()
