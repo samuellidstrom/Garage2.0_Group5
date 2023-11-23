@@ -7,85 +7,24 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Garage2._0_Group5.Data;
 using Garage2._0_Group5.Models.Entities;
-using jsreport.AspNetCore;
-using jsreport.Types;
-using Garage2._0_Group5.Models.ViewModels;
-using AutoMapper;
 
 namespace Garage2._0_Group5.Controllers
 {
     public class VehiclesController : Controller
     {
         private readonly Garage2_0_Group5Context _context;
-        //private readonly IMapper _mapper;
 
-        //public VehiclesController(Garage2_0_Group5Context context, IMapper mapper)
         public VehiclesController(Garage2_0_Group5Context context)
         {
             _context = context;
-            //_mapper = mapper;
         }
 
         // GET: Vehicles
         public async Task<IActionResult> Index()
         {
-
-            var model = _context.Vehicle.AsNoTracking()
-                .Select(v => new VehicleIndexViewModel
-                {
-                    //TypeOfVehicle = v.VehicleType.TypeOfVehicle,
-                    LicenseNumber = v.LicenseNumber,
-                    TimeOfRegistration = v.TimeOfRegistration,
-                });
-
-            return View(await model.ToListAsync());
-
-
-            //var entities = _context.Vehicle.ToList(); // Replace YourEntities with your actual entity DbSet
-
-            //// Map entities to view models
-            //var viewModels = entities.Select(e => new VehicleIndexViewModel
-            //{
-            //    Id = e.Id,
-            //    TypeOfVehicle = e.VehicleType.TypeOfVehicle,
-            //    LicenseNumber = e.LicenseNumber,
-            //    TimeOfRegistration = e.TimeOfRegistration
-            //    // Map other properties as needed
-            //}).ToList();
-
-            //return _context.Vehicle != null ?
-            //            View(viewModels) :
-            //            Problem("Entity set 'Garage2_0_Group5Context.Vehicle'  is null.");
-
+            var garage2_0_Group5Context = _context.Vehicle.Include(v => v.Member).Include(v => v.VehicleType);
+            return View(await garage2_0_Group5Context.ToListAsync());
         }
-
-
-        //public async Task<IActionResult> Filter(string id, int? type, int? noOfWheels)
-        //{
-        //    var model = string.IsNullOrWhiteSpace(id) ?
-        //            _context.Vehicle :
-        //            _context.Vehicle.Where(m => m.LicenseNumber.StartsWith(id));
-
-        //public async Task<IActionResult> Filter(int id, int? type, int? noOfWheels)
-        //{
-        //    var model = int.IsNullOrWhiteSpace(id) ?
-        //            _context.Vehicle :
-        //            _context.Vehicle.Where(m => m.Id.StartsWith(id));
-
-        //    //    var model = string.IsNullOrWhiteSpace(id) ?
-        //    //_context.Vehicle :
-        //    //_context.Vehicle.Where(m => m.ID.StartsWith(id));
-
-        //    //model = noOfWheels is null ?
-        //    //  _context.Vehicle :
-        //    //  _context.Vehicle.Where(m => m.NoOfWheels.Equals(noOfWheels));
-
-        //    model = type is null ?
-        //            model :
-        //            model.Where(m => (int)m.Type == type);
-
-        //    return View(nameof(Index), await model.ToListAsync());
-        //}
 
         // GET: Vehicles/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -96,7 +35,9 @@ namespace Garage2._0_Group5.Controllers
             }
 
             var vehicle = await _context.Vehicle
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .Include(v => v.Member)
+                .Include(v => v.VehicleType)
+                .FirstOrDefaultAsync(m => m.MemberId == id);
             if (vehicle == null)
             {
                 return NotFound();
@@ -105,27 +46,11 @@ namespace Garage2._0_Group5.Controllers
             return View(vehicle);
         }
 
-        //public async Task<IActionResult> Details(int? id)
-        //{
-        //    if (id == null || _context.Vehicle == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var vehicle = await _context.Vehicle
-        //        .FirstOrDefaultAsync(m => m.Id == id);
-        //    if (vehicle == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(vehicle);
-        //}
-
         // GET: Vehicles/Create
-        public IActionResult Create(int id)
+        public IActionResult Create()
         {
-            ViewBag.Id = id;
+            ViewData["MemberId"] = new SelectList(_context.Member, "Id", "Email");
+            ViewData["VehicleTypeId"] = new SelectList(_context.VehicleType, "Id", "TypeOfVehicle");
             return View();
         }
 
@@ -134,37 +59,17 @@ namespace Garage2._0_Group5.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(VehicleCreateViewModel viewModel)
+        public async Task<IActionResult> Create([Bind("Id,LicenseNumber,Color,Brand,Model,TimeOfRegistration,MemberId,VehicleTypeId")] Vehicle vehicle)
         {
-
-
             if (ModelState.IsValid)
             {
-                var member = _context.Member.FirstOrDefault(member => member.Id == viewModel.MemberId);
-                var vehicle = new Vehicle
-                {
-                    //MemberId = viewModel.MemberId,
-                    LicenseNumber = viewModel.LicenseNumber,
-                    Color = viewModel.Color,
-                    Brand = viewModel.Brand,
-                    Model = viewModel.Model,
-                    TimeOfRegistration = viewModel.TimeOfRegistration,
-
-                    //VehicleType = new VehicleType
-                    //{
-                    //    TypeOfVehicle = viewModel.TypeOfVehicle,
-                    //    Wheels = viewModel.Wheels,
-                    //}
-
-                };
-                vehicle.Member = member;
-
-
                 _context.Add(vehicle);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(viewModel);
+            ViewData["MemberId"] = new SelectList(_context.Member, "Id", "Email", vehicle.MemberId);
+            ViewData["VehicleTypeId"] = new SelectList(_context.VehicleType, "Id", "TypeOfVehicle", vehicle.VehicleTypeId);
+            return View(vehicle);
         }
 
         // GET: Vehicles/Edit/5
@@ -180,6 +85,8 @@ namespace Garage2._0_Group5.Controllers
             {
                 return NotFound();
             }
+            ViewData["MemberId"] = new SelectList(_context.Member, "Id", "Email", vehicle.MemberId);
+            ViewData["VehicleTypeId"] = new SelectList(_context.VehicleType, "Id", "TypeOfVehicle", vehicle.VehicleTypeId);
             return View(vehicle);
         }
 
@@ -188,9 +95,9 @@ namespace Garage2._0_Group5.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Type,Color,Brand,Model,NoOfWheels,TimeOfRegistration")] Vehicle vehicle)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,LicenseNumber,Color,Brand,Model,TimeOfRegistration,MemberId,VehicleTypeId")] Vehicle vehicle)
         {
-            if (id != vehicle.Id)
+            if (id != vehicle.MemberId)
             {
                 return NotFound();
             }
@@ -204,7 +111,7 @@ namespace Garage2._0_Group5.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!VehicleExists(vehicle.Id))
+                    if (!VehicleExists(vehicle.MemberId))
                     {
                         return NotFound();
                     }
@@ -215,6 +122,8 @@ namespace Garage2._0_Group5.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["MemberId"] = new SelectList(_context.Member, "Id", "Email", vehicle.MemberId);
+            ViewData["VehicleTypeId"] = new SelectList(_context.VehicleType, "Id", "TypeOfVehicle", vehicle.VehicleTypeId);
             return View(vehicle);
         }
 
@@ -227,7 +136,9 @@ namespace Garage2._0_Group5.Controllers
             }
 
             var vehicle = await _context.Vehicle
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .Include(v => v.Member)
+                .Include(v => v.VehicleType)
+                .FirstOrDefaultAsync(m => m.MemberId == id);
             if (vehicle == null)
             {
                 return NotFound();
@@ -250,61 +161,14 @@ namespace Garage2._0_Group5.Controllers
             {
                 _context.Vehicle.Remove(vehicle);
             }
-
+            
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool VehicleExists(int id)
         {
-            return (_context.Vehicle?.Any(e => e.Id == id)).GetValueOrDefault();
-        }
-
-        public async Task<IActionResult> Receipt(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            var vehicle = await _context.Vehicle
-                .FirstOrDefaultAsync(m => m.Id == id);
-
-            if (vehicle == null)
-            {
-                return NotFound();
-            }
-
-            return View(vehicle);
-        }
-
-        [MiddlewareFilter(typeof(JsReportPipeline))]
-        public async Task<IActionResult> Print(int id)
-        {
-            var vehicle = await _context.Vehicle
-                .FirstOrDefaultAsync(m => m.Id == id);
-
-            HttpContext.JsReportFeature().Recipe(Recipe.ChromePdf);
-            return View(vehicle);
-
-        }
-
-        private bool VehicleModelExists(int id)
-        {
-            return _context.Vehicle.Any(e => e.Id == id);
-        }
-
-        //Action method that returns a custom error message about Uniqueness of Licence Number
-        [AcceptVerbs("GET", "POST")]
-
-        public IActionResult UniqueLicenseNumber(string registrationNum)
-        {
-            if (_context.Vehicle.Any(v => v.LicenseNumber == registrationNum))
-
-            {
-                return Json($"This registration number {registrationNum} is already in use.");
-
-            }
-            return Json(true);
+          return (_context.Vehicle?.Any(e => e.MemberId == id)).GetValueOrDefault();
         }
     }
 }

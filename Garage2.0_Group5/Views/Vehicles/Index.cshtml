@@ -1,34 +1,77 @@
-﻿@model IEnumerable<VehicleIndexViewModel>
+﻿@model IEnumerable<Garage2._0_Group5.Models.Entities.Vehicle>
 
 @{
-	ViewData["Title"] = "Index";
+    ViewData["Title"] = "Index";
 }
 
-<h1>Parked Cars</h1>
+<h1>Index</h1>
 
 <p>
-	<a asp-action="Create" class="btn btn-outline-info mx-3">Park New Vehicle</a> 
+    <a asp-action="Create">Create New</a>
 </p>
-
-<form asp-action="Filter" asp-controller="Vehicles" method="get">
-	<div class="input-group mb-3">
-		@* <input type="text" class="form-control" name="id" placeholder="Search on License Number..." /> *@
-		@* <input type="text" class="form-control" name="noOfWheels" placeholder="Search on Number of Wheels..." /> *@
-		
-
-@* 		<div class="input-group-append">
-			<select class="form-control" name="type" asp-items="@Html.GetEnumSelectList<TypeOfVehicle>()">
-				<option selected="selected" value="">Vehicle Type...</option>
-			</select>
-		</div> *@
-
-
-@* 		<div class="input-group-append">
-			<button type="submit" class="btn btn-primary"><i class="fa fa-search">Search</i></button>
-		</div> *@
-	</div>
-</form>
-
-
-<partial name="_VehicleList" />
-
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LicenseNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Brand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeOfRegistration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Member)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VehicleType)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LicenseNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brand)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeOfRegistration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Member.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VehicleType.TypeOfVehicle)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

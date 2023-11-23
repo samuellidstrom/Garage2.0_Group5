@@ -20,8 +20,20 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Compile Remove="Controllers\Vehicles2Controller.cs" />
 		<Compile Remove="Models\ViewModels\IMemberViewModel.cs" />
 		<Compile Remove="ViewComponents\ReceiptViewComponent.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Remove="Views\Vehicles2\Create.cshtml" />
+	  <Content Remove="Views\Vehicles2\Delete.cshtml" />
+	  <Content Remove="Views\Vehicles2\Details.cshtml" />
+	  <Content Remove="Views\Vehicles2\Edit.cshtml" />
+	  <Content Remove="Views\Vehicles2\Index.cshtml" />
+	  <Content Remove="Views\Vehicles2\Print.cshtml" />
+	  <Content Remove="Views\Vehicles2\Receipt.cshtml" />
+	  <Content Remove="Views\Vehicles2\_VehicleList.cshtml" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -51,6 +63,7 @@
 	<ItemGroup>
 		<Folder Include="Migrations\" />
 		<Folder Include="ViewComponents\" />
+		<Folder Include="Views\Vehicles2\" />
 	</ItemGroup>
 
 </Project>
