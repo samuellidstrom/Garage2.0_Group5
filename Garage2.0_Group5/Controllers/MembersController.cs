@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Garage2._0_Group5.Data;
 using Garage2._0_Group5.Models.Entities;
+using Garage2._0_Group5.Models.ViewModels;
+using System.ComponentModel;
 
 namespace Garage2._0_Group5.Controllers
 {
@@ -22,9 +24,26 @@ namespace Garage2._0_Group5.Controllers
         // GET: Members
         public async Task<IActionResult> Index()
         {
-            return _context.Member != null ?
-                        View(await _context.Member.ToListAsync()) :
-                        Problem("Entity set 'Garage2_0_Group5Context.Member'  is null.");
+            //var t = _context.Member.ToList();
+            //var t2 = _context.Member.Include(m=>m.Vehicles).ToList();
+            //var t3 = _context.Member.Include(m=>m.Vehicles).ThenInclude(v=>v.VehicleType).ToList();
+            //var c = _context.Member.Include(m => m.VehicleTypes);
+
+            var model = _context.Member.AsNoTracking()
+                .Select(m => new MemberIndexViewModel
+                {
+                    Id = m.Id,
+                    FullName = m.Name.FullName,
+                    Email = m.Email,
+                    PersonNumber = m.PersonNumber,
+                    //VehicleInfos = m.Vehicles.Select(v => new VehicleInfo
+                    //{
+                    //    LicenseNumber = v.LicenseNumber,
+                    //    TimeOfRegistration = v.TimeOfRegistration
+                    //})
+                });
+
+            return View(await model.ToListAsync());
         }
 
         // GET: Members/Details/5

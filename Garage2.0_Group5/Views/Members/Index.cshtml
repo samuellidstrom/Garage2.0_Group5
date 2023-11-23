@@ -1,10 +1,10 @@
-﻿@model IEnumerable<Garage2._0_Group5.Models.Entities.Member>
+﻿@model IEnumerable<MemberIndexViewModel>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-
+<h1>Member Index</h1>
 <p>
     <a asp-action="Create">Register New Member</a>
 </p>
@@ -12,16 +12,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.FirstName)
+                @Html.DisplayNameFor(model => model.PersonNumber)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LastName)
+                @Html.DisplayNameFor(model => model.FullName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PersonNumber)
             </th>
             <th></th>
         </tr>
@@ -30,16 +27,13 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
+                @Html.DisplayFor(modelItem => item.PersonNumber)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LastName)
+                @Html.DisplayFor(modelItem => item.FullName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PersonNumber)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

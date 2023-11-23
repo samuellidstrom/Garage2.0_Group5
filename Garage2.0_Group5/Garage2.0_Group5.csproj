@@ -30,7 +30,6 @@
 		<Content Remove="Views\Members\Delete.cshtml" />
 		<Content Remove="Views\Members\Details.cshtml" />
 		<Content Remove="Views\Members\Edit.cshtml" />
-		<Content Remove="Views\Members\Index.cshtml" />
 		<Content Remove="Views\Vehicles\Create.cshtml" />
 		<Content Remove="Views\Vehicles\Delete.cshtml" />
 		<Content Remove="Views\Vehicles\Edit.cshtml" />
@@ -65,7 +64,6 @@
 	<ItemGroup>
 		<Folder Include="Migrations\" />
 		<Folder Include="ViewComponents\" />
-		<Folder Include="Views\Members\" />
 	</ItemGroup>
 
 </Project>

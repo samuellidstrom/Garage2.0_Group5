@@ -14,6 +14,7 @@ namespace Garage2._0_Group5.Data
         public Garage2_0_Group5Context(DbContextOptions<Garage2_0_Group5Context> options)
             : base(options)
         {
+            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
         public DbSet<Member> Member { get; set; } = default!;
