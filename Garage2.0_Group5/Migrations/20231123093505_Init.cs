@@ -48,10 +48,10 @@ namespace Garage2._0_Group5.Migrations
                     MemberId = table.Column<int>(type: "int", nullable: false),
                     VehicleTypeId = table.Column<int>(type: "int", nullable: false),
                     Id = table.Column<int>(type: "int", nullable: false),
-                    LicenseNumber = table.Column<string>(type: "nvarchar(6)", maxLength: 6, nullable: false),
+                    LicenseNumber = table.Column<string>(type: "nvarchar(6)", maxLength: 6, nullable: true),
                     Color = table.Column<int>(type: "int", nullable: false),
-                    Brand = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
-                    Model = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    Brand = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
+                    Model = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: true),
                     TimeOfRegistration = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>

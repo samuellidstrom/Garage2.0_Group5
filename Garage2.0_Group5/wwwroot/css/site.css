@@ -45,8 +45,15 @@ footer {
         color: white;
     }
 
+.btn-primary {
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
 
-
+.btn-danger {
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
 
 .btn-light {
     background-color: white;
@@ -62,8 +69,13 @@ footer {
     }
 
     .nav-style{
-        font-size:1.1em; 
+        font-size:1.1em;
+        
     }
+
+        .nav-style:hover {
+            background-color: rgb(192, 208, 222);
+        }
 
 h1 {
     text-transform: uppercase;
@@ -87,7 +99,7 @@ h3 {
 h4 {
     margin-top: -8px;
     text-transform: uppercase;
-    color: red;
+    color: #236F9E;
     font-size: 1.1em;
 }
 

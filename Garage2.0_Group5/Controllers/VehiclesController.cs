@@ -136,7 +136,7 @@ namespace Garage2._0_Group5.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(VehicleCreateViewModel viewModel)
         {
-
+            ViewData["TypeOfVehicle"] = new SelectList(_context.VehicleType, "Id", "Name");
 
             if (ModelState.IsValid)
             {
