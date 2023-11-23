@@ -47,6 +47,7 @@ namespace Garage2._0_Group5.Migrations
                 {
                     MemberId = table.Column<int>(type: "int", nullable: false),
                     VehicleTypeId = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false),
                     LicenseNumber = table.Column<string>(type: "nvarchar(6)", maxLength: 6, nullable: false),
                     Color = table.Column<int>(type: "int", nullable: false),
                     Brand = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),

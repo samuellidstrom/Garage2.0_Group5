@@ -18,7 +18,9 @@ namespace Garage2._0_Group5.Data
         }
 
         public DbSet<Member> Member { get; set; } = default!;
-        //public DbSet<Vehicle> Vehicles { get; set; }
+        public DbSet<Vehicle> Vehicle { get; set; }
+
+        public DbSet<VehicleType> VehicleType { get; set; } = default!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -32,5 +34,8 @@ namespace Garage2._0_Group5.Data
 
             //modelBuilder.Entity<Vehicle>().HasKey(v => new { v.MemberId, v.VehicleTypeId });
         }
+        //public DbSet<Vehicle> Vehicles { get; set; }
+
+
     }
 }

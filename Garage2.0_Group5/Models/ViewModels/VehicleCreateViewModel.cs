@@ -8,7 +8,7 @@ namespace Garage2._0_Group5.Models.ViewModels
     {
         [Required]
         [Display(Name = "Member")]
-        public MemberViewModel Member { get; set; }
+        public int MemberId { get; set; }
 
         public string LicenseNumber { get; set; }
         public Color Color { get; set; }

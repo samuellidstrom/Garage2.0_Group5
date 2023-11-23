@@ -6,10 +6,10 @@ using System.Text.RegularExpressions;
 
 namespace Garage2._0_Group5.Models.Entities
 {
-    //#nullable disable
+#nullable disable
     public class Vehicle
     {
-
+        public int Id { get; set; }
         private string licenseNumber;
 
         //[Required]
@@ -52,7 +52,6 @@ namespace Garage2._0_Group5.Models.Entities
 
         public Member Member { get; set; }
         public VehicleType VehicleType { get; set; }
-
 
     }
 }

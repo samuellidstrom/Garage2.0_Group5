@@ -20,19 +20,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Remove="Controllers\VehiclesController.cs" />
 		<Compile Remove="Models\ViewModels\IMemberViewModel.cs" />
 		<Compile Remove="Validations\CheckNameAttribute.cs" />
 		<Compile Remove="ViewComponents\ReceiptViewComponent.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<Content Remove="Views\Members\Edit.cshtml" />
-		<Content Remove="Views\Vehicles\Create.cshtml" />
-		<Content Remove="Views\Vehicles\Delete.cshtml" />
-		<Content Remove="Views\Vehicles\Edit.cshtml" />
-		<Content Remove="Views\Vehicles\Print.cshtml" />
-		<Content Remove="Views\Vehicles\Receipt.cshtml" />
+	  <Content Remove="Views\Members\Edit.cshtml" />
 	</ItemGroup>
 
 	<ItemGroup>

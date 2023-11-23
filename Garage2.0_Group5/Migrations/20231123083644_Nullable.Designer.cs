@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Garage2._0_Group5.Migrations
 {
     [DbContext(typeof(Garage2_0_Group5Context))]
-    [Migration("20231123045453_Init")]
-    partial class Init
+    [Migration("20231123083644_Nullable")]
+    partial class Nullable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -57,20 +57,20 @@ namespace Garage2._0_Group5.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Brand")
-                        .IsRequired()
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
 
                     b.Property<int>("Color")
                         .HasColumnType("int");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
                     b.Property<string>("LicenseNumber")
-                        .IsRequired()
                         .HasMaxLength(6)
                         .HasColumnType("nvarchar(6)");
 
                     b.Property<string>("Model")
-                        .IsRequired()
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
 
