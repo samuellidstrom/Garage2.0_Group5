@@ -27,7 +27,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Content Remove="Views\Members\Details.cshtml" />
 		<Content Remove="Views\Members\Edit.cshtml" />
 		<Content Remove="Views\Vehicles\Create.cshtml" />
 		<Content Remove="Views\Vehicles\Delete.cshtml" />

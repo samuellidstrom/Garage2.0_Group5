@@ -6,12 +6,13 @@ using System.Text.RegularExpressions;
 
 namespace Garage2._0_Group5.Models.Entities
 {
+    //#nullable disable
     public class Vehicle
     {
 
         private string licenseNumber;
 
-        [Required]
+        //[Required]
         [DisplayName("License Number")]
         [RegularExpression(@"^[a-zA-Z]{3}\d{3}$", ErrorMessage = "Registration format must be ABC123")]
         [StringLength(6, MinimumLength = 6)]
@@ -32,12 +33,12 @@ namespace Garage2._0_Group5.Models.Entities
         [DisplayName("Color")]
         public Color Color { get; set; }
 
-        [Required]
+        //[Required]
         [DisplayName("Brand")]
         [StringLength(15, MinimumLength = 3)]
         public string Brand { get; set; }
 
-        [Required]
+        //[Required]
         [DisplayName("Model")]
         [StringLength(15, MinimumLength = 3)]
         public string Model { get; set; }

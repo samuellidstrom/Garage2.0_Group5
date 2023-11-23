@@ -59,7 +59,7 @@ namespace Garage2._0_Group5.Controllers
                 return NotFound();
             }
 
-            var member = await _context.Member
+            var member = await mapper.ProjectTo<MemberDetailsViewModel>(_context.Member)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (member == null)
             {
