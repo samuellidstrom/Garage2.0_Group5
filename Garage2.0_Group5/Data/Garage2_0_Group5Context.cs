@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Garage2._0_Group5.Models.Entities;
+using System.Reflection.Emit;
+using Garage2._0_Group5.Configurations;
 
 namespace Garage2._0_Group5.Data
 {
@@ -21,25 +23,11 @@ namespace Garage2._0_Group5.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.ApplyConfiguration(new MemberConfigurations());
+
             //modelBuilder.Entity<Member>().OwnsOne(m => m.Name);
 
-            modelBuilder.Entity<Member>()
-                .OwnsOne(m => m.Name)
-                .Property(n => n.FirstName)
-                .HasColumnName("FirstName");
 
-            modelBuilder.Entity<Member>()
-                .OwnsOne(m => m.Name)
-                .Property(n => n.LastName)
-                .HasColumnName("LastName");
-
-            modelBuilder.Entity<Member>()
-                .HasMany(m => m.VehicleTypes)
-                .WithMany(vt => vt.Members)
-                .UsingEntity<Vehicle>(
-                v => v.HasOne(v => v.VehicleType).WithMany(vt => vt.Vehicles),
-                v => v.HasOne(v => v.Member).WithMany(vt => vt.Vehicles),
-                v => v.HasKey(v => new { v.MemberId, v.VehicleTypeId }));
 
             //modelBuilder.Entity<Vehicle>().HasKey(v => new { v.MemberId, v.VehicleTypeId });
         }
