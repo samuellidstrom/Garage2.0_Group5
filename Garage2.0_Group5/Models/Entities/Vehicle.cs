@@ -10,8 +10,6 @@ namespace Garage2._0_Group5.Models.Entities
     {
         public int Id { get; set; }
 
-        //private string licenseNumber;
-
         [Required]
         [DisplayName("License Number")]
         [RegularExpression(@"^[a-zA-Z]{3}\d{3}$", ErrorMessage = "Registration format must be ABC123")]

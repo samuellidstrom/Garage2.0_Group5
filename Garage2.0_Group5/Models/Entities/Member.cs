@@ -43,7 +43,7 @@ namespace Garage2._0_Group5.Models.Entities
 
 
         //Navigation Property
-        public ICollection<Vehicle> Vehicles { get; set; } = new List<Vehicle>();
+        public ICollection<Vehicle> Vehicles { get; set; } // = new List<Vehicle>();
 
     }
 }

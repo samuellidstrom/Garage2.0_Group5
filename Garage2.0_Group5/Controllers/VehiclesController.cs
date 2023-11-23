@@ -42,18 +42,28 @@ namespace Garage2._0_Group5.Controllers
         }
       
         // GET: Vehicles/Details/5
-        public async Task<IActionResult> Details()
+        public async Task<IActionResult> Details(int id)
         {
 
             var model = _context.Vehicle.AsNoTracking()
-            .Select(v => new VehicleDetailsViewModel
-            {
-             TypeOfVehicle = v.VehicleType.TypeOfVehicle,
-                LicenseNumber = v.LicenseNumber,
-                TimeOfRegistration = v.TimeOfRegistration,
-            });
+                .Select(v => new VehicleIndexViewModel
+                {
+                    VehicleId = id,
+                    TypeOfVehicle = v.VehicleType.TypeOfVehicle,
+                    LicenseNumber = v.LicenseNumber,
+                    TimeOfRegistration = v.TimeOfRegistration,
+                });
 
             return View(await model.ToListAsync());
+
+            //var model = _context.Vehicle.AsNoTracking()
+            //.Select(v => new VehicleDetailsViewModel
+            //{
+            // TypeOfVehicle = v.VehicleType.TypeOfVehicle,
+            //    LicenseNumber = v.LicenseNumber,
+            //    TimeOfRegistration = v.TimeOfRegistration,
+            //});
+            //return View(await model.ToListAsync());
 
 
 
