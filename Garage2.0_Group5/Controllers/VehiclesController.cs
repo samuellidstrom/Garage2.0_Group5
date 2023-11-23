@@ -7,105 +7,43 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Garage2._0_Group5.Data;
 using Garage2._0_Group5.Models.Entities;
-using jsreport.AspNetCore;
-using jsreport.Types;
-using Garage2._0_Group5.Models.ViewModels;
-using AutoMapper;
 
 namespace Garage2._0_Group5.Controllers
 {
     public class VehiclesController : Controller
     {
         private readonly Garage2_0_Group5Context _context;
-        //private readonly IMapper _mapper;
 
-        //public VehiclesController(Garage2_0_Group5Context context, IMapper mapper)
         public VehiclesController(Garage2_0_Group5Context context)
         {
             _context = context;
-            //_mapper = mapper;
         }
 
         // GET: Vehicles
         public async Task<IActionResult> Index()
         {
-
-            var model = _context.Vehicle.AsNoTracking()
-                .Select(v => new VehicleIndexViewModel
-                {
-                    TypeOfVehicle = v.VehicleType.TypeOfVehicle,
-                    LicenseNumber = v.LicenseNumber,
-                    TimeOfRegistration = v.TimeOfRegistration,                                    
-                });
-
-            return View(await model.ToListAsync());
+              return _context.Vehicle != null ? 
+                          View(await _context.Vehicle.ToListAsync()) :
+                          Problem("Entity set 'Garage2_0_Group5Context.Vehicle'  is null.");
         }
-      
+
         // GET: Vehicles/Details/5
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(int? id)
         {
+            if (id == null || _context.Vehicle == null)
+            {
+                return NotFound();
+            }
 
-            var model = _context.Vehicle.AsNoTracking()
-                .Select(v => new VehicleIndexViewModel
-                {
-                    VehicleId = id,
-                    TypeOfVehicle = v.VehicleType.TypeOfVehicle,
-                    LicenseNumber = v.LicenseNumber,
-                    TimeOfRegistration = v.TimeOfRegistration,
-                });
+            var vehicle = await _context.Vehicle
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (vehicle == null)
+            {
+                return NotFound();
+            }
 
-            return View(await model.ToListAsync());
-
-            //var model = _context.Vehicle.AsNoTracking()
-            //.Select(v => new VehicleDetailsViewModel
-            //{
-            // TypeOfVehicle = v.VehicleType.TypeOfVehicle,
-            //    LicenseNumber = v.LicenseNumber,
-            //    TimeOfRegistration = v.TimeOfRegistration,
-            //});
-            //return View(await model.ToListAsync());
-
-
-
-            //if (id == null || _context.Vehicle == null)
-            //{
-            //    return NotFound();
-            //}
-
-            //var vehicle = await _context.Vehicle
-            //    .FirstOrDefaultAsync(m => m.Id == id);
-            //if (vehicle == null)
-            //{
-            //    return NotFound();
-            //}
-
-            //            return View(vehicle);
+            return View(vehicle);
         }
-        //SL
-
-        //public async Task<IActionResult> Details(int? id)
-        //{
-        //    if (id == null || _context.Vehicle == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var vehicle = await _context.Vehicle
-        //        .FirstOrDefaultAsync(m => m.Id == id);
-        //    if (vehicle == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(vehicle);
-        //}
-
-
-
-
-
-
-
 
         // GET: Vehicles/Create
         public IActionResult Create()
@@ -118,30 +56,15 @@ namespace Garage2._0_Group5.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(VehicleCreateViewModel viewModel)
+        public async Task<IActionResult> Create([Bind("Id,LicenseNumber,VehicleColor,Brand,Model,TimeOfRegistration")] Vehicle vehicle)
         {
             if (ModelState.IsValid)
             {
-                var vehicle = new Vehicle
-                {
-                    LicenseNumber = viewModel.LicenseNumber,
-                    VehicleColor = viewModel.VehicleColor,
-                    Brand = viewModel.Brand,
-                    Model = viewModel.Model,
-                    TimeOfRegistration = viewModel.TimeOfRegistration,
-                    VehicleType = new VehicleType
-                    {
-                        TypeOfVehicle = viewModel.TypeOfVehicle,
-                        Wheels = viewModel.Wheels,
-                    }
-                };
-
-
                 _context.Add(vehicle);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(viewModel);
+            return View(vehicle);
         }
 
         // GET: Vehicles/Edit/5
@@ -165,7 +88,7 @@ namespace Garage2._0_Group5.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Type,Color,Brand,Model,NoOfWheels,TimeOfRegistration")] Vehicle vehicle)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,LicenseNumber,VehicleColor,Brand,Model,TimeOfRegistration")] Vehicle vehicle)
         {
             if (id != vehicle.Id)
             {
@@ -227,95 +150,14 @@ namespace Garage2._0_Group5.Controllers
             {
                 _context.Vehicle.Remove(vehicle);
             }
-
+            
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool VehicleExists(int id)
         {
-            return (_context.Vehicle?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.Vehicle?.Any(e => e.Id == id)).GetValueOrDefault();
         }
-
-        public async Task<IActionResult> Receipt(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            var vehicle = await _context.Vehicle
-                .FirstOrDefaultAsync(m => m.Id == id);
-
-            if (vehicle == null)
-            {
-                return NotFound();
-            }
-
-            return View(vehicle);
-        }
-
-        [MiddlewareFilter(typeof(JsReportPipeline))]
-        public async Task<IActionResult> Print(int id)
-        {
-            var vehicle = await _context.Vehicle
-                .FirstOrDefaultAsync(m => m.Id == id);
-
-            HttpContext.JsReportFeature().Recipe(Recipe.ChromePdf);
-            return View(vehicle);
-
-        }
-
-        private bool VehicleModelExists(int id)
-        {
-            return _context.Vehicle.Any(e => e.Id == id);
-        }
-
-        //Action method that returns a custom error message about Uniqueness of Licence Number
-        [AcceptVerbs("GET", "POST")]
-
-        public IActionResult UniqueLicenseNumber(string registrationNum)
-        {
-            if (_context.Vehicle.Any(v => v.LicenseNumber == registrationNum))
-
-            {
-                return Json($"This registration number {registrationNum} is already in use.");
-
-            }
-            return Json(true);
-        }
-
-
-
-
-
-
-        //public async Task<IActionResult> Filter(string id, int? type, int? noOfWheels)
-        //{
-        //    var model = string.IsNullOrWhiteSpace(id) ?
-        //            _context.Vehicle :
-        //            _context.Vehicle.Where(m => m.LicenseNumber.StartsWith(id));
-
-        //public async Task<IActionResult> Filter(int id, int? type, int? noOfWheels)
-        //{
-        //    var model = int.IsNullOrWhiteSpace(id) ?
-        //            _context.Vehicle :
-        //            _context.Vehicle.Where(m => m.Id.StartsWith(id));
-
-        //    //    var model = string.IsNullOrWhiteSpace(id) ?
-        //    //_context.Vehicle :
-        //    //_context.Vehicle.Where(m => m.ID.StartsWith(id));
-
-        //    //model = noOfWheels is null ?
-        //    //  _context.Vehicle :
-        //    //  _context.Vehicle.Where(m => m.NoOfWheels.Equals(noOfWheels));
-
-        //    model = type is null ?
-        //            model :
-        //            model.Where(m => (int)m.Type == type);
-
-        //    return View(nameof(Index), await model.ToListAsync());
-        //}
-
-
     }
 }
