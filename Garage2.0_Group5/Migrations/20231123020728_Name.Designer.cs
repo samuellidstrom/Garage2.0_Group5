@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Garage2._0_Group5.Migrations
 {
     [DbContext(typeof(Garage2_0_Group5Context))]
-    [Migration("20231122124536_Init")]
-    partial class Init
+    [Migration("20231123020728_Name")]
+    partial class Name
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,16 +38,6 @@ namespace Garage2._0_Group5.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
                     b.Property<string>("PersonNumber")
                         .IsRequired()
                         .HasMaxLength(12)
@@ -55,16 +45,16 @@ namespace Garage2._0_Group5.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Members");
+                    b.ToTable("Member");
                 });
 
             modelBuilder.Entity("Garage2._0_Group5.Models.Entities.Vehicle", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("MemberId")
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<int>("VehicleTypeId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Brand")
                         .IsRequired()
@@ -79,9 +69,6 @@ namespace Garage2._0_Group5.Migrations
                         .HasMaxLength(6)
                         .HasColumnType("nvarchar(6)");
 
-                    b.Property<int>("MemberId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Model")
                         .IsRequired()
                         .HasMaxLength(15)
@@ -90,9 +77,9 @@ namespace Garage2._0_Group5.Migrations
                     b.Property<DateTime>("TimeOfRegistration")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                    b.HasKey("MemberId", "VehicleTypeId");
 
-                    b.HasIndex("MemberId");
+                    b.HasIndex("VehicleTypeId");
 
                     b.ToTable("Vehicle");
                 });
@@ -110,18 +97,43 @@ namespace Garage2._0_Group5.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<int>("VehicleId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Wheels")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("VehicleId")
-                        .IsUnique();
-
                     b.ToTable("VehicleType");
+                });
+
+            modelBuilder.Entity("Garage2._0_Group5.Models.Entities.Member", b =>
+                {
+                    b.OwnsOne("Garage2._0_Group5.Models.Entities.Name", "Name", b1 =>
+                        {
+                            b1.Property<int>("MemberId")
+                                .HasColumnType("int");
+
+                            b1.Property<string>("FirstName")
+                                .IsRequired()
+                                .HasMaxLength(20)
+                                .HasColumnType("nvarchar(20)")
+                                .HasColumnName("FirstName");
+
+                            b1.Property<string>("LastName")
+                                .IsRequired()
+                                .HasMaxLength(20)
+                                .HasColumnType("nvarchar(20)")
+                                .HasColumnName("LastName");
+
+                            b1.HasKey("MemberId");
+
+                            b1.ToTable("Member");
+
+                            b1.WithOwner()
+                                .HasForeignKey("MemberId");
+                        });
+
+                    b.Navigation("Name")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Garage2._0_Group5.Models.Entities.Vehicle", b =>
@@ -132,18 +144,15 @@ namespace Garage2._0_Group5.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Member");
-                });
-
-            modelBuilder.Entity("Garage2._0_Group5.Models.Entities.VehicleType", b =>
-                {
-                    b.HasOne("Garage2._0_Group5.Models.Entities.Vehicle", "Vehicle")
-                        .WithOne("VehicleType")
-                        .HasForeignKey("Garage2._0_Group5.Models.Entities.VehicleType", "VehicleId")
+                    b.HasOne("Garage2._0_Group5.Models.Entities.VehicleType", "VehicleType")
+                        .WithMany("Vehicles")
+                        .HasForeignKey("VehicleTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Vehicle");
+                    b.Navigation("Member");
+
+                    b.Navigation("VehicleType");
                 });
 
             modelBuilder.Entity("Garage2._0_Group5.Models.Entities.Member", b =>
@@ -151,10 +160,9 @@ namespace Garage2._0_Group5.Migrations
                     b.Navigation("Vehicles");
                 });
 
-            modelBuilder.Entity("Garage2._0_Group5.Models.Entities.Vehicle", b =>
+            modelBuilder.Entity("Garage2._0_Group5.Models.Entities.VehicleType", b =>
                 {
-                    b.Navigation("VehicleType")
-                        .IsRequired();
+                    b.Navigation("Vehicles");
                 });
 #pragma warning restore 612, 618
         }

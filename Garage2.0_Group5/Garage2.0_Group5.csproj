@@ -5,44 +5,67 @@
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<RootNamespace>Garage2._0_Group5</RootNamespace>
+		<OutputType>Exe</OutputType>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Remove="Views\Customer\**" />
-	  <Compile Remove="Views\Vehicle\**" />
-	  <Content Remove="Views\Customer\**" />
-	  <Content Remove="Views\Vehicle\**" />
-	  <EmbeddedResource Remove="Views\Customer\**" />
-	  <EmbeddedResource Remove="Views\Vehicle\**" />
-	  <None Remove="Views\Customer\**" />
-	  <None Remove="Views\Vehicle\**" />
+		<Compile Remove="Views\Customer\**" />
+		<Compile Remove="Views\Vehicle\**" />
+		<Content Remove="Views\Customer\**" />
+		<Content Remove="Views\Vehicle\**" />
+		<EmbeddedResource Remove="Views\Customer\**" />
+		<EmbeddedResource Remove="Views\Vehicle\**" />
+		<None Remove="Views\Customer\**" />
+		<None Remove="Views\Vehicle\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Remove="Controllers\VehiclesController.cs" />
+		<Compile Remove="Validations\CheckNameAttribute.cs" />
+		<Compile Remove="ViewComponents\ReceiptViewComponent.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Remove="Views\Members\Create.cshtml" />
+		<Content Remove="Views\Members\Delete.cshtml" />
+		<Content Remove="Views\Members\Details.cshtml" />
+		<Content Remove="Views\Members\Edit.cshtml" />
+		<Content Remove="Views\Members\Index.cshtml" />
+		<Content Remove="Views\Vehicles\Create.cshtml" />
+		<Content Remove="Views\Vehicles\Delete.cshtml" />
+		<Content Remove="Views\Vehicles\Edit.cshtml" />
+		<Content Remove="Views\Vehicles\Print.cshtml" />
+		<Content Remove="Views\Vehicles\Receipt.cshtml" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="AutoMapper" Version="12.0.1" />
 		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+		<PackageReference Include="Bogus" Version="34.0.2" />
 		<PackageReference Include="bootstrap" Version="5.3.2" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Include="Views\Shared\Components\Receipt\Default.cshtml" />
+		<None Include="Views\Shared\Components\Receipt\Default.cshtml" />
 	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="jsreport.AspNetCore" Version="3.8.0" />
-    <PackageReference Include="jsreport.Binary" Version="3.13.0" />
-    <PackageReference Include="jsreport.Local" Version="3.8.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.14" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.14" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.14">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.11" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="jsreport.AspNetCore" Version="3.8.0" />
+		<PackageReference Include="jsreport.Binary" Version="3.13.0" />
+		<PackageReference Include="jsreport.Local" Version="3.8.1" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.14" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.14" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.14">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.11" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Migrations\" />
-  </ItemGroup>
+	<ItemGroup>
+		<Folder Include="Migrations\" />
+		<Folder Include="ViewComponents\" />
+		<Folder Include="Views\Members\" />
+	</ItemGroup>
 
 </Project>

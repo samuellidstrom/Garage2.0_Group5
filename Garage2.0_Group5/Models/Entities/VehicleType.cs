@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace Garage2._0_Group5.Models.Entities
 {
-    #nullable disable
+#nullable disable
     public class VehicleType
     {
         public int Id { get; set; }
@@ -19,9 +19,13 @@ namespace Garage2._0_Group5.Models.Entities
         public int Wheels { get; set; }
 
         //Foreign key
-        public int VehicleId { get; set; }
+        //public int VehicleId { get; set; }
 
-        //Nav property
-        public Vehicle Vehicle { get; set; }
+        ////Nav property
+        //public Vehicle Vehicle { get; set; }
+
+        public ICollection<Vehicle> Vehicles { get; set; }
+
+        public ICollection<Member> Members { get; set; }
     }
 }

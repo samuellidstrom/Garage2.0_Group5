@@ -3,12 +3,13 @@ using Garage2._0_Group5.Data;
 using jsreport.AspNetCore;
 using jsreport.Local;
 using jsreport.Binary;
+using Garage2._0_Group5.Extensions;
 
 namespace Garage2._0_Group5
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -26,12 +27,18 @@ namespace Garage2._0_Group5
 
             var app = builder.Build();
 
+
+
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
+            }
+            else
+            {
+                await app.SeedDataAsync();
             }
 
             app.UseHttpsRedirection();
@@ -43,7 +50,7 @@ namespace Garage2._0_Group5
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Vehicles}/{action=Index}/{id?}");
+                pattern: "{controller=Members}/{action=Index}/{id?}");
 
             app.Run();
         }

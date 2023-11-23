@@ -4,6 +4,7 @@ using Garage2._0_Group5.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Garage2._0_Group5.Migrations
 {
     [DbContext(typeof(Garage2_0_Group5Context))]
-    partial class Garage2_0_Group5ContextModelSnapshot : ModelSnapshot
+    [Migration("20231123014056_Init")]
+    partial class Init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,6 +37,16 @@ namespace Garage2._0_Group5.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("PersonNumber")
                         .IsRequired()
@@ -100,37 +113,6 @@ namespace Garage2._0_Group5.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("VehicleType");
-                });
-
-            modelBuilder.Entity("Garage2._0_Group5.Models.Entities.Member", b =>
-                {
-                    b.OwnsOne("Garage2._0_Group5.Models.Entities.Name", "Name", b1 =>
-                        {
-                            b1.Property<int>("MemberId")
-                                .HasColumnType("int");
-
-                            b1.Property<string>("FirstName")
-                                .IsRequired()
-                                .HasMaxLength(20)
-                                .HasColumnType("nvarchar(20)")
-                                .HasColumnName("FirstName");
-
-                            b1.Property<string>("LastName")
-                                .IsRequired()
-                                .HasMaxLength(20)
-                                .HasColumnType("nvarchar(20)")
-                                .HasColumnName("LastName");
-
-                            b1.HasKey("MemberId");
-
-                            b1.ToTable("Member");
-
-                            b1.WithOwner()
-                                .HasForeignKey("MemberId");
-                        });
-
-                    b.Navigation("Name")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Garage2._0_Group5.Models.Entities.Vehicle", b =>

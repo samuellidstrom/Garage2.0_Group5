@@ -14,9 +14,34 @@ namespace Garage2._0_Group5.Data
         {
         }
 
-        public DbSet<Vehicle> Vehicle { get; set; }
+        public DbSet<Member> Member { get; set; } = default!;
+        //public DbSet<Vehicle> Vehicles { get; set; }
 
-        public DbSet<Member> Members { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
 
+            //modelBuilder.Entity<Member>().OwnsOne(m => m.Name);
+
+            modelBuilder.Entity<Member>()
+                .OwnsOne(m => m.Name)
+                .Property(n => n.FirstName)
+                .HasColumnName("FirstName");
+
+            modelBuilder.Entity<Member>()
+                .OwnsOne(m => m.Name)
+                .Property(n => n.LastName)
+                .HasColumnName("LastName");
+
+            modelBuilder.Entity<Member>()
+                .HasMany(m => m.VehicleTypes)
+                .WithMany(vt => vt.Members)
+                .UsingEntity<Vehicle>(
+                v => v.HasOne(v => v.VehicleType).WithMany(vt => vt.Vehicles),
+                v => v.HasOne(v => v.Member).WithMany(vt => vt.Vehicles),
+                v => v.HasKey(v => new { v.MemberId, v.VehicleTypeId }));
+
+            //modelBuilder.Entity<Vehicle>().HasKey(v => new { v.MemberId, v.VehicleTypeId });
+        }
     }
 }

@@ -12,7 +12,7 @@ namespace Garage3._0.Web.Models.ViewModels
 
 
         [Required]
-        [CheckName]
+        //[CheckName]
         public string LastName { get; set; }
 
 

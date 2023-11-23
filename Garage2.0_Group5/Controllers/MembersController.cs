@@ -22,20 +22,20 @@ namespace Garage2._0_Group5.Controllers
         // GET: Members
         public async Task<IActionResult> Index()
         {
-            return _context.Members != null ?
-                        View(await _context.Members.ToListAsync()) :
+            return _context.Member != null ?
+                        View(await _context.Member.ToListAsync()) :
                         Problem("Entity set 'Garage2_0_Group5Context.Member'  is null.");
         }
 
         // GET: Members/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Members == null)
+            if (id == null || _context.Member == null)
             {
                 return NotFound();
             }
 
-            var member = await _context.Members
+            var member = await _context.Member
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (member == null)
             {
@@ -70,12 +70,12 @@ namespace Garage2._0_Group5.Controllers
         // GET: Members/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Members == null)
+            if (id == null || _context.Member == null)
             {
                 return NotFound();
             }
 
-            var member = await _context.Members.FindAsync(id);
+            var member = await _context.Member.FindAsync(id);
             if (member == null)
             {
                 return NotFound();
@@ -121,12 +121,12 @@ namespace Garage2._0_Group5.Controllers
         // GET: Members/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Members == null)
+            if (id == null || _context.Member == null)
             {
                 return NotFound();
             }
 
-            var member = await _context.Members
+            var member = await _context.Member
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (member == null)
             {
@@ -141,14 +141,14 @@ namespace Garage2._0_Group5.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Members == null)
+            if (_context.Member == null)
             {
                 return Problem("Entity set 'Garage2_0_Group5Context.Member'  is null.");
             }
-            var member = await _context.Members.FindAsync(id);
+            var member = await _context.Member.FindAsync(id);
             if (member != null)
             {
-                _context.Members.Remove(member);
+                _context.Member.Remove(member);
             }
 
             await _context.SaveChangesAsync();
@@ -157,14 +157,14 @@ namespace Garage2._0_Group5.Controllers
 
         private bool MemberExists(int id)
         {
-            return (_context.Members?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Member?.Any(e => e.Id == id)).GetValueOrDefault();
         }
 
         //Action method that returns a custom error message about Uniqueness of Person Number
         [AcceptVerbs("GET", "POST")]
         public IActionResult UniquePersonNumber(string personNumber)
         {
-            if (_context.Members.Any(p => p.PersonNumber == personNumber))
+            if (_context.Member.Any(p => p.PersonNumber == personNumber))
             {
                 return Json($"This person number {personNumber} is already in use.");
             }

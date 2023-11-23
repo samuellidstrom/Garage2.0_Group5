@@ -5,28 +5,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Garage2._0_Group5.Models.Entities
 {
-#nullable disable
+    //#nullable disable
     public class Member
     {
         public int Id { get; set; }
 
-
-        [Required]
-        [DisplayName("First Name")]
-        [StringLength(20, MinimumLength = 2)]
-        public string FirstName { get; set; }
-
-
-        [Required]
-        [CheckNameAttribute]
-        [DisplayName("Last Name")]
-        [StringLength(20, MinimumLength = 2)]
-        public string LastName { get; set; }
-
-
-        [DisplayName("Owner")]
-        public string FullName => $"{FirstName} {LastName}";
-
+        public Name Name { get; set; }
 
         [Required]
         [DisplayName("Email Address")]
@@ -46,5 +30,29 @@ namespace Garage2._0_Group5.Models.Entities
         //Navigation Property
         public ICollection<Vehicle> Vehicles { get; set; } = new List<Vehicle>();
 
+        public ICollection<VehicleType> VehicleTypes { get; set; }
+
+        //public Member(string firstName, string lastName, string email, string personNumber, ICollection<Vehicle> vehicles, ICollection<VehicleType> vehicleTypes)
+        //{
+        //    FirstName = firstName;
+        //    LastName = lastName;
+        //    Email = email;
+        //    PersonNumber = personNumber;
+        //    Vehicles = vehicles;
+        //    VehicleTypes = vehicleTypes;
+        //}
+        private Member()
+        {
+            Name = null!;
+            Email = null!;
+            PersonNumber = null!;
+        }
+
+        public Member(Name name, string email, string personNumber)
+        {
+            Name = name;
+            Email = email;
+            PersonNumber = personNumber;
+        }
     }
 }
